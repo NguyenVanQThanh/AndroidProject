@@ -66,6 +66,7 @@ public class DetailProductNVKAdapter extends RecyclerView.Adapter<DetailProductN
 
         holder.slht.setText(String.valueOf(productBatchPair.second.getQuantity()));
         holder.slValid.setText(String.valueOf(productBatchPair.second.getQuantity_Valid()));
+        // chuyển sang ngày
         holder.exp_date.setText(StampToString(productBatchPair.second.getExpiryDate()));
         productBatchPair.second.getIdDocument(productBatchPair.first, new ProductBatch.MyCallback() {
             @Override
@@ -101,6 +102,7 @@ public class DetailProductNVKAdapter extends RecyclerView.Adapter<DetailProductN
             super(itemView);
             context = ctx;
             maLo = itemView.findViewById(R.id.maLo4);
+            // chuyển ngày
             exp_date = itemView.findViewById(R.id.hsd4);
             slht = itemView.findViewById(R.id.slht4);// là số lượng đã nhập kho, không quan tâm lên kệ hay chưa
             slValid = itemView.findViewById(R.id.sltt4);// là số lượng khả dụng có thể sử dụng cho hoạt động xuất quantity_valid
@@ -108,12 +110,15 @@ public class DetailProductNVKAdapter extends RecyclerView.Adapter<DetailProductN
         }
     }
 
+//Chuyển đổi ngày
     private String StampToString(Timestamp timestamp) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = timestamp.toDate();
         return dateFormat.format(date);
     }
 
+
+    // 1. Cập nhật số lượng sản phẩm
     private void updateDataInFirestore(String maLo, int newQuantityValid, EditText editText) {
         // Use Firebase Firestore to update data in Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();

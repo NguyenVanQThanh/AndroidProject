@@ -1,5 +1,6 @@
 package com.example.projecthk1_2023_2024.NvKho.FuncNhapHang;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -13,8 +14,12 @@ import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Product;
+import com.google.firebase.Timestamp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ListImp1Adapter extends RecyclerView.Adapter<ListImp1Adapter.MyViewHolder>  {
     Context context;
@@ -44,12 +49,14 @@ public class ListImp1Adapter extends RecyclerView.Adapter<ListImp1Adapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListImp1Adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListImp1Adapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Pair<String, ImportBatch> NewImpPair = listImp.get(position);
         holder.txtMapn.setText(NewImpPair.first);
         holder.txtNCC.setText(NewImpPair.second.getSupplier());
         holder.txtTTdon.setText(NewImpPair.second.getStatus().toString());
         holder.txtSlNhap.setText(String.valueOf(NewImpPair.second.getQuantity_import()));
+        holder.txtNgay.setText(StampToString(NewImpPair.second.getDate_success()));
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +69,14 @@ public class ListImp1Adapter extends RecyclerView.Adapter<ListImp1Adapter.MyView
 
     }
 
+
     @Override
     public int getItemCount() {
         return listImp.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView txtMapn, txtNCC, txtTTdon, txtSlNhap;
+        TextView txtMapn, txtNCC, txtTTdon, txtSlNhap, txtNgay;
 
         public MyViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
@@ -77,6 +85,7 @@ public class ListImp1Adapter extends RecyclerView.Adapter<ListImp1Adapter.MyView
             txtNCC = itemView.findViewById(R.id.ncc3);
             txtTTdon = itemView.findViewById(R.id.statusDon3);
             txtSlNhap = itemView.findViewById(R.id.slnhap3);
+            txtNgay = itemView.findViewById(R.id.ngay3);
         }
 
         @Override
@@ -85,5 +94,17 @@ public class ListImp1Adapter extends RecyclerView.Adapter<ListImp1Adapter.MyView
                 itemClick.onClick(v,getAdapterPosition());
             }
         }
+
     }
+    private String StampToString(Timestamp timestamp) {
+        if (timestamp != null) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = timestamp.toDate();
+        return dateFormat.format(date);
+        } else {
+            return "Null";
+        }
+
+    }
+
 }

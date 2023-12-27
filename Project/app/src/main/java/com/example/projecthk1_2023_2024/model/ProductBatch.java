@@ -77,31 +77,34 @@ public class ProductBatch {
     }
 
     public DocumentReference getIDProduct() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference collectionRef = db.collection("ProductBatch");
-
-        collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        DocumentReference idProductReference = (DocumentReference) document.get("IDProduct");
-
-                        if (idProductReference != null) {
-                            // Lấy ID của idProduct từ DocumentReference
-                            String idProduct = idProductReference.getId();
-                            Log.d("Firestore", "idProduct: " + idProduct);
-                        }
-                    }
-                } else {
-                    Log.d("Firestore", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-
         return IDProduct;
     }
+    //    public DocumentReference getIDProduct() {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        CollectionReference collectionRef = db.collection("ProductBatch");
+//
+//        collectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        DocumentReference idProductReference = (DocumentReference) document.get("IDProduct");
+//
+//                        if (idProductReference != null) {
+//                            // Lấy ID của idProduct từ DocumentReference
+//                            String idProduct = idProductReference.getId();
+//                            Log.d("Firestore", "idProduct: " + idProduct);
+//                        }
+//                    }
+//                } else {
+//                    Log.d("Firestore", "Error getting documents: ", task.getException());
+//                }
+//            }
+//        });
+//
+//        return IDProduct;
+//    }
 
     public void setIDProduct(DocumentReference IDProduct) {
         this.IDProduct = IDProduct;

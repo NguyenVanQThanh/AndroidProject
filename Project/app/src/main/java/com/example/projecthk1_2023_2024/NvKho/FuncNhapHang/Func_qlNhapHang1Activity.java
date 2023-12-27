@@ -23,6 +23,7 @@ import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,8 +31,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.Normalizer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Func_qlNhapHang1Activity extends AppCompatActivity implements ItemClick {
     Context context;
@@ -65,6 +69,8 @@ public class Func_qlNhapHang1Activity extends AppCompatActivity implements ItemC
             }
         });
 
+
+//1. Lấy danh sách các ImportBatch
         collectionReferenceIB.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -88,7 +94,9 @@ public class Func_qlNhapHang1Activity extends AppCompatActivity implements ItemC
             }
         });
 
-        ///
+
+
+        // tìm kiếm
         search = findViewById(R.id.searchPN);
         search.clearFocus();
         recyclerView.setHasFixedSize(true);
@@ -138,6 +146,11 @@ public class Func_qlNhapHang1Activity extends AppCompatActivity implements ItemC
     @Override
     public void onClick(View v, int pos) {
 
+    }
+    private String StampToString(Timestamp timestamp) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = timestamp.toDate();
+        return dateFormat.format(date);
     }
 
 }

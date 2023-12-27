@@ -7,6 +7,7 @@ import java.util.Map;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -14,11 +15,20 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.ProductBatch;
+import com.example.projecthk1_2023_2024.model.ViewModel.Product_PB_VM;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
@@ -39,11 +49,12 @@ public class DetailNewImpActivity extends AppCompatActivity{
     ImageView back;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference importBatchRef = db.collection("ImportBatch");
-    //CollectionReference productBatchRef = db.collection("ProductBatch");
+    CollectionReference productRef = db.collection("Product");
+    CollectionReference productBatchRef = db.collection("ProductBatch");
 
-    private List<Map<String, Object>> listDataProduct = new ArrayList();
-    private List<Map<String, Object>> listDataProBatch = new ArrayList();
+//    private List<Map<String, Object>> listDataProduct = new ArrayList();
+//    private List<Map<String, Object>> listDataProBatch = new ArrayList();
+    private List<Product_PB_VM> listData = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -62,59 +73,57 @@ public class DetailNewImpActivity extends AppCompatActivity{
         String idBatch = null;
         if (intent != null) {
             idBatch = intent.getStringExtra("IdBatch");
-            // Bây giờ bạn có thể sử dụng idBatch theo nhu cầu của mình
-            // Ví dụ: hiển thị trong Log
             Log.d("DetailNewImpActivity", "IdBatch: " + idBatch);
         }
         else
             Log.d("Lỗi: ", "Không lấy đc idBatch");
+        DocumentReference documentReference = db.collection("ImportBatch").document(idBatch);
 
-        db.collection("ProductBatch")
-                .whereEqualTo("IDBatch", idBatch)
+        String finalIdBatch = idBatch;
+        productBatchRef
+                .whereEqualTo("IDBatch", documentReference)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, "Success");
                                 // Lấy dữ liệu từ tài liệu chính
                                 String documentId = document.getId();
-                                Map<String, Object> dataProBatch = document.getData();
-                                Log.d(TAG, "Document ID: " + documentId + ", Data: " + dataProBatch);
-                                listDataProBatch.add(dataProBatch);
-                                // Lấy subcollection
-                                CollectionReference subcollectionRef = document.getReference().collection("Product");
-                                subcollectionRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                ProductBatch productBatch = document.toObject(ProductBatch.class);
+                                Log.d(TAG, "ProductBatchId: " + documentId);
+                                Pair<String, ProductBatch> productBatchPair = new Pair<>(documentId, productBatch);
+                                productBatch.getIDProduct().addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> subcollectionTask) {
-                                        if (subcollectionTask.isSuccessful()) {
-                                            for (QueryDocumentSnapshot subdocument : subcollectionTask.getResult()) {
-                                                // Xử lý từng tài liệu trong subcollection
-                                                String subdocumentId = subdocument.getId();
-                                                Map<String, Object> dataProduct = subdocument.getData();
-                                                listDataProduct.add(dataProduct);
-                                                Log.d(TAG, "Subdocument ID: " + subdocumentId + ", Subdocument Data: " + dataProduct);
-
-                                                recyclerView.setLayoutManager(new LinearLayoutManager(DetailNewImpActivity.this));
-                                                DetailNewImpAdapter adapter = new DetailNewImpAdapter(listDataProBatch, listDataProduct);
-                                                recyclerView.setAdapter(adapter);
-//                                                adapter.setClickListener((ItemClick) NewImpActivity.this);
-                                                recyclerView.getAdapter().notifyDataSetChanged();
-                                            }
-                                        } else {
-                                            Log.d(TAG, "Error getting subcollection documents: ", subcollectionTask.getException());
-                                        }
+                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                        String productId = value.getId();
+                                        Product product = value.toObject(Product.class);
+                                        Pair<String,Product> productPair = new Pair<>(productId,product);
+                                        Product_PB_VM productPbVm = new Product_PB_VM();
+                                        productPbVm.setProductPair(productPair);
+                                        productPbVm.setIdBatch(finalIdBatch);
+                                        productPbVm.setProductBatchPair(productBatchPair);
+                                        listData.add(productPbVm);
+                                        recyclerView.setLayoutManager(new LinearLayoutManager(DetailNewImpActivity.this));
+                                        DetailNewImpAdapter detailNewImpAdapter = new DetailNewImpAdapter(DetailNewImpActivity.this, listData);
+                                        recyclerView.setAdapter(detailNewImpAdapter);
+                                        recyclerView.getAdapter().notifyDataSetChanged();
                                     }
                                 });
                             }
-                        } else {
+
+                        }else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
 
 
-    }
+
+        }
+
+
 
 
 }

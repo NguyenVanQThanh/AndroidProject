@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,22 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ViewModel.VMDetailNewImp;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
+import com.example.projecthk1_2023_2024.model.ViewModel.Product_PB_VM;
+import com.google.firebase.Timestamp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapter.MyViewHolder>  {
     Context context;
     //ItemClick itemClick;
-    private List<Map<String, Object>> listDataProBatch;
-    private List<Map<String, Object>> listDataProduct;
+    private List<Product_PB_VM> listsAdapter;
+
+    public DetailNewImpAdapter(Context context, List<Product_PB_VM> listsAdapter) {
+        this.context = context;
+        this.listsAdapter = listsAdapter;
+    }
 
     // Constructor để nhận dữ liệu từ Activity/Fragment
-    public DetailNewImpAdapter(List<Map<String, Object>> dataListMain, List<Map<String, Object>> dataListSub) {
 
-        this.listDataProBatch = dataListMain;
-        this.listDataProduct = dataListSub;
-    }
 
 //    public void setClickListener(ItemClick itemClick){
 //        this.itemClick = itemClick;
@@ -44,15 +48,15 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DetailNewImpAdapter.MyViewHolder holder, int position) {
-        Map<String, Object> mainData = listDataProBatch.get(position);
-        Map<String, Object> subData = listDataProduct.get(position);
+        Product_PB_VM mainData = listsAdapter.get(position);
 
-        holder.txtTenSp.setText((String)subData.get("Name"));
-        holder.txtMaLo.setText((String)mainData.get("IDBatch"));
-        holder.txtHsd.setText((String)mainData.get("ExpiryDate"));
-        holder.txtSlt.setText((String)subData.get("Quantity_Valid"));
-        holder.txtSln.setText((String)subData.get("Quantity"));
-        holder.txtGia.setText((String)mainData.get("ImportPrice"));
+
+        holder.txtTenSp.setText(mainData.getProductPair().second.getName());
+        holder.txtMaLo.setText(mainData.getIdBatch());
+        holder.txtHsd.setText(StampToString((mainData.getProductBatchPair().second.getExpiryDate())));
+        holder.txtSlt.setText(mainData.getProductPair().second.getQuantity_Valid());
+        holder.txtSln.setText(mainData.getProductBatchPair().second.getQuantity());
+        holder.txtGia.setText(String.valueOf(mainData.getProductBatchPair().second.getImportPrice()));
 
 
 
@@ -83,5 +87,11 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
         public void onClick(View v) {
 
         }
+    }
+
+    private String StampToString(Timestamp timestamp) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = timestamp.toDate();
+        return dateFormat.format(date);
     }
 }
