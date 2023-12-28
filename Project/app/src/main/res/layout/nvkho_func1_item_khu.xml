@@ -34,12 +34,28 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/round4_boxnotice"
-            android:text="Kệ 1"
+
             android:textAlignment="center"
             app:backgroundTint="#d9d9d9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameKhu"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <TextView
+            android:id="@+id/Ke1"
+            android:layout_width="106dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="4dp"
+            android:background="@android:color/transparent"
+
+            android:text="Kệ 1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/selectKe1"
+            app:layout_constraintEnd_toEndOf="@+id/selectKe1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,NotSibling" />
 
         <Button
             android:id="@+id/selectKe2"
@@ -48,12 +64,30 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/round4_boxnotice"
-            android:text="Kệ 2"
+
             android:textAlignment="center"
             app:backgroundTint="#00c382"
             app:layout_constraintStart_toEndOf="@+id/selectKe1"
             app:layout_constraintTop_toBottomOf="@+id/nameKhu"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <TextView
+            android:id="@+id/Ke2"
+            android:layout_width="106dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@android:color/transparent"
+            android:text="Kệ 2"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/selectKe2"
+            app:layout_constraintEnd_toEndOf="@+id/selectKe2"
+            app:layout_constraintStart_toStartOf="@+id/selectKe2"
+            app:layout_constraintTop_toBottomOf="@+id/nameKhu"
+            tools:ignore="MissingConstraints,NotSibling" />
+
 
         <Button
             android:id="@+id/selectKe3"
@@ -61,7 +95,6 @@
             android:layout_height="71dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/round4_boxnotice"
-            android:text="Kệ 3"
             android:textAlignment="center"
             app:backgroundTint="#ad2b2b"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +103,23 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
+        <TextView
+            android:id="@+id/Ke3"
+            android:layout_width="106dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="8dp"
+            android:text="Kệ 2"
+            android:textColor="@color/white"
+
+            android:textAlignment="center"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/selectKe3"
+            app:layout_constraintEnd_toEndOf="@+id/selectKe3"
+            app:layout_constraintStart_toStartOf="@+id/selectKe3"
+            app:layout_constraintTop_toBottomOf="@+id/nameKhu"
+            app:layout_constraintVertical_bias="0.4"
+            tools:ignore="MissingConstraints,NotSibling" />
+
         <Button
             android:id="@+id/selectKe4"
             android:layout_width="115dp"
@@ -77,12 +127,27 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/round4_boxnotice"
-            android:text="Kệ 4"
             android:textAlignment="center"
             app:backgroundTint="#00c382"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectKe1"
             tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/Ke4"
+            android:layout_width="106dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:text="Kệ 4"
+
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/selectKe4"
+            app:layout_constraintEnd_toEndOf="@+id/selectKe4"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,NotSibling" />
 
         <Button
             android:id="@+id/selectKe5"
@@ -91,12 +156,28 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/round4_boxnotice"
-            android:text="Kệ 5"
             android:textAlignment="center"
             app:backgroundTint="#00c382"
             app:layout_constraintStart_toEndOf="@+id/selectKe4"
             app:layout_constraintTop_toBottomOf="@+id/selectKe2"
             tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/Ke5"
+            android:layout_width="106dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="0dp"
+            android:background="@android:color/transparent"
+            android:text="Kệ 5"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/selectKe5"
+            app:layout_constraintEnd_toEndOf="@+id/selectKe5"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/selectKe5"
+            tools:ignore="MissingConstraints,NotSibling" />
 
         <Button
             android:id="@+id/selectKe6"
@@ -105,12 +186,27 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/round4_boxnotice"
-            android:text="Kệ 6"
             android:textAlignment="center"
             app:backgroundTint="#d9d9d9"
             app:layout_constraintStart_toEndOf="@+id/selectKe5"
             app:layout_constraintTop_toBottomOf="@+id/selectKe3"
             tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/Ke6"
+            android:layout_width="106dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="5dp"
+
+            android:background="@android:color/transparent"
+            android:text="Kệ 6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/selectKe6"
+            app:layout_constraintStart_toStartOf="@+id/selectKe6"
+            tools:ignore="MissingConstraints,NotSibling" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

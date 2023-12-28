@@ -95,6 +95,14 @@
             android:name=".NvKho.FuncNhapHang.DetailNewImpActivity"
             android:exported="false"
             />
+        <activity
+            android:name=".NvKho.FuncPlace.FuncPlaceActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".NvKho.FuncPlace.FuncPlaceAdapter"
+            android:exported="false"
+            />
     </application>
 
 

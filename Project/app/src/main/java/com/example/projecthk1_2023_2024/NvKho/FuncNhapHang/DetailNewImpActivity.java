@@ -54,7 +54,7 @@ public class DetailNewImpActivity extends AppCompatActivity{
 
 //    private List<Map<String, Object>> listDataProduct = new ArrayList();
 //    private List<Map<String, Object>> listDataProBatch = new ArrayList();
-    private List<Product_PB_VM> listData = new ArrayList<>();
+    private List<Product_PB_VM> listData = new ArrayList<Product_PB_VM>();
 
     @SuppressLint("MissingInflatedId")
     @Override

@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projecthk1_2023_2024.NvKho.FuncNhapHang.Func_qlNhapHang1Activity;
-import com.example.projecthk1_2023_2024.NvKho.FuncPlace.Func_PlaceActivity;
+import com.example.projecthk1_2023_2024.NvKho.FuncPlace.FuncPlaceActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.Func_QLSPActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncXuatHang.Func_qlXuatHangActivity;
 import com.example.projecthk1_2023_2024.R;
@@ -126,7 +126,7 @@ public class NvkFragHome extends Fragment {
         vtri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), Func_PlaceActivity.class);
+                Intent i = new Intent(getContext(), FuncPlaceActivity.class);
                 startActivity(i);
             }
         });

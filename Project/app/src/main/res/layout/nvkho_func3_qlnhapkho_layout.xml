@@ -62,19 +62,20 @@
             tools:ignore="MissingConstraints,NotSibling" />
 
 
-
         <SearchView
             android:id="@+id/searchPN"
             android:layout_width="300dp"
             android:layout_height="55dp"
             android:layout_marginTop="9dp"
             android:iconifiedByDefault="false"
+            android:outlineAmbientShadowColor="@color/white"
+            android:queryHint="Search"
             app:layout_constraintBottom_toBottomOf="@+id/seach"
             app:layout_constraintEnd_toEndOf="@+id/seach"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/seach"
             app:layout_constraintTop_toTopOf="@+id/seach"
-            android:queryHint="Search"
-            android:outlineAmbientShadowColor="@color/white"/>
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,24 +95,41 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dspn"
-            android:layout_width="369dp"
-            android:layout_height="541dp"
+            android:layout_width="376dp"
+            android:layout_height="509dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageButton
             android:id="@+id/btnNewImp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="48dp"
-            android:background="@drawable/button_bottom"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/btn_waiting"
+
             android:contentDescription="add_user"
-            android:src="@drawable/ic_new"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textOverlay"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="ĐANG ĐỢI"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNewImp"
+            app:layout_constraintEnd_toEndOf="@+id/btnNewImp"
+            app:layout_constraintStart_toStartOf="@+id/btnNewImp"
+            app:layout_constraintTop_toTopOf="@+id/btnNewImp"
+            tools:ignore="MissingConstraints" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
