@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.projecthk1_2023_2024.NvKho.Report.NvkFragReport_Chart;
 import com.example.projecthk1_2023_2024.R;
 
 public class NvkActivity extends AppCompatActivity {
@@ -59,7 +60,7 @@ public class NvkActivity extends AppCompatActivity {
                 imgNotice.setImageResource(R.drawable.ic_bell);
                 imgSetting.setImageResource(R.drawable.ic_menu);
 
-                loadFragment(new NvkFragReport());
+                loadFragment(new NvkFragReport_Chart());
             }
         });
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#f2f1f6"
+    tools:context=".NvKho.Report.NvkFragReport_Chart">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+
+            android:text="Số lượng nhập xuất theo tháng" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            tools:ignore="MissingClass" />
+
+
+
+</RelativeLayout>
+

@@ -54,4 +54,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-database:19.2.0")
     implementation ("com.google.android.gms:play-services-tasks:17.x.x")
 
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    //noinspection GradleCompatible
+    implementation ("com.android.support:appcompat-v7:28.0.0")
 }
