@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,9 +28,12 @@ import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListUser;
+import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Notification;
+import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,6 +43,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,12 +55,14 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     ViewGroup nhanVien, nhapHang, xuatHang, product;
     RecyclerView recyclerView;
     private User user;
+    private List<Pair<String, Product>> productList = new ArrayList<>();
     private List<Pair<String, Notification>> notificationList = new ArrayList<>();
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReferenceNotification = db.collection("Notification");
     private CollectionReference collectionReferenceUser = db.collection("User");
+    private CollectionReference collectionReferenceProduct = db.collection("Product");
     private FirebaseUser currentUser;
     @Nullable
     @Override
@@ -127,6 +135,20 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 }
             }
         });
+        collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    String idDocument = documentSnapshot.getId();
+                    Product product = documentSnapshot.toObject(Product.class);
+                    Pair<String, Product> productPair = new Pair<>(idDocument,product);
+                    productList.add(productPair);
+                }
+                    ProductList productListInstance = ProductList.getInstance();
+                    productListInstance.setProductList(productList);
+            }
+        });
+
         nhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

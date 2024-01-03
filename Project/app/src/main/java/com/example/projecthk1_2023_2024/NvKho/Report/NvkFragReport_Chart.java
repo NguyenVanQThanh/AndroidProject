@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projecthk1_2023_2024.R;
+import com.example.projecthk1_2023_2024.Util.ListExportBatch;
+import com.example.projecthk1_2023_2024.Util.ListImportBatch;
+import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -19,18 +23,39 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NvkFragReport_Chart extends Fragment {
 
     ArrayList impDataArrayList;
     ArrayList expDataArrayList;
+    List<Float> impTotal = new ArrayList<>();
+    List<Float> expTotal = new ArrayList<>();
+
+    ListExportBatch exportBatchList = ListExportBatch.getInstance();
+    ListImportBatch importBatchList = ListImportBatch.getInstance();
+
 //    ArrayList<BarDataSet> dataSets = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.chart_layout, container, false);
         BarChart barChart = view.findViewById(R.id.chart);
+
+//        List<Integer> totalExport =exportBatchList.getCountForMonth();
+//        List<Integer> totalImport = importBatchList.getCountForMonth();
+//        Log.d("Fade Mode",""+ totalImport.size());
+//        Log.d("Fade Mode",""+ totalExport.size());
+//        for (int i=0;i<=11;i++){
+////            float pos1 = 1+2*i;
+////            float pos2 = (float) (1.5+2*i);
+//            Log.d("Fade Mode",""+totalExport.get(i));
+//            Log.d("Fade Mode",""+totalImport.get(i));
+////            expDataArrayList.add(new BarEntry(pos1,(float) totalExport.get(i)));
+////            impDataArrayList.add(new BarEntry(pos2,(float) totalImport.get(i)));
+//        }
         getData();
 
         BarDataSet barDataSet1 = new BarDataSet(impDataArrayList, "Nhap");
@@ -85,31 +110,40 @@ public class NvkFragReport_Chart extends Fragment {
     private void getData() { //thêm các giá trị muốn hiển thị vao ipmDataArrayList và exp
         impDataArrayList = new ArrayList();
         expDataArrayList = new ArrayList();
-        expDataArrayList.add(new BarEntry(1f, 10));
-        impDataArrayList.add(new BarEntry(1.5f, 20));
-        expDataArrayList.add(new BarEntry(3f, 30));
-        impDataArrayList.add(new BarEntry(3.5f, 50));
-        expDataArrayList.add(new BarEntry(5f, 70));
-        impDataArrayList.add(new BarEntry(5.5f, 500));
-        expDataArrayList.add(new BarEntry(7f, 30));
-        impDataArrayList.add(new BarEntry(7.4f, 90));
-        expDataArrayList.add(new BarEntry(9f, 435));
-        impDataArrayList.add(new BarEntry(9.5f, 50));
-        expDataArrayList.add(new BarEntry(11f, 80));
-        impDataArrayList.add(new BarEntry(11.5f, 300));
+        List<Integer> totalExport =exportBatchList.getCountForMonth();
+        List<Integer> totalImport = importBatchList.getCountForMonth();
+        for (int i=0;i<=11;i++){
+            float pos1 = 1+2*i;
+            float pos2 = (float) (1.5+2*i);
 
-        expDataArrayList.add(new BarEntry(13f, 10));
-        impDataArrayList.add(new BarEntry(13.5f, 20));
-        expDataArrayList.add(new BarEntry(15f, 30));
-        impDataArrayList.add(new BarEntry(15.5f, 500));
-        expDataArrayList.add(new BarEntry(17f, 70));
-        impDataArrayList.add(new BarEntry(17.5f, 50));
-        expDataArrayList.add(new BarEntry(19f, 300));
-        impDataArrayList.add(new BarEntry(19.5f, 70));
-        expDataArrayList.add(new BarEntry(21f, 40));
-        impDataArrayList.add(new BarEntry(21.5f, 50));
-        expDataArrayList.add(new BarEntry(23f, 80));
-        impDataArrayList.add(new BarEntry(23.5f, 30));
+            expDataArrayList.add(new BarEntry(pos1,(float) totalExport.get(i)));
+            impDataArrayList.add(new BarEntry(pos2,(float) totalImport.get(i)));
+        }
+//        expDataArrayList.add(new BarEntry(1f, 10));
+//        impDataArrayList.add(new BarEntry(1.5f, 20));
+//        expDataArrayList.add(new BarEntry(3f, 30));
+//        impDataArrayList.add(new BarEntry(3.5f, 50));
+//        expDataArrayList.add(new BarEntry(5f, 70));
+//        impDataArrayList.add(new BarEntry(5.5f, 500));
+//        expDataArrayList.add(new BarEntry(7f, 30));
+//        impDataArrayList.add(new BarEntry(7.5f, 90));
+//        expDataArrayList.add(new BarEntry(9f, 435));
+//        impDataArrayList.add(new BarEntry(9.5f, 50));
+//        expDataArrayList.add(new BarEntry(11f, 80));
+//        impDataArrayList.add(new BarEntry(11.5f, 300));
+//
+//        expDataArrayList.add(new BarEntry(13f, 10));
+//        impDataArrayList.add(new BarEntry(13.5f, 20));
+//        expDataArrayList.add(new BarEntry(15f, 30));
+//        impDataArrayList.add(new BarEntry(15.5f, 500));
+//        expDataArrayList.add(new BarEntry(17f, 70));
+//        impDataArrayList.add(new BarEntry(17.5f, 50));
+//        expDataArrayList.add(new BarEntry(19f, 300));
+//        impDataArrayList.add(new BarEntry(19.5f, 70));
+//        expDataArrayList.add(new BarEntry(21f, 40));
+//        impDataArrayList.add(new BarEntry(21.5f, 50));
+//        expDataArrayList.add(new BarEntry(23f, 80));
+//        impDataArrayList.add(new BarEntry(23.5f, 30));
     }
 
 }

@@ -27,9 +27,18 @@ import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.Func_QLSPActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncXuatHang.Func_qlXuatHangActivity;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
+import com.example.projecthk1_2023_2024.Util.ListExportBatch;
+import com.example.projecthk1_2023_2024.Util.ListImportBatch;
+import com.example.projecthk1_2023_2024.Util.ListProductBatch;
+import com.example.projecthk1_2023_2024.Util.ProductList;
+import com.example.projecthk1_2023_2024.model.Export;
+import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
+import com.example.projecthk1_2023_2024.model.Product;
+import com.example.projecthk1_2023_2024.model.ProductBatch;
 import com.example.projecthk1_2023_2024.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,11 +60,20 @@ public class NvkFragHome extends Fragment {
     RecyclerView recyNote;
     private User user;
     private List<Pair<String, Notification>> notificationList = new ArrayList<>();
+    private List<Pair<String, ProductBatch>> productBatchList = new ArrayList<>();
+    private List<Pair<String, Product>> productList = new ArrayList<>();
+    private List<Pair<String, Export>> exportList = new ArrayList<>();
+    private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReferenceNotification = db.collection("Notification");
     private CollectionReference collectionReferenceUser = db.collection("User");
+    private CollectionReference collectionReferenceProductBatch = db.collection("ProductBatch");
+    private CollectionReference collectionReferenceExport = db.collection("Export");
+    private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
+
+    private CollectionReference collectionReferenceProduct = db.collection("Product");
     private FirebaseUser currentUser;
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -111,7 +129,59 @@ public class NvkFragHome extends Fragment {
                         }
                     }
                 });
+        collectionReferenceProductBatch.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    ProductBatch productBatch = queryDocumentSnapshot.toObject(ProductBatch.class);
+                    Pair<String, ProductBatch> productBatchPair = new Pair<>(idDocument,productBatch);
+                    productBatchList.add(productBatchPair);
+                }
+                    ListProductBatch listProductBatch = ListProductBatch.getInstance();
+                listProductBatch.setListProductBatch(productBatchList);
+            }
+        });
+        collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    Product product = queryDocumentSnapshot.toObject(Product.class);
+                    Pair<String, Product> productPair = new Pair<>(idDocument,product);
+                    productList.add(productPair);
+                }
+                ProductList productListInstance = ProductList.getInstance();
+                productListInstance.setProductList(productList);
+            }
+        });
+        collectionReferenceExport.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    Export export = queryDocumentSnapshot.toObject(Export.class);
+                    Pair<String, Export> exportPair = new Pair<>(idDocument,export);
+                    exportList.add(exportPair);
+                }
+                ListExportBatch list = ListExportBatch.getInstance();
+                list.setListExport(exportList);
+            }
+        });
 
+        collectionReferenceImport.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    ImportBatch importBatch = queryDocumentSnapshot.toObject(ImportBatch.class);
+                    Pair<String, ImportBatch> importBatchPair = new Pair<>(idDocument,importBatch);
+                    importList.add(importBatchPair);
+                }
+                ListImportBatch list = ListImportBatch.getInstance();
+                list.setListImportBatch(importList);
+            }
+        });
 // 2. xử lý xem và sửa thông tin tài khoản cá nhân
         avtAcount = view.findViewById(R.id.imgAvt);
         avtAcount.setOnClickListener(new View.OnClickListener() {

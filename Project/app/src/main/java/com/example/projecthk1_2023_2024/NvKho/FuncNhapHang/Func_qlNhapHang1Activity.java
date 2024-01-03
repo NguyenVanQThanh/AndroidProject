@@ -97,47 +97,49 @@ public class Func_qlNhapHang1Activity extends AppCompatActivity implements ItemC
 
 
         // tìm kiếm
-        search = findViewById(R.id.searchPN);
-        search.clearFocus();
-        recyclerView.setHasFixedSize(true);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+//        search = findViewById(R.id.searchPN);
+//        search.clearFocus();
+//        recyclerView.setHasFixedSize(true);
+//        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                if (newText!=null){
+//                filterList(newText);}
+//                return true;
+//            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filterList(newText);
-                return true;
-            }
-
-            private void filterList(String text) {
-                List<Pair<String, ImportBatch>> filtedList = new ArrayList<>();
-                String searchTextWithoutDiacritics = removeDiacritics(text.toLowerCase());
-                for(Pair<String, ImportBatch> product: listImpBatch){
-                    if(removeDiacritics(product.second.getStatus().toLowerCase()).contains(searchTextWithoutDiacritics) ||
-                            removeDiacritics(product.second.getSupplier().toLowerCase()).contains(searchTextWithoutDiacritics)
-                            ||
-                            removeDiacritics(product.first).equals(searchTextWithoutDiacritics)
-                    ){
-                        filtedList.add(product);
-                    }
-
-                }
-                if(filtedList.isEmpty() == true && text.isEmpty() == false){
-                    adapter.setFilterList(Func_qlNhapHang1Activity.this, new ArrayList<>());
-                }
-                else {
-                    adapter.setFilterList(Func_qlNhapHang1Activity.this, filtedList);
-                }
-            }
-
-            public String removeDiacritics(String input) {
-                String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
-                return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-            }
-        });
+//            private void filterList(String text) {
+//                if (text != null) {
+//                    List<Pair<String, ImportBatch>> filtedList = new ArrayList<>();
+//                    String searchTextWithoutDiacritics = removeDiacritics(text.toLowerCase());
+//                    for (Pair<String, ImportBatch> product : listImpBatch) {
+//                        if (removeDiacritics(product.second.getStatus().toLowerCase()).contains(searchTextWithoutDiacritics) ||
+//                                removeDiacritics(product.second.getSupplier().toLowerCase()).contains(searchTextWithoutDiacritics)
+//                                ||
+//                                removeDiacritics(product.first).equals(searchTextWithoutDiacritics)
+//                        ) {
+//                            filtedList.add(product);
+//                        }
+//
+//                    }
+//                    if (filtedList.isEmpty() == true && text.isEmpty() == false) {
+//                        adapter.setFilterList(Func_qlNhapHang1Activity.this, new ArrayList<>());
+//                    } else {
+//                        adapter.setFilterList(Func_qlNhapHang1Activity.this, filtedList);
+//                    }
+//                }
+//            }
+//
+//            public String removeDiacritics(String input) {
+//                String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+//                return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+//            }
+//        });
 
 
 

@@ -1,6 +1,7 @@
 package com.example.projecthk1_2023_2024.NvKho.FuncNhapHang;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projecthk1_2023_2024.R;
-import com.example.projecthk1_2023_2024.Util.ViewModel.VMDetailNewImp;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
+import com.example.projecthk1_2023_2024.model.Product;
+import com.example.projecthk1_2023_2024.model.ProductBatch;
 import com.example.projecthk1_2023_2024.model.ViewModel.Product_PB_VM;
 import com.google.firebase.Timestamp;
 
@@ -24,9 +26,9 @@ import java.util.Map;
 public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapter.MyViewHolder>  {
     Context context;
     //ItemClick itemClick;
-    private List<Product_PB_VM> listsAdapter;
+    private List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> listsAdapter;
 
-    public DetailNewImpAdapter(Context context, List<Product_PB_VM> listsAdapter) {
+    public DetailNewImpAdapter(Context context, List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> listsAdapter) {
         this.context = context;
         this.listsAdapter = listsAdapter;
     }
@@ -48,15 +50,15 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DetailNewImpAdapter.MyViewHolder holder, int position) {
-        Product_PB_VM mainData = listsAdapter.get(position);
+        Pair<Pair<String, Product>, Pair<String, ProductBatch>> mainData = listsAdapter.get(position);
 
 
-        holder.txtTenSp.setText(mainData.getProductPair().second.getName());
-        holder.txtMaLo.setText(mainData.getIdBatch());
-        holder.txtHsd.setText(StampToString((mainData.getProductBatchPair().second.getExpiryDate())));
-        holder.txtSlt.setText(mainData.getProductPair().second.getQuantity_Valid());
-        holder.txtSln.setText(mainData.getProductBatchPair().second.getQuantity());
-        holder.txtGia.setText(String.valueOf(mainData.getProductBatchPair().second.getImportPrice()));
+        holder.txtTenSp.setText(mainData.first.second.getName());
+//        holder.txtMaLo.setText(mainData.getIdBatch());
+        holder.txtHsd.setText(StampToString((mainData.second.second.getExpiryDate())));
+        holder.txtSlt.setText(String.valueOf(mainData.second.second.getQuantity()));
+        holder.txtSln.setText(String.valueOf(mainData.second.second.getQuantity()));
+        holder.txtGia.setText(String.valueOf(mainData.second.second.getImportPrice()));
 
 
 
@@ -64,7 +66,7 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listsAdapter.size();
     }
 
 
@@ -80,6 +82,7 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
             txtMaLo= itemView.findViewById(R.id.maLo31);
             txtHsd = itemView.findViewById(R.id.hsd31);
             txtGia= itemView.findViewById(R.id.gia31);
+
         }
 
 

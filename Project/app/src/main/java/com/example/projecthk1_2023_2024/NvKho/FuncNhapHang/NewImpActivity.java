@@ -102,11 +102,11 @@ public class NewImpActivity extends AppCompatActivity implements ItemClick{
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+                searchList(newText);
                 return true;
             }
 
-            private void filterList(String text) {
+            private void searchList(String text) {
                 List<Pair<String, ImportBatch>> filtedList = new ArrayList<>();
                 String searchTextWithoutDiacritics = removeDiacritics(text.toLowerCase());
                 for(Pair<String, ImportBatch> product: listNewImpBatch){

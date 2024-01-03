@@ -2,44 +2,30 @@ package com.example.projecthk1_2023_2024.model.ViewModel;
 
 import android.util.Pair;
 
+import com.example.projecthk1_2023_2024.Util.ListUser;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.ProductBatch;
+import com.example.projecthk1_2023_2024.model.User;
+
+import java.util.List;
 
 public class Product_PB_VM {
-    private String idBatch;
-    private Pair<String, Product>  productPair;
-    private Pair<String, ProductBatch> productBatchPair;
-
-    public Product_PB_VM(String idBatch, Pair<String, Product> productPair, Pair<String, ProductBatch> productBatchPair) {
-        this.idBatch = idBatch;
-        this.productPair = productPair;
-        this.productBatchPair = productBatchPair;
+    private List<Pair<Pair<String, Product>,Pair<String, ProductBatch>>> list;
+    public static Product_PB_VM instance;
+    public static Product_PB_VM getInstance(){
+        if (instance == null){
+            instance = new Product_PB_VM();
+        }
+        return instance;
     }
 
-    public Product_PB_VM() {
+    public List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> getList() {
+        return list;
     }
 
-    public Pair<String, Product> getProductPair() {
-        return productPair;
+    public void setList(List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> list) {
+        this.list = list;
     }
 
-    public void setProductPair(Pair<String, Product> productPair) {
-        this.productPair = productPair;
-    }
 
-    public Pair<String, ProductBatch> getProductBatchPair() {
-        return productBatchPair;
-    }
-
-    public void setProductBatchPair(Pair<String, ProductBatch> productBatchPair) {
-        this.productBatchPair = productBatchPair;
-    }
-
-    public String getIdBatch() {
-        return idBatch;
-    }
-
-    public void setIdBatch(String idBatch) {
-        this.idBatch = idBatch;
-    }
 }

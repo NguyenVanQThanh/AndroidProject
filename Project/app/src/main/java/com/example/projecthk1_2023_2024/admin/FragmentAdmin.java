@@ -1,8 +1,8 @@
 package com.example.projecthk1_2023_2024.Admin;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -92,10 +92,13 @@ public class FragmentAdmin extends AppCompatActivity {
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), ScanFindProduct.class));
             }
         });
     }
+
+
+
     public void loadFragment(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
