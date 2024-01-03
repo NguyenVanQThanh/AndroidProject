@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projecthk1_2023_2024.Util.ListProductBatch;
+import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.ProductBatch;
 import com.example.projecthk1_2023_2024.model.ViewModel.Product_PB_VM;
@@ -48,6 +50,10 @@ public class DetailNewImpActivity extends AppCompatActivity{
     RecyclerView recyclerView;
     ImageView back;
 
+    List<Pair<Pair<String,Product>, Pair<String, ProductBatch>>> list = new ArrayList<>();
+    ListProductBatch listProductBatch = ListProductBatch.getInstance();
+    ProductList productList = ProductList.getInstance();
+//    List<Pair<String, Product>> listProduct = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference productRef = db.collection("Product");
     CollectionReference productBatchRef = db.collection("ProductBatch");
@@ -80,47 +86,66 @@ public class DetailNewImpActivity extends AppCompatActivity{
         DocumentReference documentReference = db.collection("ImportBatch").document(idBatch);
 
         String finalIdBatch = idBatch;
-        productBatchRef
-                .whereEqualTo("IDBatch", documentReference)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, "Success");
-                                // Lấy dữ liệu từ tài liệu chính
-                                String documentId = document.getId();
-                                ProductBatch productBatch = document.toObject(ProductBatch.class);
-                                Log.d(TAG, "ProductBatchId: " + documentId);
-                                Pair<String, ProductBatch> productBatchPair = new Pair<>(documentId, productBatch);
-                                productBatch.getIDProduct().addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                        String productId = value.getId();
-                                        Product product = value.toObject(Product.class);
-                                        Pair<String,Product> productPair = new Pair<>(productId,product);
-                                        Product_PB_VM productPbVm = new Product_PB_VM();
-                                        productPbVm.setProductPair(productPair);
-                                        productPbVm.setIdBatch(finalIdBatch);
-                                        productPbVm.setProductBatchPair(productBatchPair);
-                                        listData.add(productPbVm);
-                                        recyclerView.setLayoutManager(new LinearLayoutManager(DetailNewImpActivity.this));
-                                        DetailNewImpAdapter detailNewImpAdapter = new DetailNewImpAdapter(DetailNewImpActivity.this, listData);
-                                        recyclerView.setAdapter(detailNewImpAdapter);
-                                        recyclerView.getAdapter().notifyDataSetChanged();
-                                    }
-                                });
-                            }
-
-                        }else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
+//        productBatchRef
+//                .whereEqualTo("IDBatch", documentReference)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.d(TAG, "Success");
+//                                // Lấy dữ liệu từ tài liệu chính
+//                                String documentId = document.getId();
+//                                ProductBatch productBatch = document.toObject(ProductBatch.class);
+//                                Log.d(TAG, "ProductBatchId: " + documentId);
+//                                Pair<String, ProductBatch> productBatchPair = new Pair<>(documentId, productBatch);
+//                                productBatch.getIDProduct().addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//                                    @Override
+//                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+//                                        String productId = value.getId();
+//                                        Product product = value.toObject(Product.class);
+//                                        Pair<String,Product> productPair = new Pair<>(productId,product);
+//                                        Product_PB_VM productPbVm = new Product_PB_VM();
+//                                        productPbVm.setProductPair(productPair);
+//                                        productPbVm.setIdBatch(finalIdBatch);
+//                                        productPbVm.setProductBatchPair(productBatchPair);
+//                                        listData.add(productPbVm);
+//                                        recyclerView.setLayoutManager(new LinearLayoutManager(DetailNewImpActivity.this));
+//                                        DetailNewImpAdapter detailNewImpAdapter = new DetailNewImpAdapter(DetailNewImpActivity.this, listData);
+//                                        recyclerView.setAdapter(detailNewImpAdapter);
+//                                        recyclerView.getAdapter().notifyDataSetChanged();
+//                                    }
+//                                });
+//                            }
+//
+//                        }else {
+//                            Log.d(TAG, "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
+        Log.d(TAG,""+documentReference.toString());
+        for (Pair<String,ProductBatch> productBatch : listProductBatch.getProductList()){
+            Log.d(TAG,""+productBatch.second.getIDBatch().toString());
+            Log.d(TAG,""+ (productBatch.second.getIDBatch().getId().equals(idBatch)?"true":"false"));
+            if (productBatch.second.getIDBatch().getId().equals(idBatch)){
+                for (Pair<String, Product> productPair : productList.getProductList()){
+                    if (productBatch.second.getIDProduct().getId().equals(productPair.first)){
+                        Pair<Pair<String,Product>, Pair<String,ProductBatch>> pair = new Pair<>(productPair,productBatch);
+                        list.add(pair);
                     }
-                });
-
-
-
+                }
+            }
+        }
+        Product_PB_VM productPbVm = Product_PB_VM.getInstance();
+        productPbVm.setList(list);
+        DetailNewImpAdapter detailNewImpAdapter = new DetailNewImpAdapter(getApplicationContext(),list);
+        Log.d(TAG,"Count: " + detailNewImpAdapter.getItemCount());
+        Log.d(TAG,"Count: " + listProductBatch.getProductList().size());
+        Log.d(TAG,"Count: " + productList.getProductList().size());
+        recyclerView.setLayoutManager(new LinearLayoutManager(DetailNewImpActivity.this));
+        recyclerView.setAdapter(detailNewImpAdapter);
+        recyclerView.getAdapter().notifyDataSetChanged();
         }
 
 

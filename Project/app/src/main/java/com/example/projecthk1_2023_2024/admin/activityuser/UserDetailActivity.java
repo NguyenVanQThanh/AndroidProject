@@ -26,10 +26,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserDetailActivity extends AppCompatActivity {
     TextView nameView, addressView, phoneView, postView, sexView, birthView;
     ImageView edit,avt,back;
-    Button del;
+    Button nghiViec;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class UserDetailActivity extends AppCompatActivity {
         sexView = findViewById(R.id.sexa);
         birthView = findViewById(R.id.bira);
         back = findViewById(R.id.back_homeA);
-        del = findViewById(R.id.buttonDelete);
+        nghiViec = findViewById(R.id.buttonEnable);
         String idUser = getIntent().getStringExtra("IdUser");
         ListUser listUser = ListUser.getInstance();
         Pair<String, User> userPair = listUser.find(idUser);
@@ -62,24 +65,27 @@ public class UserDetailActivity extends AppCompatActivity {
             birthView.setText(userPair.second.StampToString(userPair.second.getBirthday()));
 
             if (!userPair.second.getEnable()){
-                del.setVisibility(View.VISIBLE);
+                nghiViec.setVisibility(View.VISIBLE);
             }
-            del.setOnClickListener(new View.OnClickListener() {
+            Map<String, Object> updateData = new HashMap<>();
+            updateData.put("Enable", false);
+            nghiViec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FirebaseFirestore.getInstance().collection("User").document(userPair.first)
-                            .delete()
+                    FirebaseFirestore.getInstance().collection("User")
+                            .document(userPair.first)
+                            .update(updateData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                    Log.d(TAG, "Cập nhật thành công");
 
 
                                     Intent intent = new Intent(UserDetailActivity.this, UserAdminActivity.class);
                                     startActivity(intent);
 
                                     // Hiển thị Toast
-                                    Toast.makeText(UserDetailActivity.this, "Delete Successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(UserDetailActivity.this, "Cập nhật trạng thái làm việc thành công", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -94,7 +100,7 @@ public class UserDetailActivity extends AppCompatActivity {
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(UserDetailActivity.this, FragmentAdmin.class));
+                    onBackPressed();
                 }
             });
             edit.setOnClickListener(new View.OnClickListener() {

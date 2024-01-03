@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projecthk1_2023_2024.Admin.FragmentAdmin;
 import com.example.projecthk1_2023_2024.R;
-import com.example.projecthk1_2023_2024.Util.ProductListAdd;
+import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.Admin.AdminHomeActivity;
 import com.example.projecthk1_2023_2024.Admin.adapter.ProductAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
@@ -62,7 +62,7 @@ public class ProductAdminActivity extends AppCompatActivity implements ItemClick
                         Pair<String, Product> productPair = new Pair<>(IdDocument,product);
                         listProduct.add(productPair);
                     }
-                    ProductListAdd proListAd = ProductListAdd.getInstance();
+                    ProductList proListAd = ProductList.getInstance();
                     proListAd.setProductList(listProduct);
                     recyclerView.setLayoutManager(new LinearLayoutManager(ProductAdminActivity.this));
                     ProductAdapter adapter = new ProductAdapter(ProductAdminActivity.this,listProduct);

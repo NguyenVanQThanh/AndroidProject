@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.projecthk1_2023_2024.R;
-import com.example.projecthk1_2023_2024.model.ImportBatch;
+import com.example.projecthk1_2023_2024.Util.ListExportBatch;
+import com.example.projecthk1_2023_2024.Util.ListImportBatch;
+import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -20,36 +22,44 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.SimpleDateFormat;
+import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 
 public class NvkFragReport_Chart extends Fragment {
 
-    ArrayList impDataArrayList = new ArrayList();
-    ArrayList expDataArrayList = new ArrayList();
-//    ArrayList<BarDataSet> dataSets = new ArrayList<>();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference collectionReferenceImp = db.collection("ImportBatch");
-    CollectionReference collectionReferenceExp = db.collection("ExpBatch");
+    ArrayList impDataArrayList;
+    ArrayList expDataArrayList;
+    List<Float> impTotal = new ArrayList<>();
+    List<Float> expTotal = new ArrayList<>();
 
+    ListExportBatch exportBatchList = ListExportBatch.getInstance();
+    ListImportBatch importBatchList = ListImportBatch.getInstance();
+
+//    ArrayList<BarDataSet> dataSets = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.chart_layout, container, false);
         BarChart barChart = view.findViewById(R.id.chart);
+
+//        List<Integer> totalExport =exportBatchList.getCountForMonth();
+//        List<Integer> totalImport = importBatchList.getCountForMonth();
+//        Log.d("Fade Mode",""+ totalImport.size());
+//        Log.d("Fade Mode",""+ totalExport.size());
+//        for (int i=0;i<=11;i++){
+////            float pos1 = 1+2*i;
+////            float pos2 = (float) (1.5+2*i);
+//            Log.d("Fade Mode",""+totalExport.get(i));
+//            Log.d("Fade Mode",""+totalImport.get(i));
+////            expDataArrayList.add(new BarEntry(pos1,(float) totalExport.get(i)));
+////            impDataArrayList.add(new BarEntry(pos2,(float) totalImport.get(i)));
+//        }
         getData();
 
-//        BarDataSet barDataSet1 = new BarDataSet(impDataArrayList, "Nhap");
-//        BarDataSet barDataSet2 = new BarDataSet(expDataArrayList, "Xuat");
+        BarDataSet barDataSet1 = new BarDataSet(impDataArrayList, "Nhap");
+        BarDataSet barDataSet2 = new BarDataSet(expDataArrayList, "Xuat");
 //        dataSets.add(barDataSet1);
 //        dataSets.add(barDataSet2);
 
@@ -96,75 +106,44 @@ public class NvkFragReport_Chart extends Fragment {
 
         return view;
     }
-    ArrayList<Integer> impQuantityArrayList = new ArrayList();
-    ArrayList<Integer> expQuantityArrayList = new ArrayList();
 
     private void getData() { //thêm các giá trị muốn hiển thị vao ipmDataArrayList và exp
-        // Lấy tổng nhập của tất cả các tháng
-        collectionReferenceImp.get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        int totalQuantity = 0;
-                        int i= 1;
+        impDataArrayList = new ArrayList();
+        expDataArrayList = new ArrayList();
+        List<Integer> totalExport =exportBatchList.getCountForMonth();
+        List<Integer> totalImport = importBatchList.getCountForMonth();
+        for (int i=0;i<=11;i++){
+            float pos1 = 1+2*i;
+            float pos2 = (float) (1.5+2*i);
 
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            ImportBatch impBatch = document.toObject(ImportBatch.class);
-
-                            Timestamp timeDate = impBatch.getDate_success();
-                            Date date = new Date(String.valueOf(timeDate));
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
-                            int month = Integer.parseInt(dateFormat.format(date));
-                            totalQuantity += (impBatch.getQuantity_import());
-                            impQuantityArrayList.add(month-1, totalQuantity);
-
-                            if(month != i){
-                                i +=1;
-                                totalQuantity = 0;
-                            }
-                        }
-
-                        // In ra tổng số lượng
-                        Log.d("TotalQuantity", "Total quantity for successful batches: " + totalQuantity);
-                    }
-                });
-
-
-//        impDataArrayList = new ArrayList();
-//        expDataArrayList = new ArrayList();
+            expDataArrayList.add(new BarEntry(pos1,(float) totalExport.get(i)));
+            impDataArrayList.add(new BarEntry(pos2,(float) totalImport.get(i)));
+        }
 //        expDataArrayList.add(new BarEntry(1f, 10));
-        impDataArrayList.add(new BarEntry(1.5f, impQuantityArrayList.get(0)));
+//        impDataArrayList.add(new BarEntry(1.5f, 20));
 //        expDataArrayList.add(new BarEntry(3f, 30));
-        impDataArrayList.add(new BarEntry(3.5f, impQuantityArrayList.get(1)));
+//        impDataArrayList.add(new BarEntry(3.5f, 50));
 //        expDataArrayList.add(new BarEntry(5f, 70));
-        impDataArrayList.add(new BarEntry(5.5f, impQuantityArrayList.get(2)));
+//        impDataArrayList.add(new BarEntry(5.5f, 500));
 //        expDataArrayList.add(new BarEntry(7f, 30));
-        impDataArrayList.add(new BarEntry(7.4f, impQuantityArrayList.get(3)));
+//        impDataArrayList.add(new BarEntry(7.5f, 90));
 //        expDataArrayList.add(new BarEntry(9f, 435));
-        impDataArrayList.add(new BarEntry(9.5f, impQuantityArrayList.get(4)));
+//        impDataArrayList.add(new BarEntry(9.5f, 50));
 //        expDataArrayList.add(new BarEntry(11f, 80));
-        impDataArrayList.add(new BarEntry(11.5f, impQuantityArrayList.get(5)));
+//        impDataArrayList.add(new BarEntry(11.5f, 300));
 //
 //        expDataArrayList.add(new BarEntry(13f, 10));
-        impDataArrayList.add(new BarEntry(13.5f, impQuantityArrayList.get(6)));
+//        impDataArrayList.add(new BarEntry(13.5f, 20));
 //        expDataArrayList.add(new BarEntry(15f, 30));
-        impDataArrayList.add(new BarEntry(15.5f, impQuantityArrayList.get(7)));
+//        impDataArrayList.add(new BarEntry(15.5f, 500));
 //        expDataArrayList.add(new BarEntry(17f, 70));
-        impDataArrayList.add(new BarEntry(17.5f, impQuantityArrayList.get(8)));
+//        impDataArrayList.add(new BarEntry(17.5f, 50));
 //        expDataArrayList.add(new BarEntry(19f, 300));
-        impDataArrayList.add(new BarEntry(19.5f, impQuantityArrayList.get(9)));
+//        impDataArrayList.add(new BarEntry(19.5f, 70));
 //        expDataArrayList.add(new BarEntry(21f, 40));
-        impDataArrayList.add(new BarEntry(21.5f, impQuantityArrayList.get(10)));
+//        impDataArrayList.add(new BarEntry(21.5f, 50));
 //        expDataArrayList.add(new BarEntry(23f, 80));
-        impDataArrayList.add(new BarEntry(23.5f, impQuantityArrayList.get(11)));
+//        impDataArrayList.add(new BarEntry(23.5f, 30));
     }
-
-    //Chuyển đổi ngày
-    private String StampToString(Timestamp timestamp) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date date = timestamp.toDate();
-        return dateFormat.format(date);
-    }
-
 
 }

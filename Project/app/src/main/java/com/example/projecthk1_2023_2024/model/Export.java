@@ -10,14 +10,24 @@ public class Export {
     private boolean Enable;
     private Timestamp Date_Success;
     private DocumentReference IDUser_confirm;
+    private int Quantity;
     public Export(){}
 
-    public Export(Timestamp Create_Date, String Status, boolean Enable, Timestamp Date_Success, DocumentReference IDUser_confirm) {
+    public int getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        Quantity = quantity;
+    }
+
+    public Export(Timestamp Create_Date, String Status, boolean Enable, Timestamp Date_Success, DocumentReference IDUser_confirm, int Quantity) {
         this.Create_Date = Create_Date;
         this.Status = Status;
         this.Enable = Enable;
         this.Date_Success = Date_Success;
         this.IDUser_confirm = IDUser_confirm;
+        this.Quantity = Quantity;
     }
 
     public Timestamp getCreate_Date() {

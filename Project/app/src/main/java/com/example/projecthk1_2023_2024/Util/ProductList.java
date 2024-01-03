@@ -7,21 +7,21 @@ import com.example.projecthk1_2023_2024.model.Product;
 
 import java.util.List;
 
-public class ProductListAdd extends Application {
+public class ProductList extends Application {
     List<Pair<String, Product>> productList;
-    public static ProductListAdd instance;
-    public static ProductListAdd getInstance(){
+    public static ProductList instance;
+    public static ProductList getInstance(){
         if (instance == null){
-            instance = new ProductListAdd();
+            instance = new ProductList();
         }
         return instance;
     }
 
-    public ProductListAdd(List<Pair<String, Product>> productList) {
+    public ProductList(List<Pair<String, Product>> productList) {
         this.productList = productList;
     }
 
-    public ProductListAdd() {
+    public ProductList() {
     }
 
     public List<Pair<String, Product>> getProductList() {
@@ -30,5 +30,13 @@ public class ProductListAdd extends Application {
 
     public void setProductList(List<Pair<String, Product>> productList) {
         this.productList = productList;
+    }
+    public Pair<String, Product> findProduct(String idProduct){
+        for(Pair<String,Product> productPair : productList){
+            if (productPair.first.equals(idProduct)){
+                return productPair;
+            }
+        }
+        return null;
     }
 }

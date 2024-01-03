@@ -19,17 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imgSP"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="4dp"
-            android:background="@drawable/vit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.442"
-            tools:ignore="MissingConstraints" />
+<!--        <ImageView-->
+<!--            android:id="@+id/imgSP"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:background="@drawable/vit"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.442"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
         <TextView
             android:id="@+id/textView"
@@ -113,33 +113,33 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btn_ht31"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        android:text="Hoàn thành"
-        app:backgroundTint="#254c7b"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"
-        app:layout_constraintVertical_bias="0.057"
-        tools:ignore="MissingConstraints" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_ht31"-->
+<!--        android:layout_width="140dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:text="Hoàn thành"-->
+<!--        app:backgroundTint="#254c7b"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"-->
+<!--        app:layout_constraintVertical_bias="0.057"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
-    <Button
-        android:id="@+id/btn_huy31"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="30dp"
-        android:text="Hủy"
-        app:backgroundTint="#254c7b"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_ht31"
-        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"
-        app:layout_constraintVertical_bias="0.057"
-        tools:ignore="MissingConstraints" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_huy31"-->
+<!--        android:layout_width="140dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:text="Hủy"-->
+<!--        app:backgroundTint="#254c7b"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btn_ht31"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"-->
+<!--        app:layout_constraintVertical_bias="0.057"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

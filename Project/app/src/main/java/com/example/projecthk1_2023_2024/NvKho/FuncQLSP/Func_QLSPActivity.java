@@ -12,28 +12,18 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
-import android.annotation.SuppressLint;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projecthk1_2023_2024.Admin.AdminHomeActivity;
-import com.example.projecthk1_2023_2024.Admin.adapter.ProductAdapter;
-import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
-import com.example.projecthk1_2023_2024.NvKho.NvkActivity;
-import com.example.projecthk1_2023_2024.NvKho.NvkFragHome;
 import com.example.projecthk1_2023_2024.R;
-import com.example.projecthk1_2023_2024.Util.ProductListAdd;
-import com.example.projecthk1_2023_2024.Util.ViewModel.VMQlsp;
+import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.model.Product;
-import com.example.projecthk1_2023_2024.model.ProductBatch;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -77,7 +67,7 @@ public class Func_QLSPActivity extends AppCompatActivity implements ItemClick {
                         Pair<String, Product> productPair = new Pair<>(IdDocument,product);
                         listProduct.add(productPair);
                     }
-                    ProductListAdd proListAd = ProductListAdd.getInstance();
+                    ProductList proListAd = ProductList.getInstance();
                     proListAd.setProductList(listProduct);
                     recyclerView.setLayoutManager(new LinearLayoutManager(Func_QLSPActivity.this));
                     adapter = new QLSPAdapter(Func_QLSPActivity.this,listProduct);

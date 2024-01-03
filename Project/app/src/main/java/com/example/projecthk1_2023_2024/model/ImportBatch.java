@@ -93,21 +93,5 @@ public class ImportBatch {
     public DocumentReference getIDUser() {
         return IDUser;
     }
-    public List<Pair<String, ProductBatch>> getDetailImport(String id){
-        List<Pair<String, ProductBatch>> results = new ArrayList<>();
-        DocumentReference documentReference =  FirebaseFirestore.getInstance().collection("ImportBatch").document(id);
-        FirebaseFirestore.getInstance().collection("ProductBatch").whereEqualTo("IDBatch",documentReference)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots){
-                            String idDocument = snapshot.getId();
-                            ProductBatch productBatch = snapshot.toObject(ProductBatch.class);
-                            Pair<String, ProductBatch> productBatchPair = new Pair<>(idDocument,productBatch);
-                            results.add(productBatchPair);
-                        }
-                    }
-                });
-        return results;
-    }
+
 }

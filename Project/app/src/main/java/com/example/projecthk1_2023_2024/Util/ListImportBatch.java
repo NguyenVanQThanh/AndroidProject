@@ -6,6 +6,9 @@ import android.util.Pair;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Product;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ListImportBatch extends Application {
@@ -31,6 +34,22 @@ public class ListImportBatch extends Application {
 
     public void setListImportBatch(List<Pair<String, ImportBatch>> impList) {
         this.impList = impList;
+    }
+    public List<Integer> getCountForMonth(){
+        List<Pair<String, ImportBatch>>importBatchList = ListImportBatch.getInstance().impList;
+        List<Integer> total = new ArrayList<>();
+        for(int i = 1;i<=12;i++) {
+            int totalCount = 0;
+            for (Pair<String, ImportBatch> importBatch : importBatchList) {
+                Calendar date = Calendar.getInstance();
+                date.setTime(importBatch.second.getDate().toDate());
+                if (importBatch.second.isEnable() && date.get(Calendar.MONTH) + 1 == i) {
+                    totalCount += importBatch.second.getQuantity_import();
+                }
+            }
+            total.add(totalCount);
+        }
+        return total;
     }
 }
 

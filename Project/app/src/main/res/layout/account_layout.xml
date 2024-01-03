@@ -1,300 +1,343 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/consBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#76a5dd"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/consBackground"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#76a5dd"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-69dp">
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/back_homeA"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ic_back"
+            android:gravity="center_vertical|center_horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.274"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="148dp"
+            android:layout_height="58dp"
+            android:layout_marginEnd="120dp"
+            android:paddingTop="10dp"
+            android:text="ACCOUNT"
+            android:textColor="#ffffff"
+            android:textSize="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consText"
+
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="680dp"
+            tools:ignore="MissingConstraints">
 
-            <ImageView
-                android:id="@+id/back_homeA"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/ic_back"
-                android:gravity="center_vertical|center_horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/textView3"
-                app:layout_constraintHorizontal_bias="0.274"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="148dp"
-                android:layout_height="58dp"
-                android:layout_marginEnd="120dp"
-                android:paddingTop="10dp"
-                android:text="ACOUNT"
-                android:textColor="#ffffff"
-                android:textSize="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/consInfAcount"
-            android:layout_width="350dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/round4corner_border"
-            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/consAvt_Edit"
-                android:layout_width="291dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="499dp"
-                android:background="@drawable/round2corner_top"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:id="@+id/consInfAcount"
+                android:layout_width="match_parent"
 
-
-                <ImageView
-                    android:id="@+id/avt"
-                    android:layout_width="282dp"
-                    android:layout_height="77dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/avt"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <ImageView
-                    android:id="@+id/edit_account"
-                    android:layout_width="25dp"
-                    android:layout_height="27dp"
-                    android:layout_marginBottom="36dp"
-                    android:src="@drawable/ic_edit_basic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/avt"
-                    app:layout_constraintHorizontal_bias="0.823"
-                    app:layout_constraintStart_toStartOf="@+id/avt"
-                    tools:ignore="MissingConstraints" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/inf"
-                android:layout_width="304dp"
-                android:layout_height="513dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.652"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/consAvt_Edit">
-
-                <TextView
-                    android:id="@+id/textName"
-                    android:layout_width="268dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="left"
-                    android:text="Name"
-                    android:textColor="#3D3C3C"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/namea"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/round4corner_border"
-                    android:gravity="center"
-                    android:text="Nguyen Thi Bich Hao"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.333"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textName"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textBir"
-                    android:layout_width="268dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="100dp"
-                    android:gravity="left"
-                    android:text="Birthday"
-                    android:textColor="#3D3C3C"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/bira"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round4corner_border"
-                    android:gravity="center"
-                    android:text="06/01/2003"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.586"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textBir"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textSex"
-                    android:layout_width="268dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="180dp"
-                    android:gravity="left"
-                    android:text="Sex"
-                    android:textColor="#3D3C3C"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/sexa"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round4corner_border"
-                    android:gravity="center"
-                    android:text="Nữ"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textSex"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textPostcode"
-                    android:layout_width="268dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="260dp"
-                    android:gravity="left"
-                    android:text="PostCode"
-                    android:textColor="#3D3C3C"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/postcodea"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/round4corner_border"
-                    android:gravity="center"
-                    android:text="08090908090"
-                    android:textSize="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textPostcode"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textPhone"
-                    android:layout_width="268dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="340dp"
-                    android:gravity="left"
-                    android:text="Phone"
-                    android:textColor="#3D3C3C"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/phonea"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/round4corner_border"
-                    android:gravity="center"
-                    android:text="0347743943"
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textPhone"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/textAddress"
-                    android:layout_width="268dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="425dp"
-                    android:gravity="left"
-                    android:text="Address"
-                    android:textColor="#3D3C3C"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/addressa"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/round4corner_border"
-                    android:gravity="center"
-                    android:text=""
-                    android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.551"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textAddress"
-                    tools:ignore="MissingConstraints" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Button
-                android:id="@+id/buttonDelete"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="Xóa nhân viên"
-                android:visibility="gone"
+                android:background="@drawable/round4corner_border"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/consAvt_Edit" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consAvt_Edit"
+                    android:layout_width="291dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="499dp"
+                    android:background="@drawable/round2corner_top"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/avt"
+                        android:layout_width="282dp"
+                        android:layout_height="77dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/avt"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/edit_account"
+                        android:layout_width="25dp"
+                        android:layout_height="27dp"
+                        android:layout_marginBottom="36dp"
+                        android:src="@drawable/ic_edit_basic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/avt"
+                        app:layout_constraintHorizontal_bias="0.823"
+                        app:layout_constraintStart_toStartOf="@+id/avt"
+                        tools:ignore="MissingConstraints" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/inf"
+                    android:layout_width="389dp"
+                    android:layout_height="556dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.526"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/consAvt_Edit"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <TextView
+                        android:id="@+id/textName"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="left"
+                        android:text="Name"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/namea"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/round4corner_border"
+
+                        android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Nguyen Thi Bich Hao"
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.333"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textName"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/textBir"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="100dp"
+                        android:gravity="left"
+                        android:text="Birthday (yyyy-mm-dd)"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/bira"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/round4corner_border"
+                        android:gravity="center"
+                        android:text="06/01/2003"
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.586"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textBir"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/textSex"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="180dp"
+                        android:gravity="left"
+                        android:text="Sex"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/sexa"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/round4corner_border"
+                        android:gravity="center"
+                        android:text="Nữ"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textSex"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/textPostcode"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="260dp"
+                        android:gravity="left"
+                        android:text="PostCode"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/postcodea"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/round4corner_border"
+                        android:gravity="center"
+                        android:text="08090908090"
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textPostcode"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/textPhone"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="340dp"
+                        android:gravity="left"
+                        android:text="Phone"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/phonea"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/round4corner_border"
+                        android:gravity="center"
+                        android:text="0347743943"
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textPhone"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/textAddress"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="420dp"
+                        android:gravity="left"
+                        android:text="Address"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <!--                <TextView-->
+                    <!--                    android:id="@+id/addressa"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_marginBottom="10dp"-->
+                    <!--                    android:background="@drawable/round4corner_border"-->
+                    <!--                    android:gravity="center"-->
+                    <!--                    android:paddingTop="10dp"-->
+                    <!--                    android:paddingBottom="10dp"-->
+
+                    <!--                    android:text=""-->
+                    <!--                    android:textSize="20dp"-->
+                    <!--                    app:layout_constraintBottom_toTopOf="@+id/buttonEnable"-->
+                    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                    app:layout_constraintHorizontal_bias="0.551"-->
+                    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                    app:layout_constraintTop_toBottomOf="@+id/textAddress"-->
+                    <!--                    tools:ignore="MissingConstraints" />-->
+                    <TextView
+                        android:id="@+id/addressa"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/round4corner_border"
+                        android:gravity="center"
+                        android:text="0347743943"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonEnable"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.551"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textAddress"
+                        tools:ignore="MissingConstraints" />
+
+                    <Button
+                        android:id="@+id/buttonEnable"
+                        android:layout_width="153dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="Nghỉ việc"
+                        app:backgroundTint="@color/color_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+

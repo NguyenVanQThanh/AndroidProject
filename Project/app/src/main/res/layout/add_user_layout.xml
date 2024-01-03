@@ -9,7 +9,6 @@
     android:layout_height="match_parent">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/consText"
         android:layout_width="match_parent"
@@ -33,9 +32,9 @@
             android:layout_height="58dp"
             android:layout_marginEnd="120dp"
             android:paddingTop="10dp"
-            android:text="EDIT ACCOUNT"
+            android:text="ACCOUNT"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,9 +60,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/consInfAcount"
-                android:layout_width="match_parent"
+                android:layout_width="418dp"
 
-                android:layout_height="667dp"
+                android:layout_height="673dp"
                 android:background="@drawable/round4corner_border"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,8 +73,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/consAvt_Edit"
-                    android:layout_width="353dp"
-                    android:layout_height="93dp"
+                    android:layout_width="286dp"
+                    android:layout_height="62dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/round2corner_top"
                     android:orientation="horizontal"
@@ -143,7 +142,7 @@
                         tools:ignore="MissingConstraints" />
 
                     <EditText
-                        android:id="@+id/edt_name"
+                        android:id="@+id/namea"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginBottom="5dp"
@@ -152,7 +151,7 @@
                         android:gravity="center"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
-                        android:text="Nguyen Thi Bich Hao"
+                        android:text=""
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.333"
@@ -160,12 +159,40 @@
                         app:layout_constraintTop_toBottomOf="@+id/textName"
                         tools:ignore="MissingConstraints" />
 
+                    <TextView
+                        android:id="@+id/textBir"
+                        android:layout_width="268dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="100dp"
+                        android:gravity="left"
+                        android:text="Birthday (dd-mm-yyyy)"
+                        android:textColor="#3D3C3C"
+                        android:textSize="18dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <EditText
+                        android:id="@+id/bira"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/round4corner_border"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.586"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textBir"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/textSex"
                         android:layout_width="268dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_marginTop="180dp"
                         android:gravity="left"
                         android:text="Sex"
                         android:textColor="#3D3C3C"
@@ -177,7 +204,7 @@
                         tools:ignore="MissingConstraints" />
 
                     <EditText
-                        android:id="@+id/edt_sex"
+                        android:id="@+id/sexa"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/round4corner_border"
@@ -192,7 +219,7 @@
                         android:id="@+id/textPostcode"
                         android:layout_width="268dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="180dp"
+                        android:layout_marginTop="260dp"
                         android:gravity="left"
                         android:text="PostCode"
                         android:textColor="#3D3C3C"
@@ -204,13 +231,13 @@
                         tools:ignore="MissingConstraints" />
 
                     <EditText
-                        android:id="@+id/edt_postcode"
+                        android:id="@+id/postcodea"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/round4corner_border"
                         android:gravity="center"
-                        android:text="08090908090"
+                        android:text=""
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -222,7 +249,7 @@
                         android:id="@+id/textPhone"
                         android:layout_width="268dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="260dp"
+                        android:layout_marginTop="340dp"
                         android:gravity="left"
                         android:text="Phone"
                         android:textColor="#3D3C3C"
@@ -234,13 +261,13 @@
                         tools:ignore="MissingConstraints" />
 
                     <EditText
-                        android:id="@+id/edt_phone"
+                        android:id="@+id/phonea"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/round4corner_border"
                         android:gravity="center"
-                        android:text="0347743943"
+                        android:text=""
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -252,7 +279,7 @@
                         android:id="@+id/textEmail"
                         android:layout_width="268dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="340dp"
+                        android:layout_marginTop="420dp"
                         android:gravity="left"
                         android:text="Email"
                         android:textColor="#3D3C3C"
@@ -264,13 +291,13 @@
                         tools:ignore="MissingConstraints" />
 
                     <EditText
-                        android:id="@+id/edt_email"
+                        android:id="@+id/emaila"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/round4corner_border"
                         android:gravity="center"
-                        android:text="0347743943"
+                        android:text=""
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -282,29 +309,29 @@
                         android:id="@+id/textAddress"
                         android:layout_width="268dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="430dp"
+                        android:layout_marginTop="496dp"
                         android:gravity="left"
                         android:text="Address"
                         android:textColor="#3D3C3C"
                         android:textSize="18dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintHorizontal_bias="0.495"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
 
                     <EditText
-                        android:id="@+id/edt_address"
+                        android:id="@+id/addressa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/round4corner_border"
                         android:gravity="center"
                         android:paddingTop="10dp"
+
                         android:paddingBottom="10dp"
                         android:text=""
                         android:textSize="20dp"
-
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -312,22 +339,16 @@
                         tools:ignore="MissingConstraints" />
 
                     <Button
-                        android:id="@+id/btn_update"
-                        android:layout_width="120dp"
+                        android:id="@+id/btnSave"
+                        android:layout_width="153dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Lưu"
                         app:backgroundTint="@color/color_button"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-                    <EditText
-                        android:id="@+id/edtImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="invisible"
-                        />
+                        app:layout_constraintHorizontal_bias="0.554"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addressa" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
