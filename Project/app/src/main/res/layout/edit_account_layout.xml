@@ -74,8 +74,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/consAvt_Edit"
-                    android:layout_width="286dp"
-                    android:layout_height="62dp"
+                    android:layout_width="353dp"
+                    android:layout_height="93dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/round2corner_top"
                     android:orientation="horizontal"

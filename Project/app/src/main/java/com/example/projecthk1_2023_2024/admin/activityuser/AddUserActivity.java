@@ -59,7 +59,7 @@ public class AddUserActivity extends AppCompatActivity {
         poscode = findViewById(R.id.postcodea);
         address = findViewById(R.id.addressa);
 
-        back = findViewById(R.id.back);
+        back = findViewById(R.id.back_homeA);
         btn = findViewById(R.id.btnSave);
 
         back.setOnClickListener(new View.OnClickListener() {
