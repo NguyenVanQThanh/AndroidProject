@@ -21,6 +21,9 @@
             android:name=".NvKho.FuncNhapHang.NewImpActivity"
             android:exported="false" />
         <activity
+            android:name=".NvKho.NvkFragHome"
+            android:exported="false" />
+        <activity
             android:name=".ForgetPassActivity"
             android:exported="false" />
         <activity
