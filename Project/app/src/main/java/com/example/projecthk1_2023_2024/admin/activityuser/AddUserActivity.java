@@ -2,6 +2,7 @@ package com.example.projecthk1_2023_2024.Admin.activityuser;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -35,7 +36,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddUserActivity extends AppCompatActivity {
-    EditText name, bir, sex, email, phone, poscode;
+    EditText name, bir, sex, email, phone, poscode, address ;
     Button btn;
     ImageView back;
     private FirebaseAuth firebaseAuth;
@@ -45,19 +46,21 @@ public class AddUserActivity extends AppCompatActivity {
     private CollectionReference collectionReferenceUser = db.collection("User");
 //    private CollectionReference collectionReference
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_account_layout);
-        name = findViewById(R.id.edt_Name);
-        bir = findViewById(R.id.edtBir);
-        sex = findViewById(R.id.edtSex);
-        email = findViewById(R.id.edtEmail);
-        phone = findViewById(R.id.edtPhone);
-        poscode = findViewById(R.id.edtPos);
+        setContentView(R.layout.add_user_layout);
+        name = findViewById(R.id.namea);
+        bir = findViewById(R.id.bira);
+        sex = findViewById(R.id.sexa);
+        email = findViewById(R.id.emaila);
+        phone = findViewById(R.id.phonea);
+        poscode = findViewById(R.id.postcodea);
+        address = findViewById(R.id.addressa);
 
         back = findViewById(R.id.back);
-        btn = findViewById(R.id.btn_save);
+        btn = findViewById(R.id.btnSave);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +79,7 @@ public class AddUserActivity extends AppCompatActivity {
                 String sexUser = sex.getText().toString().trim();
                 String phoneUser = phone.getText().toString().trim();
                 String postCodeUser = poscode.getText().toString().trim();
+                //String address = address.getText().toString();
 
                 CreateUserEmailAccount(emailUser,password,nameUser,birUser,sexUser,phoneUser,postCodeUser);
             }

@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.projecthk1_2023_2024.NvKho.FuncNhapHang.Func_qlNhapHangActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncPlace.Func_PlaceActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.Func_QLSPActivity;
@@ -107,7 +108,9 @@ public class NvkFragHome extends Fragment {
                                 user = snapshot.toObject(User.class);
                                 String name = snapshot.getString("Role");
                                 nameAccount.setText(user.getUserName());
-
+                                Glide.with(NvkFragHome.this)
+                                        .load(user.getImage())
+                                        .fitCenter().into(avtAcount);
                             }
                         }
                     }
@@ -116,6 +119,8 @@ public class NvkFragHome extends Fragment {
 // 2. xử lý xem và sửa thông tin tài khoản cá nhân
 //        nameAccount = view.findViewById(R.id.nameAccount);
         avtAcount = view.findViewById(R.id.imgAvt);
+
+
         avtAcount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +166,9 @@ public class NvkFragHome extends Fragment {
                 startActivity(i);
             }
         });
+
+
+        // xử lý load ảnh
         return view;
 
 

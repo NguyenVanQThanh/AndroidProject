@@ -18,7 +18,7 @@ public class EditAccountActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_account_layout);
-        backAcount = findViewById(R.id.back);
+        backAcount = findViewById(R.id.back_homeA);
         backAcount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +27,7 @@ public class EditAccountActivity extends AppCompatActivity {
             }
         });
 
-        btnSaveEdit = findViewById(R.id.btn_save);
+        btnSaveEdit = findViewById(R.id.btn_update);
         btnSaveEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
