@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.projecthk1_2023_2024"
-        minSdk = 19
+        minSdk = 28
         multiDexEnabled = true
         targetSdk = 33
         versionCode = 1
@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.github.dhaval2404:imagepicker:2.1")
+    implementation("com.android.car.ui:car-ui-lib:2.5.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

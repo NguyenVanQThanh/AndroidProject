@@ -22,12 +22,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projecthk1_2023_2024.Admin.ExpActivity.ListExpActivity;
 import com.example.projecthk1_2023_2024.Admin.activityuser.UserAdminActivity;
 import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.Admin.importactivity.ImportHomeActivity;
 import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.R;
+import com.example.projecthk1_2023_2024.Util.ListExpBatch;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.Util.ListProductBatch;
@@ -35,6 +37,7 @@ import com.example.projecthk1_2023_2024.Util.ListShelfUtil;
 import com.example.projecthk1_2023_2024.Util.ListUser;
 import com.example.projecthk1_2023_2024.Util.ListZoneUtil;
 import com.example.projecthk1_2023_2024.Util.ProductList;
+import com.example.projecthk1_2023_2024.model.ExpBatch;
 import com.example.projecthk1_2023_2024.model.Export;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
@@ -66,6 +69,8 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     ViewGroup nhanVien, nhapHang, xuatHang, product;
     RecyclerView recyclerView;
     private User user;
+    private List<Pair<String, ExpBatch>> expBatchList = new ArrayList<>();
+
     private List<Pair<String, Product>> productList = new ArrayList<>();
     private List<Pair<String, Notification>> notificationList = new ArrayList<>();
     private List<Pair<String, Export>> exportList = new ArrayList<>();
@@ -80,6 +85,8 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     private CollectionReference collectionReferenceProductIB = db.collection("ProductBatch");
     private CollectionReference collectionReferenceExport = db.collection("Export");
     private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
+
+    private CollectionReference collectionReferenceExportBatch = db.collection("ExpBatch");
 
     private FirebaseUser currentUser;
     @Nullable
@@ -208,6 +215,19 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 productListInstance.setListProductBatch(productBatchList);
             }
         });
+        collectionReferenceExportBatch.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    ExpBatch export = queryDocumentSnapshot.toObject(ExpBatch.class);
+                    Pair<String, ExpBatch> exportPair = new Pair<>(idDocument,export);
+                    expBatchList.add(exportPair);
+                }
+                ListExpBatch list = ListExpBatch.getInstance();
+                list.setListExpBatch(expBatchList);
+            }
+        });
 
         nhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,7 +245,7 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
         xuatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity();
+                startActivity(new Intent(getContext(), ListExpActivity.class));
 
             }
         });

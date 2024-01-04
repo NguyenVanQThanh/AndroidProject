@@ -1,9 +1,11 @@
 package com.example.projecthk1_2023_2024.Admin.importactivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.util.Pair;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +42,7 @@ public class DetailImportActivity extends AppCompatActivity {
         status = findViewById(R.id.tinhtrang_import_HT2);
         total = findViewById(R.id.total);
         recyclerView = findViewById(R.id.recycler_view);
+        back = findViewById(R.id.back_import);
         String idImp = getIntent().getStringExtra("IdImport");
         Log.d("Id",idImp);
         Log.d("Size","" +listImportBatch.getProductList().size());
@@ -54,10 +57,10 @@ public class DetailImportActivity extends AppCompatActivity {
         dateSuccess.setText(importBatchPair.second.StampToString(importBatchPair.second.getDate_success()));
         if (importBatchPair.second.isEnable()){
             status.setText("Nhận");
-            status.setTextColor(R.color.green);
+            status.setTextColor(Color.parseColor("#50d189"));
         } else {
             status.setText("Không nhận");
-            status.setTextColor(R.color.red);
+            status.setTextColor(Color.parseColor("#a63c39"));
         }
         total.setText(String.valueOf(importBatchPair.second.getQuantity_import()));
         sortProductList(list);
@@ -67,6 +70,12 @@ public class DetailImportActivity extends AppCompatActivity {
         recyclerView.setAdapter(detailImportAdapter);
 //        recyclerView.getAdapter().notifyDataSetChanged();
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
     private void sortProductList(List<Pair<String,ProductBatch>> productList) {
         // Sử dụng Comparator để so sánh theo thuộc tính Enable

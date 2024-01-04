@@ -1,32 +1,34 @@
-package com.example.projecthk1_2023_2024.Admin.importactivity;
+package com.example.projecthk1_2023_2024.Admin.ExpActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
-import android.util.Pair;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.SearchView;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.projecthk1_2023_2024.Admin.AdminHomeActivity;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.SearchView;
+
 import com.example.projecthk1_2023_2024.Admin.FragmentAdmin;
 import com.example.projecthk1_2023_2024.Admin.adapter.ImportAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
-import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
+import com.example.projecthk1_2023_2024.Admin.importactivity.DetailImportActivity;
+import com.example.projecthk1_2023_2024.Admin.importactivity.ImportHomeActivity;
+import com.example.projecthk1_2023_2024.Admin.importactivity.NewImportActivity;
 import com.example.projecthk1_2023_2024.R;
+import com.example.projecthk1_2023_2024.Util.ListExport;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.Util.ListUser;
+import com.example.projecthk1_2023_2024.model.Export;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.User;
+import com.example.projecthk1_2023_2024.model.ViewModel.ExpADV_VM;
 import com.example.projecthk1_2023_2024.model.ViewModel.ImportADViewModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -38,35 +40,33 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
+public class ListExpActivity extends AppCompatActivity implements ItemClick {
     RecyclerView recyclerView;
     CheckBox cbFalse, cbTrue;
     ImageButton btnAdd;
     ImageView back;
     SearchView search;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference = db.collection("ImportBatch");
-    private List<ImportADViewModel> listImport = new ArrayList<>();
-    private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
-    ImportAdapter importAdapter;
-
-
-
+    private CollectionReference collectionReference = db.collection("Export");
+    private List<ExpADV_VM> listExpVM = new ArrayList<>();
+    private List<Pair<String, Export>> expPairList = new ArrayList<>();
+    ListExportAdapter expAdapter;
+    @SuppressLint("MissingInflatedId")
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.import_admin);
-        recyclerView = findViewById(R.id.recyclerView_import);
-        cbFalse = findViewById(R.id.checkBox_import);
-        cbTrue = findViewById(R.id.checkBox_import2);
-        btnAdd = findViewById(R.id.btnAdd_import);
+        setContentView(R.layout.export_admin);
+        recyclerView = findViewById(R.id.recyclerView_export);
+        cbFalse = findViewById(R.id.checkBox_exp);
+        cbTrue = findViewById(R.id.checkBox_exp2);
+        btnAdd = findViewById(R.id.btnAdd_exp);
         back = findViewById(R.id.back_import);
-        search = findViewById(R.id.searchPN);
+        search = findViewById(R.id.searchPX);
         ListUser userList = ListUser.getInstance();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ImportHomeActivity.this, FragmentAdmin.class);
+                Intent intent = new Intent(ListExpActivity.this, FragmentAdmin.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -75,7 +75,7 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), NewImportActivity.class));
+                //startActivity(new Intent(getApplicationContext(), NewImportActivity.class));
             }
         });
 
@@ -85,20 +85,20 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                     String idDocument = documentSnapshot.getId();
-                    ImportBatch importBatch = documentSnapshot.toObject(ImportBatch.class);
-                    Pair<String, ImportBatch> importBatchPair = new Pair<>(idDocument,importBatch);
-                    importList.add(importBatchPair);
-                    Pair<String, User> userPair = userList.find(importBatchPair.second.getIDUser().getId());
-                    ImportADViewModel importADViewModel = new ImportADViewModel(userPair,importBatchPair);
-                    listImport.add(importADViewModel);
+                    Export exp = documentSnapshot.toObject(Export.class);
+                    Pair<String, Export> expPair = new Pair<>(idDocument,exp);
+                    expPairList.add(expPair);
+                    Pair<String, User> userPair = userList.find(expPair.second.getIDUser_confirm().getId());
+                    ExpADV_VM expVM = new ExpADV_VM(userPair,expPair);
+                    listExpVM.add(expVM);
                 }
-                ListImportBatch importBatchList = ListImportBatch.getInstance();
-                importBatchList.setListImportBatch(importList);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ImportHomeActivity.this));
-                importAdapter = new ImportAdapter(ImportHomeActivity.this, listImport);
-                Log.d("Tag mode", ""+importAdapter.getItemCount());
-                importAdapter.setClickListener(ImportHomeActivity.this);
-                recyclerView.setAdapter(importAdapter);
+                ListExport expList = ListExport.getInstance();
+                expList.setListExport(expPairList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ListExpActivity.this));
+                expAdapter = new ListExportAdapter(ListExpActivity.this, listExpVM);
+                Log.d("Tag mode", ""+expAdapter.getItemCount());
+                expAdapter.setClickListener(ListExpActivity.this);
+                recyclerView.setAdapter(expAdapter);
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
         });
@@ -122,24 +122,23 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
 
             private void filterList(String text) {
                 if (text != null) {
-                    List<ImportADViewModel> filtedList = new ArrayList<>();
+                    List<ExpADV_VM> filtedList = new ArrayList<>();
                     String searchTextWithoutDiacritics = removeDiacritics(text.toLowerCase());
-                    for (ImportADViewModel imp : listImport) {
-                        if (removeDiacritics(imp.getImportBatchPair().second.getSupplier().toLowerCase()).contains(searchTextWithoutDiacritics) ||
-                                removeDiacritics(imp.getImportBatchPair().second.getStatus().toLowerCase()).contains(searchTextWithoutDiacritics)
+                    for (ExpADV_VM exp : listExpVM) {
+                        if (removeDiacritics(exp.getExpPair().second.getStatus().toLowerCase()).contains(searchTextWithoutDiacritics)
                                 ||
-                                removeDiacritics(imp.getUserPair().second.getUserName().toLowerCase()).contains(searchTextWithoutDiacritics) ||
-//                                        .equals(searchTextWithoutDiacritics)
-                                removeDiacritics(imp.getImportBatchPair().first).contains(searchTextWithoutDiacritics)
+                                removeDiacritics(exp.getUserPair().second.getUserName().toLowerCase()).contains(searchTextWithoutDiacritics) ||
+//
+                                removeDiacritics(exp.getExpPair().first).contains(searchTextWithoutDiacritics)
                         ) {
-                            filtedList.add(imp);
+                            filtedList.add(exp);
                         }
 
                     }
                     if (filtedList.isEmpty() == true && text.isEmpty() == false) {
-                        importAdapter.setFilterList(ImportHomeActivity.this, new ArrayList<>());
+                        expAdapter.setFilterList(ListExpActivity.this, new ArrayList<>());
                     } else {
-                        importAdapter.setFilterList(ImportHomeActivity.this, filtedList);
+                        expAdapter.setFilterList(ListExpActivity.this, filtedList);
                     }
                 }
             }
@@ -156,8 +155,8 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
 
     @Override
     public void onClick(View v, int pos) {
-        Intent i = new Intent(ImportHomeActivity.this, DetailImportActivity.class);
-        i.putExtra("IdImport",listImport.get(pos).getImportBatchPair().first);
+        Intent i = new Intent(ListExpActivity.this, DetailExpActivity.class);
+        i.putExtra("IdExport",listExpVM.get(pos).getExpPair().first);
         startActivity(i);
     }
 }

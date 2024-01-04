@@ -35,6 +35,7 @@ public class ListExportBatch extends Application {
     public void setListExport(List<Pair<String, Export>> expList) {
         this.expList = expList;
     }
+
     public List<Integer> getCountForMonth(){
         List<Pair<String, Export>> list = ListExportBatch.getInstance().expList;
         List<Integer> total = new ArrayList<>();

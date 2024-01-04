@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="360dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/import_detail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,8 +16,8 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="349dp"
+            android:layout_height="166dp"
             android:background="@drawable/searchview_background">
 
             <TextView
@@ -25,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Mã phiếu nhập:"
+                android:text="Mã phiếu xuất:"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,32 +37,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="12dp"
-                android:text="Ngày nhập"
+                android:text="Ngày xuất:"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ID_import_batch" />
 
             <TextView
-                android:id="@+id/nhacc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:text="Nhà cung cấp:"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date" />
-
-            <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Tình trạng"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nhacc" />
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
             <TextView
                 android:id="@+id/textView"
@@ -75,10 +65,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/status" />
 
             <TextView
-                android:id="@+id/MaPhieuNhap"
+                android:id="@+id/MaPhieuX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
                 android:text="PN0001"
                 android:textSize="20dp"
@@ -96,69 +86,58 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/date"
-                app:layout_constraintTop_toBottomOf="@+id/MaPhieuNhap" />
-
-            <TextView
-                android:id="@+id/NCC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:text="Beauty"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/nhacc"
-                app:layout_constraintTop_toBottomOf="@+id/Date_importbatch" />
+                app:layout_constraintTop_toBottomOf="@+id/MaPhieuX" />
 
             <TextView
                 android:id="@+id/tinhtrang_import_HT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
                 android:text="Success"
                 android:textColor="#61d16f"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/status"
-                app:layout_constraintTop_toBottomOf="@+id/NCC"
+                app:layout_constraintTop_toBottomOf="@+id/Date_importbatch"
                 tools:ignore="MissingConstraints" />
+
             <TextView
                 android:id="@+id/tinhtrang_import_DXL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="8dp"
                 android:text="Waiting"
                 android:textColor="#316938"
                 android:textSize="20dp"
                 android:textStyle="italic"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/status"
-                app:layout_constraintTop_toBottomOf="@+id/NCC" />
+                app:layout_constraintTop_toBottomOf="@+id/Date_importbatch" />
 
             <TextView
                 android:id="@+id/tinhtrang_import_DH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="8dp"
                 android:text="Cancelled"
                 android:textColor="#F80000"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintStart_toEndOf="@+id/status"
-                app:layout_constraintTop_toBottomOf="@+id/NCC"
+                app:layout_constraintTop_toBottomOf="@+id/Date_importbatch"
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/name_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="24dp"
                 android:text="Nguyễn Văn A"
                 android:textColor="#777777"
                 android:textSize="20dp"

@@ -79,7 +79,7 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
             txtTenSp = itemView.findViewById(R.id.namePr31);
             txtSlt = itemView.findViewById(R.id.slTon31);
             txtSln = itemView.findViewById(R.id.slNhap31);
-            txtMaLo= itemView.findViewById(R.id.maLo31);
+           // txtMaLo= itemView.findViewById(R.id.maLo31);
             txtHsd = itemView.findViewById(R.id.hsd31);
             txtGia= itemView.findViewById(R.id.gia31);
 

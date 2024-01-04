@@ -3,6 +3,9 @@ package com.example.projecthk1_2023_2024.model;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 
 public class Export {
     private Timestamp Create_Date;
@@ -68,5 +71,10 @@ public class Export {
 
     public void setIDUser_confirm(DocumentReference IDUser_confirm) {
         this.IDUser_confirm = IDUser_confirm;
+    }
+    public String StampToString(Timestamp timestamp) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        java.util.Date date = timestamp.toDate();
+        return dateFormat.format(date);
     }
 }

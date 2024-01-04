@@ -20,11 +20,11 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/heading_export"
+                android:id="@+id/heading_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Phiếu Xuất Kho"
+                android:text="Phiếu Nhập Kho"
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 android:textStyle="bold"
@@ -33,41 +33,41 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/back_export"
+                android:id="@+id/back_import"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="23dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/ic_back"
                 android:gravity="center_vertical|center_horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/heading_export"
+                app:layout_constraintEnd_toStartOf="@+id/heading_import"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/box_export"
+                android:id="@+id/box"
                 android:layout_width="169dp"
                 android:layout_height="130dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/img_3"
+                android:src="@drawable/img_2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/heading_export" />
+                app:layout_constraintTop_toBottomOf="@+id/heading_import" />
 
             <TextView
-                android:id="@+id/ID_export"
+                android:id="@+id/ID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="45dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
-                android:text="Mã Phiếu Xuất:"
+                android:text="Mã Phiếu Nhập:"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/box_export"
-                app:layout_constraintTop_toBottomOf="@+id/heading_export" />
+                app:layout_constraintStart_toEndOf="@+id/box"
+                app:layout_constraintTop_toBottomOf="@+id/heading_import" />
 
             <TextView
-                android:id="@+id/ID_ex"
+                android:id="@+id/ID_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -76,56 +76,56 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ID_export" />
+                app:layout_constraintTop_toBottomOf="@+id/ID" />
 
             <TextView
-                android:id="@+id/text_ngaytaophieu"
+                android:id="@+id/ncc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="12dp"
-                android:text="Ngày tạo phiếu:"
+                android:text="Nhà cung cấp:"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/box_export"
-                app:layout_constraintTop_toBottomOf="@+id/ID_ex" />
+                app:layout_constraintStart_toEndOf="@+id/box"
+                app:layout_constraintTop_toBottomOf="@+id/ID_import" />
 
             <TextView
-                android:id="@+id/ngaytaophieu"
+                android:id="@+id/ncc_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="52dp"
-                android:text="25/10/2023"
+                android:layout_marginEnd="48dp"
+                android:text="Hasaki"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_ngaytaophieu" />
+                app:layout_constraintTop_toBottomOf="@+id/ncc" />
 
             <TextView
-                android:id="@+id/text_ngayxuat"
+                android:id="@+id/text_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="10dp"
-                android:text="Ngày xuất:"
+                android:text="Ngày tạo phiếu:"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/box_export" />
+                app:layout_constraintTop_toBottomOf="@+id/box" />
 
             <TextView
-                android:id="@+id/date_export"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:text="22/12/2023"
+                android:text="22/12/2022"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_ngayxuat" />
+                app:layout_constraintTop_toBottomOf="@+id/text_date" />
 
             <TextView
-                android:id="@+id/status_export"
+                android:id="@+id/text_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -134,10 +134,10 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date_export" />
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
             <TextView
-                android:id="@+id/tinhtrang_export_HT"
+                android:id="@+id/tinhtrang_import_HT2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -148,22 +148,45 @@
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/status_export" />
+                app:layout_constraintTop_toBottomOf="@+id/text_status" />
 
             <TextView
-                android:id="@+id/text_total_export"
+                android:id="@+id/text_datesuccess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="48dp"
+                android:text="Ngày hoàn thành:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ncc_name" />
+
+            <TextView
+                android:id="@+id/datesuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="48dp"
+                android:text="01/01/2023"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_datesuccess" />
+
+            <TextView
+                android:id="@+id/text_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="48dp"
                 android:text="Tổng: "
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ngaytaophieu" />
+                app:layout_constraintTop_toBottomOf="@+id/datesuccess" />
 
             <TextView
-                android:id="@+id/total_export"
+                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="52dp"
@@ -172,7 +195,7 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_total_export" />
+                app:layout_constraintTop_toBottomOf="@+id/text_total" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
