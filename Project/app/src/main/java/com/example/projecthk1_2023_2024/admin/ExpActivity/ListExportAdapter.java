@@ -1,61 +1,62 @@
-package com.example.projecthk1_2023_2024.Admin.adapter;
+package com.example.projecthk1_2023_2024.Admin.ExpActivity;
+
+import static androidx.databinding.DataBindingUtil.setContentView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.util.Pair;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.projecthk1_2023_2024.Admin.adapter.ImportAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.R;
-import com.example.projecthk1_2023_2024.model.ImportBatch;
+import com.example.projecthk1_2023_2024.model.ViewModel.ExpADV_VM;
 import com.example.projecthk1_2023_2024.model.ViewModel.ImportADViewModel;
 
 import java.util.List;
 
-public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.MyViewHolder> {
+public class ListExportAdapter extends RecyclerView.Adapter<ListExportAdapter.MyViewHolder> {
 
     static Context context;
     static ItemClick itemClick;
-    List<ImportADViewModel> listImport;
+    List<ExpADV_VM> listExp;
 
-    public ImportAdapter(Context context, List<ImportADViewModel> listImport) {
-        this.listImport = listImport;
+    public ListExportAdapter(Context context, List<ExpADV_VM> listExp) {
+        this.listExp = listExp;
         this.context = context;
     }
-    public void setFilterList(Context context, List<ImportADViewModel> filtedList){
+    public void setFilterList(Context context, List<ExpADV_VM> filtedList){
         this.context = context;
-        this.listImport = filtedList;
+        this.listExp = filtedList;
         notifyDataSetChanged();
     }
     public void setClickListener(ItemClick itemClick){
         this.itemClick = itemClick;
     }
-
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListExportAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_view_import_admin,parent,false);
-        return new MyViewHolder(view,context);
+                .inflate(R.layout.list_export_adapter_item,parent,false);
+        return new ListExportAdapter.MyViewHolder(view,context);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ImportADViewModel importADViewModel = listImport.get(position);
-        holder.idImport.setText(importADViewModel.getImportBatchPair().first);
-        holder.date.setText(importADViewModel.getImportBatchPair().second.StampToString(importADViewModel.getImportBatchPair().second.getDate()));
-        holder.sup.setText(importADViewModel.getImportBatchPair().second.getSupplier());
-        holder.user.setText(importADViewModel.getUserPair().second.getUserName());
-        if (importADViewModel.getImportBatchPair().second.getStatus().equals("Success")){
+    public void onBindViewHolder(@NonNull ListExportAdapter.MyViewHolder holder, int position) {
+        ExpADV_VM expADViewModel = listExp.get(position);
+        holder.idExp.setText(expADViewModel.getExpPair().first);
+        holder.date.setText(expADViewModel.getExpPair().second.StampToString(expADViewModel.getExpPair().second.getDate_Success()));
+        holder.user.setText(expADViewModel.getUserPair().second.getUserName());
+        if (expADViewModel.getExpPair().second.getStatus().equals("Success")){
             holder.ht.setVisibility(View.VISIBLE);
             holder.dxl.setVisibility(View.GONE);
             holder.dh.setVisibility(View.GONE);
-        } else if (importADViewModel.getImportBatchPair().second.getStatus().equals("Waiting")){
+        } else if (expADViewModel.getExpPair().second.getStatus().equals("Waiting")){
             holder.ht.setVisibility(View.GONE);
             holder.dxl.setVisibility(View.VISIBLE);
             holder.dh.setVisibility(View.GONE);
@@ -68,19 +69,18 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return listImport.size();
+        return listExp.size();
     }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView idImport,date,sup, dxl,ht,dh, user;
+        TextView idExp,date, dxl,ht,dh, user;
 
         public MyViewHolder(@NonNull View itemView,Context ctx) {
             super(itemView);
             context = ctx;
-            idImport = itemView.findViewById(R.id.MaPhieuNhap);
+            idExp = itemView.findViewById(R.id.MaPhieuX);
             date = itemView.findViewById(R.id.Date_importbatch);
-            sup = itemView.findViewById(R.id.NCC);
             dxl = itemView.findViewById(R.id.tinhtrang_import_DXL);
             dh = itemView.findViewById(R.id.tinhtrang_import_DH);
             ht = itemView.findViewById(R.id.tinhtrang_import_HT);

@@ -41,7 +41,7 @@ public class NewExportAdapter extends RecyclerView.Adapter<NewExportAdapter.MyVi
         VMNewExport NewExpPair = listNewExp.get(position);
         holder.txtMapx.setText(NewExpPair.getExpPair().first);//Tong -> Exp --> idExp
         holder.txtTensp.setText(NewExpPair.getExp_batchPair().second
-                .getProduct(NewExpPair.getExp_batchPair().second.getIdProductBatch()).getName()); //Tong -> exp -> getIdPr -> getNamePr
+                .getProduct(NewExpPair.getExp_batchPair().second.getIDProductBatch()).getName()); //Tong -> exp -> getIdPr -> getNamePr
         holder.txtSl.setText(NewExpPair.getExp_batchPair().second.getQuantity());
 
 //        Glide.with(context)

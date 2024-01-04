@@ -8,34 +8,44 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 public class ExpBatch {
+    private boolean Enable;
 
-    private DocumentReference IdProductBatch;
+    private DocumentReference IDProductBatch;
     private DocumentReference IDExport;
-    private int quantity;
+    private int Quantity;
 
-    public ExpBatch(DocumentReference IdProductBatch, DocumentReference IDExport, int quantity) {
-        this.IdProductBatch = IdProductBatch;
+    public ExpBatch(DocumentReference IDProductBatch, DocumentReference IDExport, int Quantity, boolean Enable) {
+        this.IDProductBatch = IDProductBatch;
         this.IDExport = IDExport;
-        this.quantity = quantity;
+        this.Quantity = Quantity;
+        this.Enable = Enable;
     }
 
     public ExpBatch() {
     }
 
+    public boolean isEnable() {
+        return Enable;
+    }
+
+    public void setEnable(boolean enable) {
+        Enable = enable;
+    }
+
     public int getQuantity() {
-        return quantity;
+        return Quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(int Quantity) {
+        this.Quantity = Quantity;
     }
 
-    public DocumentReference getIdProductBatch() {
-        return IdProductBatch;
+    public DocumentReference getIDProductBatch() {
+        return IDProductBatch;
     }
 
-    public void setIdProductBatch(DocumentReference IdProductBatch) {
-        this.IdProductBatch = IdProductBatch;
+    public void setIDProductBatch(DocumentReference IDProductBatch) {
+        this.IDProductBatch = IDProductBatch;
     }
 
     public DocumentReference getIDExport() {
@@ -45,9 +55,9 @@ public class ExpBatch {
     public void setIDExport(DocumentReference IDExport){
         this.IDExport = IDExport;
     }
-    public Product getProduct(DocumentReference IdProductBatch){
+    public Product getProduct(DocumentReference IDProductBatch){
         final Product[] product = {new Product()};
-        IdProductBatch.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        IDProductBatch.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()){

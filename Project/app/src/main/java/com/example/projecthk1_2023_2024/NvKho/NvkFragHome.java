@@ -27,12 +27,14 @@ import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.Func_QLSPActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncXuatHang.Func_qlXuatHangActivity;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
+import com.example.projecthk1_2023_2024.Util.ListExpBatch;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.Util.ListProductBatch;
 import com.example.projecthk1_2023_2024.Util.ListShelfUtil;
 import com.example.projecthk1_2023_2024.Util.ListZoneUtil;
 import com.example.projecthk1_2023_2024.Util.ProductList;
+import com.example.projecthk1_2023_2024.model.ExpBatch;
 import com.example.projecthk1_2023_2024.model.Export;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
@@ -68,6 +70,7 @@ public class NvkFragHome extends Fragment {
     private List<Pair<String, Product>> productList = new ArrayList<>();
     private List<Pair<String, Export>> exportList = new ArrayList<>();
     private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
+    private List<Pair<String, ExpBatch>> expBatchList = new ArrayList<>();
     List<Pair<String, Shelf>> listShelf = new ArrayList<>();
     List<Pair<String, Zone>> listZone = new ArrayList<>();
     private FirebaseAuth firebaseAuth;
@@ -78,9 +81,12 @@ public class NvkFragHome extends Fragment {
     private CollectionReference collectionReferenceProductBatch = db.collection("ProductBatch");
     private CollectionReference collectionReferenceExport = db.collection("Export");
     private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
+
     private CollectionReference collectionReferenceProduct = db.collection("Product");
     CollectionReference collectionReferenceZone = db.collection("Zone");
     CollectionReference collectionReferenceShelf = db.collection("Shelf");
+    private CollectionReference collectionReferenceExportBatch = db.collection("ExpBatch");
+
     private FirebaseUser currentUser;
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -176,6 +182,19 @@ public class NvkFragHome extends Fragment {
             }
         });
 
+        collectionReferenceExportBatch.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    ExpBatch export = queryDocumentSnapshot.toObject(ExpBatch.class);
+                    Pair<String, ExpBatch> exportPair = new Pair<>(idDocument,export);
+                    expBatchList.add(exportPair);
+                }
+                ListExpBatch list = ListExpBatch.getInstance();
+                list.setListExpBatch(expBatchList);
+            }
+        });
         collectionReferenceImport.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
