@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SettingAdminActivity extends Fragment {// extends Fragment mới dùng được Fragmnet
-    ImageView img, back;
+    ImageView img;
     TextView nameView, phoneView, sexView, startView, roleView;
     Button btnLogOut;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -41,15 +41,10 @@ public class SettingAdminActivity extends Fragment {// extends Fragment mới d�
         sexView = view.findViewById(R.id.Text_sex);
         startView = view.findViewById(R.id.Text_start_date);
         roleView = view.findViewById(R.id.Text_role);
-        back = view.findViewById(R.id.back);
+
         btnLogOut = view.findViewById(R.id.btnLogout);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
+
         AuUser auUser = AuUser.getInstance();
 
         User user = auUser.getUser();

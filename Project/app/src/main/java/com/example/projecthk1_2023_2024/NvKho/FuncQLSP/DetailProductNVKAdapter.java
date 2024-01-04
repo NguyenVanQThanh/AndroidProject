@@ -94,9 +94,11 @@ public class DetailProductNVKAdapter extends RecyclerView.Adapter<DetailProductN
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView maLo, slht, exp_date;
-        EditText slValid;
-        Button btn_update;
+        public TextView maLo;
+        public TextView slht;
+        public TextView exp_date;
+        public EditText slValid;
+        public Button btn_update;
 
         public MyViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
