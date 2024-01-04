@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cons_phieu"
-        android:layout_width="386dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
@@ -34,48 +34,40 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="100dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:text="Tên SP:\n \nMã lô:\n \nHSD:\n \nSL tồn:\n \nSL nhập:\n \nGiá nhập:"
+            android:layout_height="250dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:text="Tên SP:\n \nHSD:\n \nSL tồn:\n \nSL nhập:\n \nGiá nhập:"
+
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/imgSP"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/namePr31"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="5dp"
             android:text="serum"
             android:textSize="20dp"
+            android:gravity="center_vertical"
+            android:ellipsize="end"
+            android:inputType="textMultiLine"
+            android:maxLines="2"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/maLo31"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:text="LX0124"
-            android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/namePr31"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/hsd31"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="0dp"
             android:text="60"
             android:textSize="20dp"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/maLo31"
+            app:layout_constraintTop_toBottomOf="@+id/namePr31"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -113,33 +105,44 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_ht31"-->
-<!--        android:layout_width="140dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="30dp"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:text="Hoàn thành"-->
-<!--        app:backgroundTint="#254c7b"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"-->
-<!--        app:layout_constraintVertical_bias="0.057"-->
-<!--        tools:ignore="MissingConstraints" />-->
+    <Button
+        android:id="@+id/btn_ht31"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:text="Hoàn thành"
+        app:backgroundTint="#254c7b"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_huy31"-->
-<!--        android:layout_width="140dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:layout_marginEnd="30dp"-->
-<!--        android:text="Hủy"-->
-<!--        app:backgroundTint="#254c7b"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/btn_ht31"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"-->
-<!--        app:layout_constraintVertical_bias="0.057"-->
-<!--        tools:ignore="MissingConstraints" />-->
+    <Button
+        android:id="@+id/btn_huy31"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Hủy"
+        app:backgroundTint="#254c7b"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_ht31"
+        app:layout_constraintTop_toBottomOf="@+id/cons_phieu"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#777777"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints,Orientation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

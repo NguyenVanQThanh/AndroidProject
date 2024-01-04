@@ -54,8 +54,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:id="@+id/constraintLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="680dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
 
@@ -63,7 +64,7 @@
                 android:id="@+id/consInfAcount"
                 android:layout_width="match_parent"
 
-                android:layout_height="667dp"
+                android:layout_height="775dp"
                 android:background="@drawable/round4corner_border"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,9 +75,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/consAvt_Edit"
-                    android:layout_width="353dp"
-                    android:layout_height="93dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="286dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
                     android:background="@drawable/round2corner_top"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +90,8 @@
                         android:layout_width="82dp"
                         android:layout_height="64dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/avt"
+                        android:src="@drawable/account"
+
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintCircleAngle="90"
                         app:layout_constraintCircleRadius="50dp"
@@ -117,15 +119,15 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/inf"
-                    android:layout_width="389dp"
-                    android:layout_height="556dp"
+                    android:layout_width="365dp"
+                    android:layout_height="634dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.526"
+                    app:layout_constraintHorizontal_bias="0.448"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/consAvt_Edit"
-                    app:layout_constraintVertical_bias="1.0">
+                    app:layout_constraintVertical_bias="0.0">
 
                     <TextView
                         android:id="@+id/textName"
@@ -311,24 +313,30 @@
                         app:layout_constraintTop_toBottomOf="@+id/textAddress"
                         tools:ignore="MissingConstraints" />
 
+                    <EditText
+                        android:id="@+id/edtImg"
+                        android:layout_width="369dp"
+                        android:layout_height="530dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.8"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
                     <Button
                         android:id="@+id/btn_update"
                         android:layout_width="120dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:text="Lưu"
-                        app:backgroundTint="@color/color_button"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-                    <EditText
-                        android:id="@+id/edtImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="invisible"
-                        />
+                        android:layout_marginTop="10dp"
 
+                        app:backgroundTint="@color/color_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.554"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtImg" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -336,6 +344,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </LinearLayout>
 
 

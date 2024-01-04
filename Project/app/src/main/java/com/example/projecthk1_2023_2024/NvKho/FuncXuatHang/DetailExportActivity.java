@@ -1,6 +1,4 @@
-package com.example.projecthk1_2023_2024.NvKho.FuncNhapHang;
-
-import static com.google.android.material.color.utilities.MaterialDynamicColors.error;
+package com.example.projecthk1_2023_2024.NvKho.FuncXuatHang;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,14 +14,10 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.example.projecthk1_2023_2024.Admin.activityuser.UserDetailActivity;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.R;
-import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
-import com.example.projecthk1_2023_2024.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -32,16 +26,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewImpActivity extends AppCompatActivity implements ItemClick{
+public class DetailExportActivity extends AppCompatActivity implements ItemClick{
     Context context;
     RecyclerView recyclerView;
     ImageView back;
     SearchView search;
-    ListImp1Adapter adapter;
+//    NewExportAdapter adapter;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference importBatchRef = db.collection("ImportBatch");
@@ -51,7 +44,7 @@ public class NewImpActivity extends AppCompatActivity implements ItemClick{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.f3_new_imp_layout);
+        setContentView(R.layout.nvkho_f2_1_detail_px_layout);
         recyclerView = findViewById(R.id.dspnMoi1);
         back = findViewById(R.id.back31);
         back.setOnClickListener(new View.OnClickListener() {
@@ -61,34 +54,34 @@ public class NewImpActivity extends AppCompatActivity implements ItemClick{
             }
         });
 
-        importBatchRef.whereEqualTo("Status", "Waiting")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String importBatchId = document.getId();
-                                ImportBatch importBatch = document.toObject(ImportBatch.class);
-                                Pair<String, ImportBatch> impPair = new Pair<>(importBatchId, importBatch);
-                                listNewImpBatch.add(impPair);
-                            }
-
-                            recyclerView.setLayoutManager(new LinearLayoutManager(NewImpActivity.this));
-                            NewImpAdapter adapter = new NewImpAdapter(NewImpActivity.this, listNewImpBatch);
-                            recyclerView.setAdapter(adapter);
-                            adapter.setClickListener((ItemClick) NewImpActivity.this);
-                            recyclerView.getAdapter().notifyDataSetChanged();
-
-                        } else {
-                            // Xử lý khi có lỗi xảy ra
-                            Exception e = task.getException();
-                            if (e != null) {
-                                Log.e("Firestore", "Error getting documents: " + e.getMessage());
-                            }
-                        }
-                    }
-        });
+//        importBatchRef
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                String importBatchId = document.getId();
+//                                ImportBatch importBatch = document.toObject(ImportBatch.class);
+//                                Pair<String, ImportBatch> impPair = new Pair<>(importBatchId, importBatch);
+//                                listNewImpBatch.add(impPair);
+//                            }
+//
+//                            recyclerView.setLayoutManager(new LinearLayoutManager(DetailExportActivity.this));
+//                            NewExportAdapter adapter = new NewExportAdapter(DetailExportActivity.this, listNewImpBatch);
+//                            recyclerView.setAdapter(adapter);
+//                            adapter.setClickListener((ItemClick) NewImpActivity.this);
+//                            recyclerView.getAdapter().notifyDataSetChanged();
+//
+//                        } else {
+//                            // Xử lý khi có lỗi xảy ra
+//                            Exception e = task.getException();
+//                            if (e != null) {
+//                                Log.e("Firestore", "Error getting documents: " + e.getMessage());
+//                            }
+//                        }
+//                    }
+//                });
 
         /// bỏ
 //        search = findViewById(R.id.searchPNnew);
@@ -139,9 +132,9 @@ public class NewImpActivity extends AppCompatActivity implements ItemClick{
     @Override
     public void onClick(View v, int pos) {
         Pair<String, ImportBatch> ImpPair = listNewImpBatch.get(pos);
-        Intent i = new Intent(this, DetailNewImpActivity.class);
-        i.putExtra("IdBatch", listNewImpBatch.get(pos).first);
-        startActivity(i);
+//        Intent i = new Intent(this, DetailNewImpActivity.class);
+//        i.putExtra("IdBatch", listNewImpBatch.get(pos).first);
+//        startActivity(i);
     }
 
 

@@ -74,21 +74,25 @@ public class AddUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String emailUser = email.getText().toString().trim();
                 String password = "123456";
+                Boolean enable = true;
                 String nameUser = name.getText().toString().trim();
                 String birUser = bir.getText().toString().trim();
                 String sexUser = sex.getText().toString().trim();
                 String phoneUser = phone.getText().toString().trim();
                 String postCodeUser = poscode.getText().toString().trim();
-                //String address = address.getText().toString();
+                String addressUser = address.getText().toString().trim();
 
-                CreateUserEmailAccount(emailUser,password,nameUser,birUser,sexUser,phoneUser,postCodeUser);
+                CreateUserEmailAccount(addressUser, emailUser,password, nameUser, birUser,sexUser,phoneUser,postCodeUser);
+
+                Toast.makeText(AddUserActivity.this, "Thêm NV thành công có passwork mặc định là 123456!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
 
     }
 
-    private void CreateUserEmailAccount(String emailUser, String password, String nameUser, String birUser, String sexUser, String phoneUser, String posCodeUser) {
+    private void CreateUserEmailAccount(String address, String emailUser, String password, String nameUser, String birUser, String sexUser, String phoneUser, String posCodeUser) {
         if(!TextUtils.isEmpty(emailUser)&& !TextUtils.isEmpty(nameUser) && !TextUtils.isEmpty(birUser)
                 && !TextUtils.isEmpty(sexUser) && !TextUtils.isEmpty(phoneUser)){
             firebaseAuth.createUserWithEmailAndPassword(emailUser,password)
@@ -101,7 +105,7 @@ public class AddUserActivity extends AppCompatActivity {
                             try{
                                 Date date = dateFormat.parse(birUser);
                                 Timestamp timestamp = new Timestamp(date);
-                                User user = new User("",timestamp,emailUser,true,"",currentUserId,nameUser,phoneUser,posCodeUser,"Kho",sexUser,Timestamp.now());
+                                User user = new User(address,timestamp,emailUser,true,"",currentUserId,nameUser,phoneUser,posCodeUser,"Kho",sexUser,Timestamp.now());
                                 ListUser listUser = ListUser.getInstance();
                                 String idDocument = String.valueOf(listUser.getListUser().size()+1);
                                 collectionReferenceUser.document(idDocument)

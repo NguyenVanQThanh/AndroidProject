@@ -32,9 +32,9 @@
             android:layout_height="58dp"
             android:layout_marginEnd="120dp"
             android:paddingTop="10dp"
-            android:text="ACCOUNT"
+            android:text="ADD ACCOUNT"
             android:textColor="#ffffff"
-            android:textSize="32dp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,16 +53,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:id="@+id/constraintLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="680dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/consInfAcount"
-                android:layout_width="418dp"
+                android:layout_width="382dp"
 
-                android:layout_height="673dp"
+                android:layout_height="775dp"
                 android:background="@drawable/round4corner_border"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,8 +75,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/consAvt_Edit"
                     android:layout_width="286dp"
-                    android:layout_height="62dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
                     android:background="@drawable/round2corner_top"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,9 +87,9 @@
                     <ImageView
                         android:id="@+id/avt"
                         android:layout_width="82dp"
-                        android:layout_height="64dp"
+                        android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/avt"
+                        android:src="@drawable/account"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintCircleAngle="90"
                         app:layout_constraintCircleRadius="50dp"
@@ -116,15 +117,15 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/inf"
-                    android:layout_width="389dp"
-                    android:layout_height="556dp"
+                    android:layout_width="365dp"
+                    android:layout_height="634dp"
                     android:layout_marginTop="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.526"
+                    app:layout_constraintHorizontal_bias="0.448"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/consAvt_Edit"
-                    app:layout_constraintVertical_bias="1.0">
+                    app:layout_constraintVertical_bias="0.0">
 
                     <TextView
                         android:id="@+id/textName"
@@ -209,7 +210,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/round4corner_border"
                         android:gravity="center"
-                        android:text="Nữ"
+                        android:text=""
                         android:textSize="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textSex"
@@ -328,7 +329,6 @@
                         android:background="@drawable/round4corner_border"
                         android:gravity="center"
                         android:paddingTop="10dp"
-
                         android:paddingBottom="10dp"
                         android:text=""
                         android:textSize="20dp"
@@ -342,7 +342,7 @@
                         android:id="@+id/btnSave"
                         android:layout_width="153dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:text="Lưu"
                         app:backgroundTint="@color/color_button"
                         app:layout_constraintEnd_toEndOf="parent"

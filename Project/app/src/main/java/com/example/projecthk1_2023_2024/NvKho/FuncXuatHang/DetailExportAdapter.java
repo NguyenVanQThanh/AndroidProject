@@ -14,15 +14,14 @@ import com.example.projecthk1_2023_2024.Util.ViewModel.VMDetailNewExp;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.google.firebase.Timestamp;
 
-import java.util.Date;
 import java.util.List;
 
-public class DetailNewExpAdapter extends RecyclerView.Adapter<DetailNewExpAdapter.MyViewHolder>  {
+public class DetailExportAdapter extends RecyclerView.Adapter<DetailExportAdapter.MyViewHolder>  {
     Context context;
     ItemClick itemClick;
     private List<VMDetailNewExp> listDetail;
 
-    public DetailNewExpAdapter(Context context, List<VMDetailNewExp> listDetail) {
+    public DetailExportAdapter(Context context, List<VMDetailNewExp> listDetail) {
         this.context = context;
         this.listDetail = listDetail;
     }
@@ -33,14 +32,14 @@ public class DetailNewExpAdapter extends RecyclerView.Adapter<DetailNewExpAdapte
 
     @NonNull
     @Override
-    public DetailNewExpAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DetailExportAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.nvkho_f2_1_detail_item,parent,false);
-        return new DetailNewExpAdapter.MyViewHolder(view, context);
+        return new DetailExportAdapter.MyViewHolder(view, context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DetailNewExpAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DetailExportAdapter.MyViewHolder holder, int position) {
         VMDetailNewExp DetailPair = listDetail.get(position);
         holder.txtTensp.setText(DetailPair.getProductPair2().second.getName());
         holder.txtSlt.setText(DetailPair.getProductPair2().second.getQuantity());
