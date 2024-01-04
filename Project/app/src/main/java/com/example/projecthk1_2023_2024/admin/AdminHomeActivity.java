@@ -31,14 +31,18 @@ import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.Util.ListProductBatch;
+import com.example.projecthk1_2023_2024.Util.ListShelfUtil;
 import com.example.projecthk1_2023_2024.Util.ListUser;
+import com.example.projecthk1_2023_2024.Util.ListZoneUtil;
 import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Export;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.ProductBatch;
+import com.example.projecthk1_2023_2024.model.Shelf;
 import com.example.projecthk1_2023_2024.model.User;
+import com.example.projecthk1_2023_2024.model.Zone;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -66,6 +70,7 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     private List<Pair<String, Notification>> notificationList = new ArrayList<>();
     private List<Pair<String, Export>> exportList = new ArrayList<>();
     private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
+
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -75,6 +80,7 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     private CollectionReference collectionReferenceProductIB = db.collection("ProductBatch");
     private CollectionReference collectionReferenceExport = db.collection("Export");
     private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
+
     private FirebaseUser currentUser;
     @Nullable
     @Override

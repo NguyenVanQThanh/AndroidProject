@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
+import com.example.projecthk1_2023_2024.Admin.clickhandler.OnChildItemClickListener;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.model.Shelf;
 import com.example.projecthk1_2023_2024.model.ViewModel.Product_PB_VM;
@@ -22,111 +24,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuncPlaceAdapter extends RecyclerView.Adapter<FuncPlaceAdapter.MyViewHolder> {
-    private ArrayList<Zone_Shelf_VM> listKhuKe;
+    List<Pair<String,Zone>> listZone;
+    List<Pair<String,Shelf>> listShelf;
     Context context;
-    ItemClick itemClick;
+    OnChildItemClickListener childItemClickListener;
 
-
-    public FuncPlaceAdapter(ArrayList<Zone_Shelf_VM> dsKhuKe, Context context, ItemClick itemClick) {
-        this.listKhuKe = dsKhuKe;
+    public FuncPlaceAdapter(List<Pair<String, Zone>> listZone, List<Pair<String, Shelf>> listShelf, Context context) {
+        this.listZone = listZone;
+        this.listShelf = listShelf;
         this.context = context;
-        this.itemClick = itemClick;
     }
-    public void setClickListener(ItemClick itemClick){
-        this.itemClick = itemClick;
+
+    public void setOnChildItemClickListener(OnChildItemClickListener listener) {
+        this.childItemClickListener = listener;
     }
+
 
     @NonNull
     @Override
     public FuncPlaceAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.nvkho_func1_item_khu, parent, false);
-        return new MyViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemkhureal, parent, false);
+        return new MyViewHolder(itemView,context);
     }
 
 
 
     @Override
     public void onBindViewHolder(@NonNull FuncPlaceAdapter.MyViewHolder holder, int position) {
-        Zone_Shelf_VM list = listKhuKe.get(position);
-        holder.txtNameKhu.setText(list.getZonePair().second.getName().toString());
-        List<Pair<String, Shelf>> listShelfPair = list.getListShelfPair();
-        for (int i = 0; i < listShelfPair.size(); i++) {
-            int y = i + 6;
-            switch (i % y - 6) {
-                case 0:
-                    Pair<String, Shelf> pair = listShelfPair.get(i);
-//            String key = pair.first;
-                    String nameShelf = pair.second.getName();
-                    holder.btn1.setText(nameShelf.toString());
-                    y = i + 6;
-                    listShelfPair.remove(i);
-                    break;
+        Pair<String,Zone> zonePair = listZone.get(position);
+        holder.txtNameKhu.setText(zonePair.second.getName());
 
-                case 1:
-                    pair = listShelfPair.get(i);
-//            String key = pair.first;
-                    nameShelf = pair.second.getName();
-                    holder.btn2.setText(nameShelf.toString());
-                    y = i + 6;
-                    listShelfPair.remove(i);
-                    break;
-                case 2:
-                    pair = listShelfPair.get(i);
-//            String key = pair.first;
-                    nameShelf = pair.second.getName();
-                    holder.btn3.setText(nameShelf.toString());
-                    y = i + 6;
-                    listShelfPair.remove(i);
-                    break;
-                case 3:
-                    pair = listShelfPair.get(i);
-//            String key = pair.first;
-                    nameShelf = pair.second.getName();
-                    holder.btn4.setText(nameShelf.toString());
-                    y = i + 6;
-                    listShelfPair.remove(i);
-                    break;
-                case 4:
-                    pair = listShelfPair.get(i);
-//            String key = pair.first;
-                    nameShelf = pair.second.getName();
-                    holder.btn5.setText(nameShelf.toString());
-                    y = i + 6;
-                    listShelfPair.remove(i);
-                    break;
-                case 5:
-                    pair = listShelfPair.get(i);
-//            String key = pair.first;
-                    nameShelf = pair.second.getName();
-                    holder.btn6.setText(nameShelf.toString());
-                    y = i + 6;
-                    listShelfPair.remove(i);
-                    break;
+        List<Pair<String,Shelf>> results = new ArrayList<>();
+        for(Pair<String, Shelf> shelfPair : listShelf){
+            if (shelfPair.second.getID_Zone().getId().equals(zonePair.first)){
+                results.add(shelfPair);
             }
         }
-        }
+        FuncPlaceChildAdapter childAdapter = new FuncPlaceChildAdapter(results, position);
+        childAdapter.setOnChildItemClickListener(childItemClickListener);
+        holder.recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
+        holder.recyclerView.setAdapter(childAdapter);
+
+    }
+
 
     @Override
     public int getItemCount() {
-//        return listKhuKe.size();
-        return 0;
+        return listZone.size();
     }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtNameKhu;
-        TextView btn1, btn2, btn3, btn4, btn5, btn6;
+        RecyclerView recyclerView;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, Context ctx) {
 
                 super(itemView);
+                context = ctx;
                 txtNameKhu = itemView.findViewById(R.id.nameKhu);
-                btn1 = itemView.findViewById(R.id.Ke1);
-                btn2 = itemView.findViewById(R.id.Ke2);
-                btn3 = itemView.findViewById(R.id.Ke3);
-                btn4 = itemView.findViewById(R.id.Ke4);
-                btn5 = itemView.findViewById(R.id.Ke5);
-                btn6 = itemView.findViewById(R.id.Ke6);
+                recyclerView = itemView.findViewById(R.id.recycler_view_child);
 
         }
     }

@@ -30,13 +30,17 @@ import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.Util.ListProductBatch;
+import com.example.projecthk1_2023_2024.Util.ListShelfUtil;
+import com.example.projecthk1_2023_2024.Util.ListZoneUtil;
 import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Export;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.ProductBatch;
+import com.example.projecthk1_2023_2024.model.Shelf;
 import com.example.projecthk1_2023_2024.model.User;
+import com.example.projecthk1_2023_2024.model.Zone;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -64,6 +68,8 @@ public class NvkFragHome extends Fragment {
     private List<Pair<String, Product>> productList = new ArrayList<>();
     private List<Pair<String, Export>> exportList = new ArrayList<>();
     private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
+    List<Pair<String, Shelf>> listShelf = new ArrayList<>();
+    List<Pair<String, Zone>> listZone = new ArrayList<>();
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -72,8 +78,9 @@ public class NvkFragHome extends Fragment {
     private CollectionReference collectionReferenceProductBatch = db.collection("ProductBatch");
     private CollectionReference collectionReferenceExport = db.collection("Export");
     private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
-
     private CollectionReference collectionReferenceProduct = db.collection("Product");
+    CollectionReference collectionReferenceZone = db.collection("Zone");
+    CollectionReference collectionReferenceShelf = db.collection("Shelf");
     private FirebaseUser currentUser;
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -180,6 +187,34 @@ public class NvkFragHome extends Fragment {
                 }
                 ListImportBatch list = ListImportBatch.getInstance();
                 list.setListImportBatch(importList);
+            }
+        });
+        collectionReferenceShelf.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    Shelf shelf = queryDocumentSnapshot.toObject(Shelf.class);
+                    Pair<String,Shelf> shelfPair = new Pair<>(idDocument,shelf);
+                    listShelf.add(shelfPair);
+                }
+                ListShelfUtil listShelfUtil = ListShelfUtil.getInstance();
+                listShelfUtil.setPairList(listShelf);
+
+            }
+        });
+        collectionReferenceZone.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDoc = queryDocumentSnapshot.getId();
+                    Log.d("IDZone",idDoc);
+                    Zone zone = queryDocumentSnapshot.toObject(Zone.class);
+                    Pair<String, Zone> zonePair = new Pair<>(idDoc,zone);
+                    listZone.add(zonePair);
+                }
+                ListZoneUtil listZoneUtil = ListZoneUtil.getInstance();
+                listZoneUtil.setPairList(listZone);
             }
         });
 // 2. xử lý xem và sửa thông tin tài khoản cá nhân

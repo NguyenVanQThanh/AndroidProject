@@ -65,21 +65,23 @@
             android:id="@+id/btn_addPr"
             android:layout_width="140dp"
             android:layout_height="60dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="60dp"
             android:text="Thêm sản phẩm"
             app:backgroundTint="#254c7b"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listKhu"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.937" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listKhu"
-            android:layout_width="415dp"
+            android:layout_width="0dp"
             android:layout_height="495dp"
-            tools:layout_editor_absoluteX="-3dp"
-            tools:layout_editor_absoluteY="1dp" />
+            android:layout_marginBottom="136dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
