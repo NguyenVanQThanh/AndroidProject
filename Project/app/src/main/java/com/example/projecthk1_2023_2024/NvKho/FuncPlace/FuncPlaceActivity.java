@@ -68,6 +68,11 @@ public class FuncPlaceActivity extends AppCompatActivity implements OnChildItemC
 
     @Override
     public void onChildItemClick(View view, int parentPosition, String childId) {
-        Log.d("ID Click",childId);
+        Intent i = new Intent(FuncPlaceActivity.this, DetailPlaceActivity.class);
+        String name = listZoneUtil.getPairList().get(parentPosition).second.getName()+ " " + listShelfUtil.find(childId).second.getName();
+        i.putExtra("Name",name);
+        i.putExtra("idShelf",childId);
+        i.putExtra("idZone",listZoneUtil.getPairList().get(parentPosition).first);
+        startActivity(i);
     }
 }

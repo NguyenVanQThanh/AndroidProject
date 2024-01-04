@@ -100,6 +100,8 @@
         <activity
             android:name=".NvKho.NvkFragSetting"
             android:exported="false" />
+        <activity android:name=".NvKho.FuncPlace.DetailPlaceActivity"
+            android:exported="false"/>
         <activity
             android:name=".NvKho.FuncQLSP.DetailProductNVKAdapter"
             android:exported="false"

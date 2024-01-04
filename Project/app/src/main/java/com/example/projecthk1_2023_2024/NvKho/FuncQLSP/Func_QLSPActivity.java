@@ -80,45 +80,45 @@ public class Func_QLSPActivity extends AppCompatActivity implements ItemClick {
             }
         });
 // Search
-        search.clearFocus();
-        recyclerView.setHasFixedSize(true);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filterList(newText);
-                return true;
-            }
-
-            private void filterList(String text) {
-                List<Pair<String, Product>> filtedList = new ArrayList<>();
-                String searchTextWithoutDiacritics = removeDiacritics(text.toLowerCase());
-                for(Pair<String, Product> product: listProduct){
-                    if(removeDiacritics(product.second.getName().toLowerCase()).contains(searchTextWithoutDiacritics)){
-                        filtedList.add(product);
-                    }
-
-                }
-                if(filtedList.isEmpty() == true && text.isEmpty() == false){
-                    adapter.setFilterList(Func_QLSPActivity.this, new ArrayList<>());
-                }
-                else {
-                    adapter.setFilterList(Func_QLSPActivity.this, filtedList);
-                }
-            }
-
-            public String removeDiacritics(String input) {
-                String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
-                return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-            }
-
-
-
-        });
+//        search.clearFocus();
+//        recyclerView.setHasFixedSize(true);
+//        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                filterList(newText);
+//                return true;
+//            }
+//
+//            private void filterList(String text) {
+//                List<Pair<String, Product>> filtedList = new ArrayList<>();
+//                String searchTextWithoutDiacritics = removeDiacritics(text.toLowerCase());
+//                for(Pair<String, Product> product: listProduct){
+//                    if(removeDiacritics(product.second.getName().toLowerCase()).contains(searchTextWithoutDiacritics)){
+//                        filtedList.add(product);
+//                    }
+//
+//                }
+//                if(filtedList.isEmpty() == true && text.isEmpty() == false){
+//                    adapter.setFilterList(Func_QLSPActivity.this, new ArrayList<>());
+//                }
+//                else {
+//                    adapter.setFilterList(Func_QLSPActivity.this, filtedList);
+//                }
+//            }
+//
+//            public String removeDiacritics(String input) {
+//                String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+//                return normalized.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+//            }
+//
+//
+//
+//        });
 
 
 

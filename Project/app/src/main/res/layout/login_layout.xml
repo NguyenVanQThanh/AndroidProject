@@ -5,19 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:background="#f2f1f6"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textLogin"
-            android:layout_width="match_parent"
-            android:layout_height="172dp"
-            android:layout_gravity="top"
+            android:layout_width="414dp"
+            android:layout_height="161dp"
             android:background="@drawable/round_corner_blr"
             android:paddingLeft="150dp"
             android:paddingTop="50dp"
@@ -25,104 +29,123 @@
             android:text="LOGIN"
             android:textColor="#ffffff"
             android:textSize="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="310dp"
+            android:layout_height="535dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/round4corner_border"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textLogin"
+            tools:ignore="MissingConstraints">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:layout_marginBottom="80dp"
-        android:gravity="center"
-        android:background="@drawable/round4corner_border"
-        tools:ignore="MissingConstraints">
+            <!-- EditText cho tên đăng nhập -->
+            <ImageView
+                android:id="@+id/imgStore"
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="109dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="107dp"
+                android:src="@drawable/store" />
 
-        <ImageView
-            android:id="@+id/imgStore"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/store"
-            android:layout_marginLeft="80dp"
-            />
+            <!-- EditText cho mật khẩu -->
 
-        <!-- EditText cho tên đăng nhập -->
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="Email:"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_below="@id/imgStore"
-            android:maxLines="1"
-            android:scrollbars="horizontal"
-            android:fadeScrollbars="true"
-            />
+            <!-- TextView cho quên mật khẩu -->
 
-        <!-- EditText cho mật khẩu -->
-        <EditText
-            android:id="@+id/edtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="Password:"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="20dp"
-            android:layout_below="@id/edtEmail"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:scrollbars="horizontal"
-            android:fadeScrollbars="true"
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="303dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/imgStore"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="30dp"
+                android:ellipsize="end"
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:fadeScrollbars="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="Email:"
+
+                android:scrollbars="horizontal" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="314dp"
+                android:layout_height="66dp"
+                android:layout_below="@id/edtEmail"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="11dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:fadeScrollbars="true"
 
 
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="Password:"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:scrollbars="horizontal" />
 
-            />
+            <Button
+                android:id="@+id/btnForgetPass"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/edtPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/color_button"
+                android:text="Forget password!"
 
-        <!-- TextView cho quên mật khẩu -->
-        <Button
-            android:id="@+id/btnForgetPass"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:text="Forget password!"
-            android:layout_below="@id/edtPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/color_button"
+                />
 
-            />
+            <!-- Button đăng nhập -->
+            <!--        <Button-->
+            <!--            android:id="@+id/btnLogin"-->
+            <!--            android:layout_width="200dp"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:text="Login"-->
+            <!--            android:layout_below="@id/btnForgetPass"-->
+            <!--            android:layout_centerHorizontal="true"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:background="@drawable/button"-->
+            <!--            app:backgroundTint="@null"-->
 
-        <!-- Button đăng nhập -->
-<!--        <Button-->
-<!--            android:id="@+id/btnLogin"-->
-<!--            android:layout_width="200dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Login"-->
-<!--            android:layout_below="@id/btnForgetPass"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:background="@drawable/button"-->
-<!--            app:backgroundTint="@null"-->
+            <!--            />-->
 
-<!--            />-->
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/btnForgetPass"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/color_button"
+                android:text="Login" />
+        </RelativeLayout>
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:text="Login"
-            android:id="@+id/btnLogin"
-            android:layout_below="@id/btnForgetPass"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/color_button"/>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,41 +31,6 @@
         android:text="Kem chống nắng"
         android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/imgSP"
-        android:layout_below="@id/nameView"
-        android:text="Tổng Số lượng"
-        android:textSize="16dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/totalView"
-        android:layout_below="@id/textView4"
-        android:layout_toEndOf="@id/imgSP"
-        android:layout_marginStart="50dp"
-        android:text="100"/>
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/textView4"
-        android:layout_marginStart="20dp"
-        android:layout_below="@id/nameView"
-        android:text="Trong Kho"
-        android:textSize="16dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/stockView"
-        android:layout_toEndOf="@id/totalView"
-        android:layout_below="@id/textView4"
-        android:text="100"
-        android:layout_marginStart="75dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"

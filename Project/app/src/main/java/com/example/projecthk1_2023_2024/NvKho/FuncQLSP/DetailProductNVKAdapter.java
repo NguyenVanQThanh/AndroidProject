@@ -79,9 +79,16 @@ public class DetailProductNVKAdapter extends RecyclerView.Adapter<DetailProductN
             // Perform update operation when the confirm button is clicked
             String maLo = listProductBatch.get(position).first;
             int newQuantityValid = Integer.parseInt(holder.slValid.getText().toString());
-
-            // Call the method to update data in Firestore
-            updateDataInFirestore(maLo, newQuantityValid, holder.slValid);
+if(newQuantityValid < 0 ){
+    Toast.makeText(context, "Yeu cau nhap dung dinh dang chi so", Toast.LENGTH_SHORT).show();
+}else {
+    // Call the method to update data in Firestore
+    if (newQuantityValid > productBatchPair.second.getQuantity()) {
+        Toast.makeText(context, "Khong the cap nhat sl lon hon", Toast.LENGTH_SHORT).show();
+    } else {
+        updateDataInFirestore(maLo, newQuantityValid, holder.slValid);
+    }
+}
 
             // Close the soft keyboard
             closeSoftKeyboard(holder.slValid);
