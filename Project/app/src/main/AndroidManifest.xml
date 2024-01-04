@@ -53,6 +53,10 @@
         <activity
             android:name=".Admin.FragmentAdmin"
             android:exported="false" />
+        <activity android:name=".Admin.importactivity.ImportHomeActivity"
+            android:exported="false"/>
+        <activity android:name=".Admin.importactivity.DetailImportActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

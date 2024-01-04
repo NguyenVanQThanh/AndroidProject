@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.example.projecthk1_2023_2024.Admin.activityuser.UserAdminActivity;
 import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
+import com.example.projecthk1_2023_2024.Admin.importactivity.ImportHomeActivity;
 import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
@@ -218,7 +219,7 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
         nhapHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity();
+                startActivity(new Intent(getContext(), ImportHomeActivity.class));
 
             }
         });
