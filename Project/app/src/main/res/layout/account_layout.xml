@@ -61,7 +61,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/consInfAcount"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:background="@drawable/round4corner_border"
                 android:orientation="vertical"
@@ -285,24 +284,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
 
-                    <!--                <TextView-->
-                    <!--                    android:id="@+id/addressa"-->
-                    <!--                    android:layout_width="match_parent"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:layout_marginBottom="10dp"-->
-                    <!--                    android:background="@drawable/round4corner_border"-->
-                    <!--                    android:gravity="center"-->
-                    <!--                    android:paddingTop="10dp"-->
-                    <!--                    android:paddingBottom="10dp"-->
 
-                    <!--                    android:text=""-->
-                    <!--                    android:textSize="20dp"-->
-                    <!--                    app:layout_constraintBottom_toTopOf="@+id/buttonEnable"-->
-                    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                    app:layout_constraintHorizontal_bias="0.551"-->
-                    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                    app:layout_constraintTop_toBottomOf="@+id/textAddress"-->
-                    <!--                    tools:ignore="MissingConstraints" />-->
                     <TextView
                         android:id="@+id/addressa"
                         android:layout_width="match_parent"

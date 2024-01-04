@@ -12,8 +12,8 @@ public class Func_qlXuatHangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nvkho_f2_1_detail_px_layout);
-        // chua box Acti_Box_New_PX
+        setContentView(R.layout.nvkho_func2_qlxkho_layout);
+        // xử lý click để hiển chi tiết, đây là b1
 
 
 

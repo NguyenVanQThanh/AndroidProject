@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.model.Product;
@@ -58,6 +59,8 @@ public class QLSPAdapter extends RecyclerView.Adapter<QLSPAdapter.MyViewHolder> 
         Glide.with(context)
                 .load(productPair.second.getLink_Photo())
                 //.placeholder()
+                .diskCacheStrategy(DiskCacheStrategy.NONE) // Đảm bảo không sử dụng cache
+                .skipMemoryCache(true) // Bỏ qua cache trong bộ nhớ
                 .fitCenter()
                 .into(holder.img);
     }
