@@ -4,6 +4,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -51,25 +52,29 @@ public class ScanAddProduct extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Pair<String, Product> productPairResult = productList.findProduct(codeEDT.getText().toString());
-                if (productPairResult!=null){
-                    Toast.makeText(ScanAddProduct.this, "Đã tồn tại", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(codeEDT.getText().toString()) || TextUtils.isEmpty(nameEDT.getText().toString())){
+                    Toast.makeText(ScanAddProduct.this, "Điền đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
-                    Product product = new Product(nameEDT.toString(),"",0,0,0);
-                    FirebaseFirestore.getInstance().collection("Product").document(codeEDT.getText().toString())
-                            .set(product).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Log.d(TAG,"Success");
-                                    startActivity(new Intent(ScanAddProduct.this, ProductAdminActivity.class));
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG,"Failure");
-                                }
-                            });
+                    Pair<String, Product> productPairResult = productList.findProduct(codeEDT.getText().toString());
+                    if (productPairResult!=null){
+                        Toast.makeText(ScanAddProduct.this, "Đã tồn tại", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Product product = new Product(nameEDT.getText().toString(),"",0,0,0);
+                        FirebaseFirestore.getInstance().collection("Product").document(codeEDT.getText().toString())
+                                .set(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d(TAG,"Success");
+                                        startActivity(new Intent(ScanAddProduct.this, ProductAdminActivity.class));
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d(TAG,"Failure");
+                                    }
+                                });
+                    }
                 }
             }
         });
@@ -95,7 +100,7 @@ public class ScanAddProduct extends AppCompatActivity {
 //                }
 //            }).show();
 //        }
-        nameEDT.setText(result.getContents());
+        codeEDT.setText(result.getContents());
     });
 
     @Override

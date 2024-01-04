@@ -92,7 +92,7 @@ public class FragmentAdmin extends AppCompatActivity {
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ScanFindProduct.class));
+                startActivity(new Intent(getApplicationContext(), ScanOption.class));
             }
         });
     }
