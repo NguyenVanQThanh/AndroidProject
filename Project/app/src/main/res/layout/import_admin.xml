@@ -17,15 +17,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <SearchView
+        android:id="@+id/searchPN"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:iconifiedByDefault="false"
+        android:outlineAmbientShadowColor="@color/white"
+        android:queryHint="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Heading" />
+
     <TextView
         android:id="@+id/text_chuahoanthanh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
-        android:text="Chưa hoàn thành: "
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="76dp"
+        android:text="Chưa xử lý: "
         android:textColor="#B1B1B1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Heading" />
 
     <TextView
@@ -33,8 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="30
-"
+        android:text="30"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_chuahoanthanh" />
@@ -43,10 +55,11 @@
         android:id="@+id/linearLayout4"
         android:layout_width="1dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="76dp"
         android:background="@color/black"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/checkBox_import2"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toEndOf="@+id/checkBox_import"
         app:layout_constraintTop_toBottomOf="@+id/Heading"></LinearLayout>
 
@@ -54,9 +67,9 @@
         android:id="@+id/text_hoanthanh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:text="Hoàn thành: "
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="40dp"
+        android:text="Đã xử lý: "
         android:textColor="#B1B1B1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Heading" />
@@ -65,22 +78,34 @@
         android:id="@+id/text_phieuhoanthanh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
         android:text="50"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_hoanthanh" />
 
+    <ImageView
+        android:id="@+id/back_import"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/back_icon"
+        android:gravity="center_vertical|center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_import"
         android:layout_width="350dp"
-        android:layout_height="511dp"
-        android:layout_marginTop="120dp"
+        android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.775" />
 
     <ImageButton
         android:id="@+id/btnAdd_import"
@@ -98,7 +123,7 @@
         android:id="@+id/checkBox_import"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintStart_toEndOf="@+id/text_chuahoanthanh"
         app:layout_constraintTop_toBottomOf="@+id/Heading" />
 
@@ -106,7 +131,7 @@
         android:id="@+id/checkBox_import2"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintEnd_toStartOf="@+id/text_hoanthanh"
         app:layout_constraintTop_toBottomOf="@+id/Heading" />
 
