@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import com.example.projecthk1_2023_2024.model.ProductBatch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListProductBatch extends Application {
@@ -31,6 +32,15 @@ public class ListProductBatch extends Application {
 
     public void setListProductBatch(List<Pair<String, ProductBatch>> pbList) {
         this.pbList = pbList;
+    }
+    public List<Pair<String,ProductBatch>> findByImportId(String id){
+        List<Pair<String, ProductBatch>> results = new ArrayList<>();
+        for(Pair<String, ProductBatch> productBatchPair : pbList){
+            if (productBatchPair.second.getIDBatch().getId().equals(id)){
+                results.add(productBatchPair);
+            }
+        }
+        return results;
     }
 }
 

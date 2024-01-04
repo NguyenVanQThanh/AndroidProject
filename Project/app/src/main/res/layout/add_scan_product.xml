@@ -5,44 +5,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="407dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#f7d3ff"
+        android:gravity="center"
+        android:text="Điền thông tin sản phẩm tại đây"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <EditText
         android:id="@+id/edtCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="1dp"
-        android:hint="Nhập Code"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_scan_find"
-        app:layout_constraintEnd_toStartOf="@+id/btn_scan_find" />
+        android:layout_marginTop="10dp"
+        android:hint="Mã code sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <EditText
         android:id="@+id/nameProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginRight="100dp"
         android:hint="Tên Sản phẩm"
-        app:layout_constraintEnd_toEndOf="@+id/btn_scan_find"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtCode" />
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#f7d3ff"
+        android:gravity="center"
+        android:text="Hoặc scan lấy mã tại đây"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameProduct"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_scan_find"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:text="Scan"
+        app:backgroundTint="#254c7b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text" />
+
+    <TextView
+        android:id="@+id/textAnh"
+        android:layout_width="408dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#f7d3ff"
+        android:gravity="center"
+        android:text="Thêm ảnh sản phẩm"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scan_find"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnImg"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="5dp"
+        app:backgroundTint="#00FFFFFF"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/textAnh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textAnh"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_cam"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imgVLoadSP"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/textADD"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textAnh"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_add_img"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:text="Chọn ảnh"
+        app:backgroundTint="#254c7b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textAnh" />
+
+    <TextView
+        android:id="@+id/textADD"
+        android:layout_width="408dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#f7d3ff"
+        android:gravity="center"
+        android:text="Thêm sản phẩm mới"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_img"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_Add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="30dp"
-        android:text="Thêm sản phẩm"
-        app:layout_constraintEnd_toEndOf="@+id/nameProduct"
-        app:layout_constraintTop_toBottomOf="@+id/nameProduct" />
+        android:layout_width="290dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:text="Thêm"
+        app:backgroundTint="#254c7b"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textADD"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

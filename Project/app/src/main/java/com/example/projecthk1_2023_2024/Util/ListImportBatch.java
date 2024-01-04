@@ -35,6 +35,14 @@ public class ListImportBatch extends Application {
     public void setListImportBatch(List<Pair<String, ImportBatch>> impList) {
         this.impList = impList;
     }
+    public Pair<String, ImportBatch> find(String id){
+        for (Pair<String, ImportBatch> importBatchPair : impList ){
+            if (importBatchPair.first.equals(id)){
+                return importBatchPair;
+            }
+        }
+        return null;
+    }
     public List<Integer> getCountForMonth(){
         List<Pair<String, ImportBatch>>importBatchList = ListImportBatch.getInstance().impList;
         List<Integer> total = new ArrayList<>();

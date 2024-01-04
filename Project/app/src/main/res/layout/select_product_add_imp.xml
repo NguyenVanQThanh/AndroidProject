@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="411dp"
+        android:layout_height="213dp"
+        android:layout_marginTop="208dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/editText_masanpham"
+            android:layout_width="119dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custome_edittext"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:hint="Mã sản phẩm"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:scrollbars="horizontal"
+            android:textColor="@color/black"
+            android:textColorHint="#9F9E9E"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/editText_tensanpham"
+            android:layout_width="234dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/custome_edittext"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:hint="Tên sản phẩm"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:scrollbars="horizontal"
+            android:textColor="@color/black"
+            android:textColorHint="#9F9E9E"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/editText_masanpham"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/list_sp"
+            app:layout_constraintEnd_toEndOf="@+id/editText_tensanpham"
+            app:layout_constraintTop_toTopOf="@+id/editText_tensanpham"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editText_soluongsanpham"
+            android:layout_width="150dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custome_edittext"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:hint="Số lượng tồn"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:scrollbars="horizontal"
+            android:textColor="@color/black"
+            android:textColorHint="#9F9E9E"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_masanpham" />
+
+        <EditText
+            android:id="@+id/editText_soluongnhap"
+            android:layout_width="150dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custome_edittext"
+            android:ems="10"
+            android:fadeScrollbars="true"
+            android:hint="Số lượng nhập"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:scrollbars="horizontal"
+            android:textColor="@color/black"
+            android:textColorHint="#9F9E9E"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/editText_soluongsanpham"
+            app:layout_constraintTop_toBottomOf="@+id/editText_tensanpham" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#DAD8D8"
+            android:paddingTop="10dp"
+            tools:ignore="MissingConstraints,Orientation"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="180dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

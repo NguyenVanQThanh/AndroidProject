@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <uses-permission android:name="android.permission.CAMERA"/>-->
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="READ"-->
 
     <application
         android:allowBackup="true"
@@ -21,9 +19,6 @@
             android:exported="false" />
         <activity
             android:name=".NvKho.FuncNhapHang.NewImpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NvKho.NvkFragHome"
             android:exported="false" />
         <activity
             android:name=".ForgetPassActivity"
@@ -67,15 +62,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Admin.ScanOption"
-            android:exported="false"/>
-        <activity android:name=".Admin.ScanAddProduct"
-            android:exported="false"/>
-        <activity android:name=".CaptureAct"
+        <activity
+            android:name=".Admin.ScanOption"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.ScanAddProduct"
+            android:exported="false" />
+        <activity
+            android:name=".CaptureAct"
             android:screenOrientation="portrait"
-            android:stateNotNeeded="true"/>
-        <activity android:name=".Admin.ScanFindProduct"
-            android:exported="false"/>
+            android:stateNotNeeded="true" />
+        <activity
+            android:name=".Admin.ScanFindProduct"
+            android:exported="false" />
         <activity
             android:name=".NvKho.NvkActivity"
             android:exported="false" />

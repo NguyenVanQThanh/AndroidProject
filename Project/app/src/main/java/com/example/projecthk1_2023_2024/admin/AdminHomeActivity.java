@@ -22,17 +22,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.projecthk1_2023_2024.Admin.activityuser.UserAdminActivity;
 import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.R;
+import com.example.projecthk1_2023_2024.Util.ListExportBatch;
+import com.example.projecthk1_2023_2024.Util.ListImportBatch;
 import com.example.projecthk1_2023_2024.Util.ListUser;
 import com.example.projecthk1_2023_2024.Util.ProductList;
+import com.example.projecthk1_2023_2024.model.Export;
+import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
+import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,6 +70,10 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     private CollectionReference collectionReferenceNotification = db.collection("Notification");
     private CollectionReference collectionReferenceUser = db.collection("User");
     private CollectionReference collectionReferenceProduct = db.collection("Product");
+    private CollectionReference collectionReferenceExport = db.collection("Export");
+    private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
+    private List<Pair<String, Export>> exportList = new ArrayList<>();
+    private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
     private FirebaseUser currentUser;
     @Nullable
     @Override
@@ -111,6 +122,11 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                                 user = snapshot.toObject(User.class);
                                 String name = snapshot.getString("Role");
                                 textView.setText(user.getUserName());
+                                Glide.with(getContext())
+                                        .load(user.getImage())
+                                        //.placeholder()
+                                        .fitCenter()
+                                        .into(imgUser);
 
                             }
                         }
@@ -124,6 +140,8 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String IdDocument = document.getId();
                         User user = document.toObject(User.class);
+
+
                         Pair<String, User> userPair = new Pair<>(IdDocument,user);
                         listUser.add(userPair);
                     }
@@ -135,6 +153,48 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 }
             }
         });
+        collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    String idDocument = documentSnapshot.getId();
+                    Product product = documentSnapshot.toObject(Product.class);
+                    Pair<String, Product> productPair = new Pair<>(idDocument,product);
+                    productList.add(productPair);
+                }
+                    ProductList productListInstance = ProductList.getInstance();
+                    productListInstance.setProductList(productList);
+            }
+        });
+
+        collectionReferenceExport.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    Export export = queryDocumentSnapshot.toObject(Export.class);
+                    Pair<String, Export> exportPair = new Pair<>(idDocument,export);
+                    exportList.add(exportPair);
+                }
+                ListExportBatch list = ListExportBatch.getInstance();
+                list.setListExport(exportList);
+            }
+        });
+
+        collectionReferenceImport.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    String idDocument = queryDocumentSnapshot.getId();
+                    ImportBatch importBatch = queryDocumentSnapshot.toObject(ImportBatch.class);
+                    Pair<String, ImportBatch> importBatchPair = new Pair<>(idDocument,importBatch);
+                    importList.add(importBatchPair);
+                }
+                ListImportBatch list = ListImportBatch.getInstance();
+                list.setListImportBatch(importList);
+            }
+        });
+
         collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -175,6 +235,8 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 startActivity(new Intent(getContext(), ProductAdminActivity.class));
             }
         });
+
+
         return view;
     }
 

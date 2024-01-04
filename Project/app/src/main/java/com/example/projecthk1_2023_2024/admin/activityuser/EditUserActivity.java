@@ -1,7 +1,5 @@
 package com.example.projecthk1_2023_2024.Admin.activityuser;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -148,7 +146,7 @@ public class EditUserActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Uri uri = data.getData();
         imgAcc.setImageURI(uri);
-        Log.d(TAG, data.getDataString());
+//        Log.d(TAG, data.getDataString());
 
     }
 }

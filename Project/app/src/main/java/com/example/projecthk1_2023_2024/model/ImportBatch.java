@@ -9,8 +9,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ImportBatch {
     // thêm NameBatch để lấy mã lô và hiển thị ra giao diện với định dạng LX12345
@@ -92,6 +95,11 @@ public class ImportBatch {
 
     public DocumentReference getIDUser() {
         return IDUser;
+    }
+    public String StampToString(Timestamp timestamp) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        java.util.Date date = timestamp.toDate();
+        return dateFormat.format(date);
     }
 
 }
