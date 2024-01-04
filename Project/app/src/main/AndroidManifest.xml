@@ -67,6 +67,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Admin.ScanOption"
+            android:exported="false"/>
+        <activity android:name=".Admin.ScanAddProduct"
+            android:exported="false"/>
         <activity android:name=".CaptureAct"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"/>
@@ -80,9 +84,6 @@
             android:exported="false" />
         <activity
             android:name=".NvKho.FuncQLSP.Func_QLSPActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NvKho.NvkFragHome"
             android:exported="false" />
         <activity
             android:name=".NvKho.NvkFragNotice"
