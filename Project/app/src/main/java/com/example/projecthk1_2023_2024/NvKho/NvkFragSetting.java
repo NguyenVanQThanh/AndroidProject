@@ -29,7 +29,7 @@ import java.util.Date;
 public class NvkFragSetting extends Fragment {
 
 
-    ImageView img, back, imgHome, imgSetting;
+    ImageView img, imgHome, imgSetting;
     TextView nameView, phoneView, sexView, startView, roleView, emailView;
     Button btnLogOut;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -44,19 +44,13 @@ public class NvkFragSetting extends Fragment {
         sexView = view.findViewById(R.id.Text_sex);
         startView = view.findViewById(R.id.Text_start_date);
         roleView = view.findViewById(R.id.Text_role);
-        back = view.findViewById(R.id.back);
         btnLogOut = view.findViewById(R.id.btnLogout);
 
         imgHome = view.findViewById(R.id.imgHome);
         imgSetting = view.findViewById(R.id.imgSetting);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goBack();
 
-            }
-        });
+
         AuUser auUser = AuUser.getInstance();
 
         User user = auUser.getUser();

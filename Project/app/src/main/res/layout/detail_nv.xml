@@ -44,16 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/avt_nv" />
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="42dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/status_detail_nv"

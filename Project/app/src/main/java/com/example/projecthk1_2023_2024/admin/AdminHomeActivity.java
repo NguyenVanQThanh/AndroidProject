@@ -196,6 +196,7 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
             }
         });
 
+
         collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -209,6 +210,7 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                     productListInstance.setProductList(productList);
             }
         });
+
 
         nhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
