@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
+import com.example.projecthk1_2023_2024.model.ViewModel.ImportADViewModel;
 
 import java.util.List;
 
@@ -20,9 +21,9 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.MyViewHold
 
     Context context;
     ItemClick itemClick;
-    List<Pair<String, ImportBatch>> listImport;
+    List<ImportADViewModel> listImport;
 
-    public ImportAdapter(Context context, List<Pair<String, ImportBatch>> listImport) {
+    public ImportAdapter(Context context, List<ImportADViewModel> listImport) {
         this.listImport = listImport;
         this.context = context;
     }
@@ -34,17 +35,30 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.nvkho_func3_item,parent,false);
+                .inflate(R.layout.item_view_import_admin,parent,false);
         return new MyViewHolder(view,context);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Pair<String, ImportBatch> importBatchPair = listImport.get(position);
-        holder.idImport.setText(importBatchPair.first);
-        holder.quantity.setText(String.valueOf(importBatchPair.second.getQuantity_import()));
-        holder.sup.setText(importBatchPair.second.getSupplier());
-        holder.status.setText(importBatchPair.second.getStatus());
+        ImportADViewModel importADViewModel = listImport.get(position);
+        holder.idImport.setText(importADViewModel.getImportBatchPair().first);
+        holder.date.setText(importADViewModel.getImportBatchPair().second.StampToString(importADViewModel.getImportBatchPair().second.getDate()));
+        holder.sup.setText(importADViewModel.getImportBatchPair().second.getSupplier());
+        holder.user.setText(importADViewModel.getUserPair().second.getUserName());
+        if (importADViewModel.getImportBatchPair().second.getStatus().equals("Success")){
+            holder.ht.setVisibility(View.VISIBLE);
+            holder.dxl.setVisibility(View.GONE);
+            holder.dh.setVisibility(View.GONE);
+        } else if (importADViewModel.getImportBatchPair().second.getStatus().equals("Waiting")){
+            holder.ht.setVisibility(View.GONE);
+            holder.dxl.setVisibility(View.VISIBLE);
+            holder.dh.setVisibility(View.GONE);
+        } else {
+            holder.ht.setVisibility(View.GONE);
+            holder.dxl.setVisibility(View.GONE);
+            holder.dh.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -54,15 +68,18 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.MyViewHold
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView idImport, sup, quantity, status;
+        TextView idImport,date,sup, dxl,ht,dh, user;
 
         public MyViewHolder(@NonNull View itemView,Context ctx) {
             super(itemView);
             context = ctx;
-            idImport = itemView.findViewById(R.id.mapn3);
-            sup = itemView.findViewById(R.id.ncc3);
-            quantity = itemView.findViewById(R.id.slnhap3);
-            status = itemView.findViewById(R.id.statusDon3);
+            idImport = itemView.findViewById(R.id.MaPhieuNhap);
+            date = itemView.findViewById(R.id.Date_importbatch);
+            sup = itemView.findViewById(R.id.NCC);
+            dxl = itemView.findViewById(R.id.tinhtrang_import_DXL);
+            dh = itemView.findViewById(R.id.tinhtrang_import_DH);
+            ht = itemView.findViewById(R.id.tinhtrang_import_HT);
+            user = itemView.findViewById(R.id.name_user);
             itemView.setOnClickListener(this);
         }
 

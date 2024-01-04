@@ -22,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.projecthk1_2023_2024.Admin.activityuser.UserAdminActivity;
 import com.example.projecthk1_2023_2024.Admin.adapter.NotificationAdapter;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
@@ -31,16 +30,16 @@ import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivi
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
+import com.example.projecthk1_2023_2024.Util.ListProductBatch;
 import com.example.projecthk1_2023_2024.Util.ListUser;
 import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Export;
 import com.example.projecthk1_2023_2024.model.ImportBatch;
 import com.example.projecthk1_2023_2024.model.Notification;
 import com.example.projecthk1_2023_2024.model.Product;
-import com.example.projecthk1_2023_2024.model.Product;
+import com.example.projecthk1_2023_2024.model.ProductBatch;
 import com.example.projecthk1_2023_2024.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,16 +64,17 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
     private User user;
     private List<Pair<String, Product>> productList = new ArrayList<>();
     private List<Pair<String, Notification>> notificationList = new ArrayList<>();
+    private List<Pair<String, Export>> exportList = new ArrayList<>();
+    private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReferenceNotification = db.collection("Notification");
     private CollectionReference collectionReferenceUser = db.collection("User");
     private CollectionReference collectionReferenceProduct = db.collection("Product");
+    private CollectionReference collectionReferenceProductIB = db.collection("ProductBatch");
     private CollectionReference collectionReferenceExport = db.collection("Export");
     private CollectionReference collectionReferenceImport = db.collection("ImportBatch");
-    private List<Pair<String, Export>> exportList = new ArrayList<>();
-    private List<Pair<String, ImportBatch>> importList = new ArrayList<>();
     private FirebaseUser currentUser;
     @Nullable
     @Override
@@ -110,64 +110,6 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 }
             }
         });
-        collectionReferenceUser.whereEqualTo("LoginID",loginId)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null){
-                            Toast.makeText(getActivity(), error.getMessage() + "Line 97", Toast.LENGTH_SHORT).show();
-                        }
-                        assert value != null;
-                        if (!value.isEmpty()){
-                            for(QueryDocumentSnapshot snapshot : value){
-                                user = snapshot.toObject(User.class);
-                                String name = snapshot.getString("Role");
-                                textView.setText(user.getUserName());
-                                Glide.with(getContext())
-                                        .load(user.getImage())
-                                        //.placeholder()
-                                        .fitCenter()
-                                        .into(imgUser);
-
-                            }
-                        }
-                    }
-                });
-        List<Pair<String, User>> listUser = new ArrayList<>();
-        collectionReferenceUser.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String IdDocument = document.getId();
-                        User user = document.toObject(User.class);
-
-
-                        Pair<String, User> userPair = new Pair<>(IdDocument,user);
-                        listUser.add(userPair);
-                    }
-                    Log.d(TAG, String.valueOf(listUser.size()),task.getException());
-                    ListUser listUserInstance = ListUser.getInstance();
-                    listUserInstance.setListUser(listUser);
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-            }
-        });
-        collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                    String idDocument = documentSnapshot.getId();
-                    Product product = documentSnapshot.toObject(Product.class);
-                    Pair<String, Product> productPair = new Pair<>(idDocument,product);
-                    productList.add(productPair);
-                }
-                    ProductList productListInstance = ProductList.getInstance();
-                    productListInstance.setProductList(productList);
-            }
-        });
-
         collectionReferenceExport.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -195,8 +137,44 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 list.setListImportBatch(importList);
             }
         });
+        collectionReferenceUser.whereEqualTo("LoginID",loginId)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Toast.makeText(getActivity(), error.getMessage() + "Line 97", Toast.LENGTH_SHORT).show();
+                        }
+                        assert value != null;
+                        if (!value.isEmpty()){
+                            for(QueryDocumentSnapshot snapshot : value){
+                                user = snapshot.toObject(User.class);
+                                String name = snapshot.getString("Role");
+                                textView.setText(user.getUserName());
 
-
+                            }
+                        }
+                    }
+                });
+        List<Pair<String, User>> listUser = new ArrayList<>();
+        collectionReferenceUser.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String IdDocument = document.getId();
+                        User user = document.toObject(User.class);
+                        Pair<String, User> userPair = new Pair<>(IdDocument,user);
+                        listUser.add(userPair);
+                    }
+//                    Log.d(TAG, String.valueOf(listUser.size()),task.getException());
+                    ListUser listUserInstance = ListUser.getInstance();
+                    listUserInstance.setListUser(listUser);
+                    Log.d("User Count",""+listUserInstance.getListUser().size());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
         collectionReferenceProduct.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -206,11 +184,24 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                     Pair<String, Product> productPair = new Pair<>(idDocument,product);
                     productList.add(productPair);
                 }
-                    ProductList productListInstance = ProductList.getInstance();
-                    productListInstance.setProductList(productList);
+                ProductList productListInstance = ProductList.getInstance();
+                productListInstance.setProductList(productList);
             }
         });
-
+        List<Pair<String, ProductBatch>> productBatchList = new ArrayList<>();
+        collectionReferenceProductIB.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    String idDocument = documentSnapshot.getId();
+                    ProductBatch product = documentSnapshot.toObject(ProductBatch.class);
+                    Pair<String, ProductBatch> productPair = new Pair<>(idDocument,product);
+                    productBatchList.add(productPair);
+                }
+                ListProductBatch productListInstance = ListProductBatch.getInstance();
+                productListInstance.setListProductBatch(productBatchList);
+            }
+        });
 
         nhanVien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,8 +229,6 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                 startActivity(new Intent(getContext(), ProductAdminActivity.class));
             }
         });
-
-
         return view;
     }
 
