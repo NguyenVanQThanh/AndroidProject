@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.projecthk1_2023_2024"
-        minSdk = 19
+        minSdk = 28
         multiDexEnabled = true
         targetSdk = 33
         versionCode = 1
@@ -59,5 +59,7 @@ dependencies {
     //noinspection GradleCompatible
     implementation ("com.android.support:appcompat-v7:28.0.0")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
+
 
 }

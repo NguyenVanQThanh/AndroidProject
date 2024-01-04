@@ -1,11 +1,18 @@
 package com.example.projecthk1_2023_2024.NvKho.FuncNhapHang;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +23,9 @@ import com.example.projecthk1_2023_2024.model.Product;
 import com.example.projecthk1_2023_2024.model.ProductBatch;
 import com.example.projecthk1_2023_2024.model.ViewModel.Product_PB_VM;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +35,8 @@ import java.util.Map;
 
 public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapter.MyViewHolder>  {
     Context context;
-    //ItemClick itemClick;
+    ItemClick itemClick;
+    Button btn_ht, btn_huy;
     private List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> listsAdapter;
 
     public DetailNewImpAdapter(Context context, List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> listsAdapter) {
@@ -54,7 +65,6 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
 
 
         holder.txtTenSp.setText(mainData.first.second.getName());
-//        holder.txtMaLo.setText(mainData.getIdBatch());
         holder.txtHsd.setText(StampToString((mainData.second.second.getExpiryDate())));
         holder.txtSlt.setText(String.valueOf(mainData.second.second.getQuantity()));
         holder.txtSln.setText(String.valueOf(mainData.second.second.getQuantity()));
@@ -79,9 +89,10 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
             txtTenSp = itemView.findViewById(R.id.namePr31);
             txtSlt = itemView.findViewById(R.id.slTon31);
             txtSln = itemView.findViewById(R.id.slNhap31);
-            txtMaLo= itemView.findViewById(R.id.maLo31);
             txtHsd = itemView.findViewById(R.id.hsd31);
             txtGia= itemView.findViewById(R.id.gia31);
+            btn_ht = itemView.findViewById(R.id.btn_ht31);
+            btn_huy = itemView.findViewById(R.id.btn_huy31);
 
         }
 
@@ -96,5 +107,28 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = timestamp.toDate();
         return dateFormat.format(date);
+    }
+    private void updateStatusImp(String tenSP, int newQuantityValid, EditText editText) {
+        // Use Firebase Firestore to update data in Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference collectionReferencePB = db.collection("ProductBatch");
+        CollectionReference collectionReferenceImpB = db.collection("ImportBatch");
+
+
+
+        // Create a reference to the document that needs to be updated
+        DocumentReference documentReference = collectionReferencePB.document(maLo);
+
+        // Perform the update operation
+        documentReference.update("Quantity_Valid", newQuantityValid)
+                .addOnSuccessListener(aVoid -> {
+                    // Handle the success of the update operation
+                    Toast.makeText(context, "Cập nhật số lượng sản phẩm thành công!!", Toast.LENGTH_SHORT).show();
+                    editText.setTextColor(Color.parseColor("#355438"));
+                })
+                .addOnFailureListener(e -> {
+                    // Handle any errors that occurred during the update operation
+                    Toast.makeText(context, "Lỗi cập nhật số lượng sản phẩm!!", Toast.LENGTH_SHORT).show();
+                });
     }
 }

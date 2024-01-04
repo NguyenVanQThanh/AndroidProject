@@ -90,7 +90,8 @@
                         android:layout_width="82dp"
                         android:layout_height="64dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/avt"
+                        android:src="@drawable/account"
+
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintCircleAngle="90"
                         app:layout_constraintCircleRadius="50dp"

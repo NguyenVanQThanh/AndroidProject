@@ -75,7 +75,7 @@ public class NewImpActivity extends AppCompatActivity implements ItemClick{
                             }
 
                             recyclerView.setLayoutManager(new LinearLayoutManager(NewImpActivity.this));
-                            ListImp1Adapter adapter = new ListImp1Adapter(NewImpActivity.this, listNewImpBatch);
+                            NewImpAdapter adapter = new NewImpAdapter(NewImpActivity.this, listNewImpBatch);
                             recyclerView.setAdapter(adapter);
                             adapter.setClickListener((ItemClick) NewImpActivity.this);
                             recyclerView.getAdapter().notifyDataSetChanged();

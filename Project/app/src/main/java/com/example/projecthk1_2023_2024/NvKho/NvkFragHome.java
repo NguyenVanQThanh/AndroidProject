@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.projecthk1_2023_2024.NvKho.FuncNhapHang.Func_qlNhapHang1Activity;
 import com.example.projecthk1_2023_2024.NvKho.FuncPlace.FuncPlaceActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.Func_QLSPActivity;
@@ -84,6 +85,7 @@ public class NvkFragHome extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         nameAccount = view.findViewById(R.id.nameAccountNV);
+        avtAcount = view.findViewById(R.id.imgAvt);
         String loginId = currentUser.getUid();
 
 // Xử lý hiển thị thông báo mới
@@ -124,6 +126,11 @@ public class NvkFragHome extends Fragment {
                                 user = snapshot.toObject(User.class);
                                 String name = snapshot.getString("Role");
                                 nameAccount.setText(user.getUserName());
+                                Glide.with(getView())
+                                        .load(user.getImage())
+                                        //.placeholder()
+                                        .fitCenter()
+                                        .into(avtAcount);
 
                             }
                         }
@@ -182,15 +189,8 @@ public class NvkFragHome extends Fragment {
                 list.setListImportBatch(importList);
             }
         });
-// 2. xử lý xem và sửa thông tin tài khoản cá nhân
-        avtAcount = view.findViewById(R.id.imgAvt);
-        avtAcount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), AccountActivity.class);
-                startActivity(i);
-            }
-        });
+
+
         // 3. Xử lý vị trí sản phẩm
         vtri = view.findViewById(R.id.func_viTriSP);
         vtri.setOnClickListener(new View.OnClickListener() {
