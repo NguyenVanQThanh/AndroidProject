@@ -57,9 +57,9 @@ public class FuncPlaceChildAdapter extends RecyclerView.Adapter<FuncPlaceChildAd
         Pair<String, Shelf> shelfPair = shelfList.get(position);
         holder.btn.setText(shelfPair.second.getName());
         if(!shelfPair.second.isEnable()){
-            holder.btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.RED));
+            holder.btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.rgb(195,24,24)));
         }else if (shelfPair.second.getQuantity()>0){
-            holder.btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.GREEN));
+            holder.btn.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.rgb(50,132,86)));
         }
 
     }

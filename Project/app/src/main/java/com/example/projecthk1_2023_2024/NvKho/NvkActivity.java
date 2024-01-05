@@ -1,6 +1,7 @@
 package com.example.projecthk1_2023_2024.NvKho;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.projecthk1_2023_2024.NvKho.ScanOption;
 import com.example.projecthk1_2023_2024.NvKho.Report.NvkFragReport_Chart;
 import com.example.projecthk1_2023_2024.R;
 
@@ -85,6 +87,12 @@ public class NvkActivity extends AppCompatActivity {
                 imgHome.setImageResource(R.drawable.ic_home);
 
                 loadFragment(new NvkFragSetting());
+            }
+        });
+        imgScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ScanOption.class));
             }
         });
     }

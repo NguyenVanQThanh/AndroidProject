@@ -38,7 +38,7 @@ public class ListUser extends Application {
     public int setIdDocument(){
         for (int i = 0; i<listUser.size()-1 ; i++){
             if (Integer.parseInt(listUser.get(i+1).first) - Integer.parseInt(listUser.get(i).first) != 1){
-                 return Integer.parseInt(listUser.get(i).first);
+                 return Integer.parseInt(listUser.get(i).first)+1;
             }
         }
         return listUser.size()+1;

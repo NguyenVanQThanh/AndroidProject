@@ -109,18 +109,6 @@
                 android:maxLines="1"
                 android:scrollbars="horizontal" />
 
-            <Button
-                android:id="@+id/btnForgetPass"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/edtPassword"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/color_button"
-                android:text="Forget password!"
-
-                />
-
             <!-- Button đăng nhập -->
             <!--        <Button-->
             <!--            android:id="@+id/btnLogin"-->
@@ -136,12 +124,29 @@
             <!--            />-->
 
             <Button
+                android:id="@+id/btnForgetPass"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="65dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="36dp"
+                android:backgroundTint="@color/color_button"
+                android:text="Forget password!" />
+
+            <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/btnForgetPass"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_above="@+id/btnForgetPass"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="59dp"
+                android:layout_marginEnd="51dp"
+                android:layout_marginBottom="17dp"
                 android:backgroundTint="@color/color_button"
                 android:text="Login" />
         </RelativeLayout>

@@ -67,6 +67,7 @@ public class DetailProductNVKAdapter extends RecyclerView.Adapter<DetailProductN
         holder.slht.setText(String.valueOf(productBatchPair.second.getQuantity()));
         holder.slValid.setText(String.valueOf(productBatchPair.second.getQuantity_Valid()));
         // chuyển sang ngày
+
         holder.exp_date.setText(StampToString(productBatchPair.second.getExpiryDate()));
         productBatchPair.second.getIdDocument(productBatchPair.first, new ProductBatch.MyCallback() {
             @Override

@@ -88,10 +88,12 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
                     ImportBatch importBatch = documentSnapshot.toObject(ImportBatch.class);
                     Pair<String, ImportBatch> importBatchPair = new Pair<>(idDocument,importBatch);
                     importList.add(importBatchPair);
-                    ImportADViewModel importADViewModel = new ImportADViewModel(importBatchPair);
+                    ImportADViewModel importADViewModel = new ImportADViewModel();
                     if(importBatchPair.second.getIDUser()!=null) {
                         Pair<String, User> userPair = userList.find(importBatchPair.second.getIDUser().getId());
                         importADViewModel = new ImportADViewModel(userPair, importBatchPair);
+                    }else {
+                        importADViewModel = new ImportADViewModel(importBatchPair);
                     }
                     listImport.add(importADViewModel);
                 }

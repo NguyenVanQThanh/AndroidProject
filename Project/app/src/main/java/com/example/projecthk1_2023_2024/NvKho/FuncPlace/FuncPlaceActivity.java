@@ -23,6 +23,7 @@ import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.OnChildItemClickListener;
 import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.DetailProductNVKActivity;
 import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.DetailProductNVKAdapter;
+import com.example.projecthk1_2023_2024.NvKho.NvkActivity;
 import com.example.projecthk1_2023_2024.NvKho.NvkFragHome;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListShelfUtil;
@@ -58,6 +59,13 @@ public class FuncPlaceActivity extends AppCompatActivity implements OnChildItemC
         recyclerView = findViewById(R.id.recy_khu_f1);
         List<Pair<String, Shelf>> shelfList = listShelfUtil.getPairList();
         List<Pair<String, Zone>> zoneList = listZoneUtil.getPairList();
+        back = findViewById(R.id.backHomeKho);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NvkActivity.class));
+            }
+        });
         Log.d("Existence",(zoneList==null?"False":"True"));
         Log.d(MotionEffect.TAG,"Size:" + listZoneUtil.getPairList().size());
         FuncPlaceAdapter funcPlaceAdapter = new FuncPlaceAdapter(zoneList,shelfList,getApplicationContext());
@@ -68,7 +76,7 @@ public class FuncPlaceActivity extends AppCompatActivity implements OnChildItemC
 
     @Override
     public void onChildItemClick(View view, int parentPosition, String childId) {
-        Intent i = new Intent(FuncPlaceActivity.this, DetailPlaceActivity.class);
+        Intent i = new Intent(getApplicationContext(), DetailPlaceActivity.class);
         String name = listZoneUtil.getPairList().get(parentPosition).second.getName()+ " " + listShelfUtil.find(childId).second.getName();
         i.putExtra("Name",name);
         i.putExtra("idShelf",childId);

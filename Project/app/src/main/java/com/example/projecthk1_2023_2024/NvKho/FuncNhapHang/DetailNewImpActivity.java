@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClickStatus;
+import com.example.projecthk1_2023_2024.NvKho.NvkActivity;
 import com.example.projecthk1_2023_2024.Util.ListProductBatch;
 import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Product;
@@ -45,7 +47,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailNewImpActivity extends AppCompatActivity{
+public class DetailNewImpActivity extends AppCompatActivity implements ItemClickStatus {
     Context context;
     RecyclerView recyclerView;
     ImageView back;
@@ -124,10 +126,7 @@ public class DetailNewImpActivity extends AppCompatActivity{
 //                        }
 //                    }
 //                });
-        Log.d(TAG,""+documentReference.toString());
         for (Pair<String,ProductBatch> productBatch : listProductBatch.getProductList()){
-            Log.d(TAG,""+productBatch.second.getIDBatch().toString());
-            Log.d(TAG,""+ (productBatch.second.getIDBatch().getId().equals(idBatch)?"true":"false"));
             if (productBatch.second.getIDBatch().getId().equals(idBatch)){
                 for (Pair<String, Product> productPair : productList.getProductList()){
                     if (productBatch.second.getIDProduct().getId().equals(productPair.first)){
@@ -140,15 +139,48 @@ public class DetailNewImpActivity extends AppCompatActivity{
         Product_PB_VM productPbVm = Product_PB_VM.getInstance();
         productPbVm.setList(list);
         DetailNewImpAdapter detailNewImpAdapter = new DetailNewImpAdapter(getApplicationContext(),list);
-        Log.d(TAG,"Count: " + detailNewImpAdapter.getItemCount());
-        Log.d(TAG,"Count: " + listProductBatch.getProductList().size());
-        Log.d(TAG,"Count: " + productList.getProductList().size());
+        detailNewImpAdapter.setItemClickStatus(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(DetailNewImpActivity.this));
         recyclerView.setAdapter(detailNewImpAdapter);
         recyclerView.getAdapter().notifyDataSetChanged();
         }
 
 
+    @Override
+    public void onClick(View v, int pos, boolean status) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Pair<String,ProductBatch> productBatchPair =  list.get(pos).second;
+        Map<String, Object> updates = new HashMap<>();
+        if (status){
+            updates.put("Status", "Success");
+            updates.put("Enable", true);
+        }else {
+            updates.put("Status", "Cancelled");
+            updates.put("Enable", false);
+        }
+        db.collection("ProductBatch").document(productBatchPair.first)
+                .update(updates).addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Cập nhật thành công");
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "Cập nhật thất bại", e);
+                });
+        if(list.size()==1){
+            Map<String, Object> udt = new HashMap<>();
+            if (status){
+                updates.put("Status", "Success");
+                updates.put("Enable", true);
+            } else {
+                updates.put("Status", "Cancelled");
+                updates.put("Enable", false);
+            }
+        productBatchPair.second.getIDBatch().update(udt).addOnSuccessListener(aVoid -> {
 
+                })
+                .addOnFailureListener(e -> {
 
+                });
+        }
+        startActivity(new Intent(getApplicationContext(), NvkActivity.class));
+    }
 }

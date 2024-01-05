@@ -22,6 +22,7 @@
             android:layout_marginEnd="32dp"
             android:text="Available"
             android:textSize="20dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/backHomeKho"
@@ -72,6 +73,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="50dp"
             android:text="Change Status"
+            android:visibility="gone"
             app:backgroundTint="#254c7b"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listKhu" />
@@ -83,6 +85,7 @@
             android:layout_marginStart="36dp"
             android:layout_marginBottom="60dp"
             android:text="Thêm sản phẩm"
+            android:visibility="gone"
             app:backgroundTint="#254c7b"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,14 +94,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listKhu"
-            android:layout_width="0dp"
-            android:layout_height="495dp"
-            android:layout_marginBottom="136dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="346dp"
+            android:layout_height="497dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.197" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

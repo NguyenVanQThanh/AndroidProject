@@ -29,6 +29,7 @@ import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.Admin.importactivity.ImportHomeActivity;
 import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.R;
+import com.example.projecthk1_2023_2024.Util.AuUser;
 import com.example.projecthk1_2023_2024.Util.ListExpBatch;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
@@ -103,7 +104,9 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
         currentUser = firebaseAuth.getCurrentUser();
         textView = view.findViewById(R.id.nameAccount);
         imgUser = view.findViewById(R.id.imageView2);
-        String loginId = currentUser.getUid();
+        AuUser auUser = AuUser.getInstance();
+        User userInDb = auUser.getUser();
+        String loginId = userInDb.getLoginID();
         collectionReferenceNotification.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

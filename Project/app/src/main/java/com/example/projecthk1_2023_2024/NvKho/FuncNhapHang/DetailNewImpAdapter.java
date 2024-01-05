@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClickStatus;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Admin.clickhandler.ItemClick;
 import com.example.projecthk1_2023_2024.model.Product;
@@ -35,15 +36,22 @@ import java.util.Map;
 
 public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapter.MyViewHolder>  {
     Context context;
-    ItemClick itemClick;
-    Button btn_ht, btn_huy;
+    ItemClickStatus itemClickStatus;
+
+
     private List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> listsAdapter;
 
     public DetailNewImpAdapter(Context context, List<Pair<Pair<String, Product>, Pair<String, ProductBatch>>> listsAdapter) {
         this.context = context;
         this.listsAdapter = listsAdapter;
     }
+    public void setItemClickStatus(ItemClickStatus itemClickStatus) {
+        this.itemClickStatus = itemClickStatus;
+    }
 
+    public DetailNewImpAdapter(ItemClickStatus itemClick) {
+        this.itemClickStatus = itemClick;
+    }
     // Constructor để nhận dữ liệu từ Activity/Fragment
 
 
@@ -70,6 +78,11 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
         holder.txtSln.setText(String.valueOf(mainData.second.second.getQuantity()));
         holder.txtGia.setText(String.valueOf(mainData.second.second.getImportPrice()));
 
+        if(!mainData.second.second.getStatus().equals("Waiting")){
+            holder.btn_ht.setVisibility(View.GONE);
+            holder.btn_huy.setVisibility(View.GONE);
+        }
+
 
 
     }
@@ -80,9 +93,10 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txtTenSp, txtMaLo, txtHsd, txtSlt, txtSln,txtGia;
 
+        Button btn_ht, btn_huy;
         public MyViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
             context = ctx;
@@ -93,14 +107,25 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
             txtGia= itemView.findViewById(R.id.gia31);
             btn_ht = itemView.findViewById(R.id.btn_ht31);
             btn_huy = itemView.findViewById(R.id.btn_huy31);
+            btn_ht.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(itemClickStatus!=null){
+                        itemClickStatus.onClick(v,getAdapterPosition(),true);
+                    }
+                }
+            });
+            btn_huy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(itemClickStatus!=null){
+                        itemClickStatus.onClick(v,getAdapterPosition(),false);
+                    }
+                }
+            });
 
         }
 
-
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 
     private String StampToString(Timestamp timestamp) {

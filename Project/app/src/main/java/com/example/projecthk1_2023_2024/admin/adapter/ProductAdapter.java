@@ -44,8 +44,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Pair<String, Product> productPair = listProduct.get(position);
         holder.nameView.setText(productPair.second.getName());
-        holder.totalView.setText(String.valueOf(productPair.second.getQuantity()));
-        holder.stockView.setText(String.valueOf(productPair.second.getQuantity_Stock()));
         /**
          *  Using Glide Library to Display the images
          * */
@@ -70,7 +68,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             super(itemView);
             context = ctx;
             nameView = itemView.findViewById(R.id.nameView);
-
             img = itemView.findViewById(R.id.imgSP);
             itemView.setOnClickListener(this);
         }

@@ -51,7 +51,9 @@ public class ImportAdapter extends RecyclerView.Adapter<ImportAdapter.MyViewHold
         holder.date.setText(importADViewModel.getImportBatchPair().second.StampToString(importADViewModel.getImportBatchPair().second.getDate()));
         holder.sup.setText(importADViewModel.getImportBatchPair().second.getSupplier());
         if (importADViewModel.getUserPair()!=null){
-        holder.user.setText(importADViewModel.getUserPair().second.getUserName());}
+        holder.user.setText(importADViewModel.getUserPair().second.getUserName());}else{
+            holder.user.setVisibility(View.INVISIBLE);
+        }
         if (importADViewModel.getImportBatchPair().second.getStatus().equals("Success")){
             holder.ht.setVisibility(View.VISIBLE);
             holder.dxl.setVisibility(View.GONE);

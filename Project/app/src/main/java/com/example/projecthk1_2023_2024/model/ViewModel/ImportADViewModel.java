@@ -7,7 +7,11 @@ import com.example.projecthk1_2023_2024.model.User;
 
 public class ImportADViewModel {
     private Pair<String, User> userPair;
+
+
     private Pair<String, ImportBatch> importBatchPair;
+    public ImportADViewModel() {
+    }
 
     public ImportADViewModel(Pair<String, ImportBatch> importBatchPair) {
         this.importBatchPair = importBatchPair;

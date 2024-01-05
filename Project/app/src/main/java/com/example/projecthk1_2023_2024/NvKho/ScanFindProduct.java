@@ -1,4 +1,4 @@
-package com.example.projecthk1_2023_2024.Admin;
+package com.example.projecthk1_2023_2024.NvKho;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projecthk1_2023_2024.Admin.productactivity.DetailProductActivity;
 import com.example.projecthk1_2023_2024.CaptureAct;
+import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.DetailProductNVKActivity;
 import com.example.projecthk1_2023_2024.R;
-
 import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.journeyapps.barcodescanner.ScanContract;
@@ -45,7 +45,7 @@ public class ScanFindProduct extends AppCompatActivity {
                 if (productPairResult==null){
                     Toast.makeText(ScanFindProduct.this, "Không tìm thấy", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent i = new Intent(ScanFindProduct.this, DetailProductActivity.class);
+                    Intent i = new Intent(ScanFindProduct.this, DetailProductNVKActivity.class);
                     i.putExtra("IdProduct",productPairResult.first);
                     i.putExtra("nameProduct",productPairResult.second.getName());
                     startActivity(i);

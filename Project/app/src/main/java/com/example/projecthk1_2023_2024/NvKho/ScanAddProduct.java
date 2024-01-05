@@ -1,4 +1,4 @@
-package com.example.projecthk1_2023_2024.Admin;
+package com.example.projecthk1_2023_2024.NvKho;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -14,22 +14,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.projecthk1_2023_2024.Admin.activityuser.AddUserActivity;
-import com.example.projecthk1_2023_2024.Admin.activityuser.EditUserActivity;
-import com.example.projecthk1_2023_2024.Admin.activityuser.UserAdminActivity;
-import com.example.projecthk1_2023_2024.Admin.productactivity.DetailProductActivity;
 import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.CaptureAct;
+import com.example.projecthk1_2023_2024.NvKho.FuncQLSP.Func_QLSPActivity;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ProductList;
 import com.example.projecthk1_2023_2024.model.Product;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 import com.google.firebase.storage.FirebaseStorage;
@@ -96,7 +90,7 @@ public class ScanAddProduct extends AppCompatActivity {
                                         .set(productData)
                                         .addOnSuccessListener(aVoid -> {
                                             Log.d(TAG, "Success");
-                                            startActivity(new Intent(ScanAddProduct.this, ProductAdminActivity.class));
+                                            startActivity(new Intent(ScanAddProduct.this, Func_QLSPActivity.class));
                                         })
                                         .addOnFailureListener(e -> {
                                             Log.d(TAG, "Failure: " + e.getMessage());
@@ -118,7 +112,7 @@ public class ScanAddProduct extends AppCompatActivity {
                                 .set(productData)
                                 .addOnSuccessListener(aVoid -> {
                                     Log.d(TAG, "Success");
-                                    startActivity(new Intent(ScanAddProduct.this, ProductAdminActivity.class));
+                                    startActivity(new Intent(ScanAddProduct.this, Func_QLSPActivity.class));
                                 })
                                 .addOnFailureListener(e -> {
                                     Log.d(TAG, "Failure: " + e.getMessage());

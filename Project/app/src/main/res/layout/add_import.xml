@@ -29,115 +29,129 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="277dp"
+        android:layout_width="430dp"
+        android:layout_height="319dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/img_4"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_import"
         tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="386dp"
-            android:layout_height="266dp">
-
-            <ImageView
-                android:id="@+id/box_import"
-                android:layout_width="111dp"
-                android:layout_height="73dp"
-                android:layout_marginTop="28dp"
-                android:src="@drawable/box_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.545"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/constraintLayout4"
+            android:layout_width="426dp"
+            android:layout_height="235dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <TextView
                 android:id="@+id/text_date_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="48dp"
                 android:text="Ngày tạo: "
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/date_import"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/date_import" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/date_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginBottom="19dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="72dp"
                 android:text="09/12/2023"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/editText_supplier"
-                app:layout_constraintStart_toEndOf="@+id/text_date_import" />
+                app:layout_constraintStart_toEndOf="@+id/text_date_import"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_supplier_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="42dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="20dp"
                 android:text="Nhà cung cấp: "
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_date_import" />
 
             <EditText
                 android:id="@+id/editText_supplier"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginBottom="42dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
+
                 android:textSize="15dp"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_supplier_import" />
+                app:layout_constraintStart_toEndOf="@+id/text_supplier_import"
+                app:layout_constraintTop_toBottomOf="@+id/date_import" />
 
             <Button
                 android:id="@+id/buttonAdd"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="4dp"
-                android:text="Tạo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Xác nhận tạo phiếu"
                 android:textColor="@color/white"
+                android:backgroundTint="@color/color_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.549"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_supplier"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/box_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/box_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:layout_width="370dp"
-        android:layout_height="409dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="427dp"
+        android:layout_height="397dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintVertical_bias="0.047">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+
+            android:id="@+id/constraintLayout2"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            tools:ignore="ExtraText">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
 
             <TextView
@@ -155,7 +169,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyListSP"
-                android:layout_width="358dp"
+                android:layout_width="398dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -166,15 +180,15 @@
 
             <ImageButton
                 android:id="@+id/imageButton_addin4"
-                android:layout_width="370dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/custom_add_imagebutton"
                 android:src="@drawable/plus"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyListSP" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

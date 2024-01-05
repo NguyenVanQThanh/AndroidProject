@@ -66,7 +66,7 @@ public class DetailProductActivity extends AppCompatActivity {
                             Pair<String, ProductBatch> productBatchPair = new Pair<>(IdDocument, productBatch);
                             listProductBatch.add(productBatchPair);
                         }
-                        DetailProductNVKAdapter detailProductAdapter = new DetailProductNVKAdapter(DetailProductActivity.this,listProductBatch);
+                        DetailProductAdapter detailProductAdapter = new DetailProductAdapter(DetailProductActivity.this,listProductBatch);
                         recyclerView.setLayoutManager(new LinearLayoutManager(DetailProductActivity.this));
                         recyclerView.setAdapter(detailProductAdapter);
                         recyclerView.getAdapter().notifyDataSetChanged();

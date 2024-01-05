@@ -65,21 +65,28 @@
             android:src="@drawable/store" />
 
         <!-- EditText cho tên đăng nhập -->
+
+
+        <!-- Button đăng nhập -->
+
         <EditText
             android:id="@+id/edtEmailAgain"
             android:layout_width="246dp"
             android:layout_height="74dp"
             android:layout_below="@id/imgStore"
-            android:maxLines="1"
-            android:scrollbars="horizontal"
-            android:fadeScrollbars="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="12dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:hint="Email:" />
+            android:fadeScrollbars="true"
+            android:hint="Email:"
+            android:ellipsize="end"
+            android:inputType="textMultiLine"
+            android:maxLines="2"
+            android:scrollbars="horizontal" />
 
-
-        <!-- Button đăng nhập -->
         <Button
             android:id="@+id/btnSendPass"
             android:layout_width="200dp"

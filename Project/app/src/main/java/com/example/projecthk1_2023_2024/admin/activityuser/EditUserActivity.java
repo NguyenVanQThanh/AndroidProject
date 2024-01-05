@@ -1,5 +1,7 @@
 package com.example.projecthk1_2023_2024.Admin.activityuser;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.projecthk1_2023_2024.Admin.AdminHomeActivity;
+import com.example.projecthk1_2023_2024.Admin.ScanAddProduct;
+import com.example.projecthk1_2023_2024.Admin.productactivity.ProductAdminActivity;
 import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListUser;
 import com.example.projecthk1_2023_2024.model.User;
@@ -28,6 +32,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +44,7 @@ public class EditUserActivity extends AppCompatActivity {
     EditText edtName, edtSex, edtPhone, edtAddress, edtPost, edtEmail;
     FloatingActionButton addImg;
     Button btnUpdate;
+    Uri uri;
     ListUser listUser = ListUser.getInstance();
     @SuppressLint("MissingInflatedId")
     @Override
@@ -70,46 +78,119 @@ public class EditUserActivity extends AppCompatActivity {
                 String userAdress = edtAddress.getText().toString();
                 String userPost = edtPost.getText().toString();
                 String userEmail = edtEmail.getText().toString();
+                String image = userPair.second.getImage();
 
                 String userID = userPair.second.getLoginID();
                 Boolean userEnable = userPair.second.getEnable();
                 String userRole = userPair.second.getRole();
-                String userImg = userPair.second.getImage();
                 Timestamp userStart = userPair.second.getStart_Date();
                 Timestamp userBir = userPair.second.getBirthday();
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                Map<String, Object> userData = new HashMap<>();
-                userData.put("UserName", userName);
-                userData.put("Address", userAdress);
-                userData.put("Sex", userSex);
-                userData.put("Phone", userPhone);
-                userData.put("Postcode", userPost);
-                userData.put("Email", userEmail);
-                userData.put("LoginID", userID);
-                userData.put("Enable", userEnable);
-                userData.put("Role", userRole);
-                userData.put("Image", userImg);
-                userData.put("Start_Date", userStart);
-                userData.put("Birthday", userBir);
 
-                db.collection("User")
-                        .document(idUser)
-                        .set(userData)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(EditUserActivity.this, "Cập nhật thông tin thành công!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(EditUserActivity.this, UserAdminActivity.class));
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Xử lý khi cập nhật thất bại
-                            }
+
+                if (uri != null) {
+                    String oldImageUrl = image;
+
+                    if (oldImageUrl != null && !oldImageUrl.isEmpty()) {
+                        StorageReference oldImageRef = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageUrl);
+                        oldImageRef.delete().addOnSuccessListener(aVoid -> {
+                            String imageName = "user/" + edtName.getText().toString() + ".jpg";
+                            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imageName);
+                            UploadTask uploadTask = storageRef.putFile(uri);
+                            uploadTask.addOnSuccessListener(taskSnapshot -> {
+                                storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                    Log.d("Linkkkkkk1111",uri.toString());
+                                    String imageUrl = uri.toString();
+                                    Log.d("Linkkkkkk",imageUrl);
+                                    Map<String, Object> userData = new HashMap<>();
+                                    userData.put("UserName", userName);
+                                    userData.put("Address", userAdress);
+                                    userData.put("Sex", userSex);
+                                    userData.put("Phone", userPhone);
+                                    userData.put("Postcode", userPost);
+                                    userData.put("Email", userEmail);
+                                    userData.put("LoginID", userID);
+                                    userData.put("Enable", userEnable);
+                                    userData.put("Role", userRole);
+                                    userData.put("Start_Date", userStart);
+                                    userData.put("Birthday", userBir);
+                                    userData.put("Image", imageUrl);
+                                    db.collection("User").document(userPair.first)
+                                            .set(userData)
+                                            .addOnSuccessListener(a -> {
+                                                startActivity(new Intent(EditUserActivity.this, UserAdminActivity.class));
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                Log.d(TAG, "Failure: " + e.getMessage());
+                                            });
+                                });
+                            }).addOnFailureListener(e -> {
+                                Log.d(TAG, "Image upload failed: " + e.getMessage());
+                            });
+                        }).addOnFailureListener(e -> {
+                            Log.d(TAG, "Failed to delete old image: " + e.getMessage());
                         });
-            }
+                    } else {
+                        String imageName = "user/" + edtName.getText().toString() + ".jpg";
+                        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(imageName);
+                        UploadTask uploadTask = storageRef.putFile(uri);
+                        uploadTask.addOnSuccessListener(taskSnapshot -> {
+                            storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                String imageUrl = uri.toString();
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("UserName", userName);
+                                userData.put("Address", userAdress);
+                                userData.put("Sex", userSex);
+                                userData.put("Phone", userPhone);
+                                userData.put("Postcode", userPost);
+                                userData.put("Email", userEmail);
+                                userData.put("LoginID", userID);
+                                userData.put("Enable", userEnable);
+                                userData.put("Role", userRole);
+                                userData.put("Start_Date", userStart);
+                                userData.put("Birthday", userBir);
+                                userData.put("Image", imageUrl);
+                                db.collection("User").document(userPair.first)
+                                        .set(userData)
+                                        .addOnSuccessListener(aVoid -> {
+                                            startActivity(new Intent(EditUserActivity.this, UserAdminActivity.class));
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.d(TAG, "Failure: " + e.getMessage());
+                                        });
+                            });
+                        }).addOnFailureListener(e -> {
+                            Log.d(TAG, "Image upload failed: " + e.getMessage());
+                        });
+                    }
+                } else {
+                    Map<String, Object> userData = new HashMap<>();
+                    userData.put("UserName", userName);
+                    userData.put("Address", userAdress);
+                    userData.put("Sex", userSex);
+                    userData.put("Phone", userPhone);
+                    userData.put("Postcode", userPost);
+                    userData.put("Email", userEmail);
+                    userData.put("LoginID", userID);
+                    userData.put("Enable", userEnable);
+                    userData.put("Role", userRole);
+                    userData.put("Image", image);
+                    userData.put("Start_Date", userStart);
+                    userData.put("Birthday", userBir);
+                    db.collection("User")
+                            .document(userPair.first)
+                            .set(userData)
+                            .addOnSuccessListener(aVoid -> {
+                                startActivity(new Intent(EditUserActivity.this, UserAdminActivity.class));
+                            })
+                            .addOnFailureListener(e -> {});
+                }
+                }
+
+
+
+
         });
 
 
@@ -144,9 +225,11 @@ public class EditUserActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Uri uri = data.getData();
+        uri = data.getData();
         imgAcc.setImageURI(uri);
-//        Log.d(TAG, data.getDataString());
+//
 
     }
+
+
 }

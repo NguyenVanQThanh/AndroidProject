@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailPlaceActivity extends AppCompatActivity implements ItemClick {
-    TextView txtKho;
+    TextView txtKho, avai;
     ImageView back;
     RecyclerView recyclerView;
     Button btnAdd, btnChange;
@@ -47,6 +47,14 @@ public class DetailPlaceActivity extends AppCompatActivity implements ItemClick 
         recyclerView = findViewById(R.id.listKhu);
         btnAdd = findViewById(R.id.btn_addPr);
         btnChange = findViewById(R.id.btn_full);
+        avai = findViewById(R.id.textView16);
+        back = findViewById(R.id.backHomeKho);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         String idShelf = getIntent().getStringExtra("idShelf");
         String name = getIntent().getStringExtra("Name");
@@ -57,7 +65,8 @@ public class DetailPlaceActivity extends AppCompatActivity implements ItemClick 
         ProductList productList = ProductList.getInstance();
         for(Pair<String, ProductBatch> productBatchPair : listProductBatch.getProductList()){
             Log.d("Size ",""+((productBatchPair.second.getIDShelf()==null)?"False " + productBatchPair.first:"True"));
-            if (productBatchPair.second.getIDShelf().getId().equals(idShelf)){
+
+            if (productBatchPair.second.getIDShelf()!=null && productBatchPair.second.getIDShelf().getId().equals(idShelf)){
                 for (Pair<String,Product> productPair : productList.getProductList()){
                     if (productPair.first.equals(productBatchPair.second.getIDProduct().getId())){
                         ItemShelfVM itemShelfVM = new ItemShelfVM(productPair,productBatchPair);
@@ -72,6 +81,9 @@ public class DetailPlaceActivity extends AppCompatActivity implements ItemClick 
         detailPlaceAdapter.setItemClick(this);
         recyclerView.setAdapter(detailPlaceAdapter);
         txtKho.setText(name);
+        if (!shelfPair.second.isEnable()){
+            avai.setText("Unavailable");
+        }
     }
 
     @Override

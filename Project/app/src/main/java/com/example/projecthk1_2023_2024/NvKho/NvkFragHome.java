@@ -139,11 +139,11 @@ public class NvkFragHome extends Fragment {
                                 user = snapshot.toObject(User.class);
                                 String name = snapshot.getString("Role");
                                 nameAccount.setText(user.getUserName());
-                                Glide.with(getView())
-                                        .load(user.getImage())
-                                        //.placeholder()
-                                        .fitCenter()
-                                        .into(avtAcount);
+//                                Glide.with(getContext())
+//                                        .load(user.getImage())
+//                                        //.placeholder()
+//                                        .fitCenter()
+//                                        .into(avtAcount);
 
                             }
                         }

@@ -3,6 +3,7 @@ package com.example.projecthk1_2023_2024.Admin.importactivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +32,7 @@ public class AddItemImport extends AppCompatActivity {
     TextView txtCode;
     Spinner spinner;
     EditText edtGia, edtSln;
-    Button btnAdd;
+    Button btnAdd, back;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +43,13 @@ public class AddItemImport extends AppCompatActivity {
         edtGia = findViewById(R.id.edtGia);
         edtSln = findViewById(R.id.editText_soluongnhap);
         btnAdd= findViewById(R.id.btnAdd);
+        back = findViewById(R.id.btnCancel);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         AddImportVM addImportVM = AddImportVM.getInstance();
         ProductList productList = ProductList.getInstance();
@@ -83,19 +91,23 @@ public class AddItemImport extends AppCompatActivity {
                     imports = new ArrayList<>();
                 }
                 boolean check = true;
-                for(ItemAddImport addImport : imports){
-                    if (addImport.getProductPair().first.equals(code)){
-                        check = false;
-                    }
-                }
-                if (check) {
-                    imports.add(itemAddImport);
-                    int count = addImportVM.getTotal() + Integer.valueOf(sln);
-                    addImportVM.setTotal(count);
-                    addImportVM.setItemAddImportList(imports);
-                    startActivity(new Intent(getApplicationContext(), AddImportActivity.class));
+                if (TextUtils.isEmpty(gia) || TextUtils.isEmpty(sln)){
+                    Toast.makeText(AddItemImport.this, "Nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(AddItemImport.this, "Đã tồn tại sản phẩm này!!", Toast.LENGTH_SHORT).show();
+                    for(ItemAddImport addImport : imports){
+                        if (addImport.getProductPair().first.equals(code)){
+                            check = false;
+                        }
+                    }
+                    if (check) {
+                        imports.add(itemAddImport);
+                        int count = addImportVM.getTotal() + Integer.valueOf(sln);
+                        addImportVM.setTotal(count);
+                        addImportVM.setItemAddImportList(imports);
+                        startActivity(new Intent(getApplicationContext(), AddImportActivity.class));
+                    }else {
+                        Toast.makeText(AddItemImport.this, "Đã tồn tại sản phẩm này!!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

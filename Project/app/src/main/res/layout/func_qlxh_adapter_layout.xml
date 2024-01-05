@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     tools:context=".NvKho.FuncXuatHang.Func_qlxh_Adapter">
 
 
@@ -27,7 +28,7 @@
                 android:layout_height="152dp"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="10dp"
-                android:text="Mã PN:\n \nNgày tạo phiếu:\n \nTình trạng:\n"
+                android:text="Mã PX:\n \nNgày tạo phiếu:\n \nTình trạng:\n"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

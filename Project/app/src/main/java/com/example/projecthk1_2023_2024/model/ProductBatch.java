@@ -26,6 +26,7 @@ public class ProductBatch {
     private Timestamp ExpiryDate;
     private boolean Enable;
     private double ImportPrice;
+    private String Status;
     private DocumentReference IDProduct;
     private DocumentReference IDShelf;
     private DocumentReference IDBatch;
@@ -33,7 +34,7 @@ public class ProductBatch {
     public ProductBatch() {
     }
 
-    public ProductBatch(int Quantity,int Quantity_Valid ,Timestamp ExpiryDate, boolean Enable, double ImportPrice, DocumentReference IDProduct, DocumentReference IDShelf, DocumentReference IDBatch) {
+    public ProductBatch(int Quantity,int Quantity_Valid ,Timestamp ExpiryDate, boolean Enable, double ImportPrice, DocumentReference IDProduct, DocumentReference IDShelf, DocumentReference IDBatch, String Status) {
         this.Quantity = Quantity;
         this.Quantity_Valid = Quantity_Valid;
         this.ExpiryDate = ExpiryDate;
@@ -42,10 +43,19 @@ public class ProductBatch {
         this.IDProduct = IDProduct;
         this.IDShelf = IDShelf;
         this.IDBatch = IDBatch;
+        this.Status = Status;
     }
 
     public int getQuantity() {
         return Quantity;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public void setQuantity(int quantity) {
