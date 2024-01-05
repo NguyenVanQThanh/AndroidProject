@@ -65,7 +65,7 @@ public class UserDetailActivity extends AppCompatActivity {
             birthView.setText(userPair.second.StampToString(userPair.second.getBirthday()));
 
             if (!userPair.second.getEnable()){
-                nghiViec.setVisibility(View.VISIBLE);
+                nghiViec.setVisibility(View.GONE);
             }
             Map<String, Object> updateData = new HashMap<>();
             updateData.put("Enable", false);

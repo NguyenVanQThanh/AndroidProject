@@ -113,6 +113,10 @@
         <activity
             android:name=".NvKho.FuncQLSP.Func_QLSPActivity"
             android:exported="false" />
+        <activity android:name=".Admin.importactivity.AddImportActivity"
+            android:exported="false"/>
+        <activity android:name=".Admin.importactivity.AddItemImport"
+            android:exported="false"/>
         <activity
             android:name=".NvKho.NvkFragNotice"
             android:exported="false" />

@@ -29,13 +29,13 @@ public class ImportBatch {
     public ImportBatch() {
     }
 
-    public ImportBatch(Timestamp date, boolean enable, Timestamp date_success, String status, int quantity_import, String supplier, DocumentReference IDUser) {
-        this.Date = date;
-        this.Enable = enable;
-        this.Date_success = date_success;
-        this.Status = status;
-        this.Quantity_import = quantity_import;
-        this.Supplier = supplier;
+    public ImportBatch(Timestamp Date, boolean Enable, Timestamp Date_success, String Status, int Quantity_import, String Supplier, DocumentReference IDUser) {
+        this.Date = Date;
+        this.Enable = Enable;
+        this.Date_success = Date_success;
+        this.Status = Status;
+        this.Quantity_import = Quantity_import;
+        this.Supplier = Supplier;
         this.IDUser = IDUser;
 
     }

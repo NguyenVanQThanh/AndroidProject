@@ -108,27 +108,27 @@ public class DetailNewImpAdapter extends RecyclerView.Adapter<DetailNewImpAdapte
         Date date = timestamp.toDate();
         return dateFormat.format(date);
     }
-    private void updateStatusImp(String tenSP, int newQuantityValid, EditText editText) {
-        // Use Firebase Firestore to update data in Firestore
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference collectionReferencePB = db.collection("ProductBatch");
-        CollectionReference collectionReferenceImpB = db.collection("ImportBatch");
-
-
-
-        // Create a reference to the document that needs to be updated
-        DocumentReference documentReference = collectionReferencePB.document(maLo);
-
-        // Perform the update operation
-        documentReference.update("Quantity_Valid", newQuantityValid)
-                .addOnSuccessListener(aVoid -> {
-                    // Handle the success of the update operation
-                    Toast.makeText(context, "Cập nhật số lượng sản phẩm thành công!!", Toast.LENGTH_SHORT).show();
-                    editText.setTextColor(Color.parseColor("#355438"));
-                })
-                .addOnFailureListener(e -> {
-                    // Handle any errors that occurred during the update operation
-                    Toast.makeText(context, "Lỗi cập nhật số lượng sản phẩm!!", Toast.LENGTH_SHORT).show();
-                });
-    }
+//    private void updateStatusImp(String tenSP, int newQuantityValid, EditText editText) {
+//        // Use Firebase Firestore to update data in Firestore
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        CollectionReference collectionReferencePB = db.collection("ProductBatch");
+//        CollectionReference collectionReferenceImpB = db.collection("ImportBatch");
+//
+//
+//
+//        // Create a reference to the document that needs to be updated
+//        DocumentReference documentReference = collectionReferencePB.document(maLo);
+//
+//        // Perform the update operation
+//        documentReference.update("Quantity_Valid", newQuantityValid)
+//                .addOnSuccessListener(aVoid -> {
+//                    // Handle the success of the update operation
+//                    Toast.makeText(context, "Cập nhật số lượng sản phẩm thành công!!", Toast.LENGTH_SHORT).show();
+//                    editText.setTextColor(Color.parseColor("#355438"));
+//                })
+//                .addOnFailureListener(e -> {
+//                    // Handle any errors that occurred during the update operation
+//                    Toast.makeText(context, "Lỗi cập nhật số lượng sản phẩm!!", Toast.LENGTH_SHORT).show();
+//                });
+//    }
 }

@@ -80,7 +80,7 @@ public class FuncPlaceChildAdapter extends RecyclerView.Adapter<FuncPlaceChildAd
                 public void onClick(View v) {
                     if (childItemClickListener != null) {
                         String id = shelfList.get(getAdapterPosition()).first;
-                        Log.d("FuncPlaceChildAdapter", "Child item clicked: " + id);
+//                        Log.d("FuncPlaceChildAdapter", "Child item clicked: " + id);
                         childItemClickListener.onChildItemClick(v, positionParent, id);
                     }
                 }

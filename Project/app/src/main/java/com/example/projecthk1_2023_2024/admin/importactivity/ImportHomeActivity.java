@@ -75,7 +75,7 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), NewImportActivity.class));
+                startActivity(new Intent(getApplicationContext(), AddImportActivity.class));
             }
         });
 
@@ -88,8 +88,11 @@ public class ImportHomeActivity extends AppCompatActivity implements ItemClick {
                     ImportBatch importBatch = documentSnapshot.toObject(ImportBatch.class);
                     Pair<String, ImportBatch> importBatchPair = new Pair<>(idDocument,importBatch);
                     importList.add(importBatchPair);
-                    Pair<String, User> userPair = userList.find(importBatchPair.second.getIDUser().getId());
-                    ImportADViewModel importADViewModel = new ImportADViewModel(userPair,importBatchPair);
+                    ImportADViewModel importADViewModel = new ImportADViewModel(importBatchPair);
+                    if(importBatchPair.second.getIDUser()!=null) {
+                        Pair<String, User> userPair = userList.find(importBatchPair.second.getIDUser().getId());
+                        importADViewModel = new ImportADViewModel(userPair, importBatchPair);
+                    }
                     listImport.add(importADViewModel);
                 }
                 ListImportBatch importBatchList = ListImportBatch.getInstance();

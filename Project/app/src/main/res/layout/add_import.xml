@@ -52,84 +52,74 @@
                 android:layout_marginTop="28dp"
                 android:src="@drawable/box_icon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.469"
+                app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_userid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Mã nhân viên: "
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="147dp" />
-
-            <TextView
-                android:id="@+id/userid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="NV0001 "
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/text_userid"
-                tools:layout_editor_absoluteY="147dp" />
 
             <TextView
                 android:id="@+id/text_date_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="16dp"
                 android:text="Ngày tạo: "
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/date_import"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_userid" />
+                app:layout_constraintTop_toTopOf="@+id/date_import" />
 
             <TextView
                 android:id="@+id/date_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="19dp"
                 android:text="09/12/2023"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                app:layout_constraintStart_toEndOf="@+id/text_date_import"
-                app:layout_constraintTop_toBottomOf="@+id/userid" />
+                app:layout_constraintBottom_toTopOf="@+id/editText_supplier"
+                app:layout_constraintStart_toEndOf="@+id/text_date_import" />
 
             <TextView
                 android:id="@+id/text_supplier_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginBottom="42dp"
                 android:text="Nhà cung cấp: "
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="223dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/editText_supplier"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginBottom="42dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="VD: Hasaki"
+                android:text=""
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="15dp"
                 android:textStyle="italic"
-                app:layout_constraintStart_toEndOf="@+id/text_supplier_import"
-                tools:layout_editor_absoluteY="210dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_supplier_import" />
+
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="4dp"
+                android:text="Tạo"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -185,17 +175,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyListSP" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@drawable/custom_button"
-                android:text="Tạo"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton_addin4" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

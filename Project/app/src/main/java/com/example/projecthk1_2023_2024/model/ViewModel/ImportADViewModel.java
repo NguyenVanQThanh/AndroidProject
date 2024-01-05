@@ -9,6 +9,10 @@ public class ImportADViewModel {
     private Pair<String, User> userPair;
     private Pair<String, ImportBatch> importBatchPair;
 
+    public ImportADViewModel(Pair<String, ImportBatch> importBatchPair) {
+        this.importBatchPair = importBatchPair;
+    }
+
     public ImportADViewModel(Pair<String, User> userPair, Pair<String, ImportBatch> importBatchPair) {
         this.userPair = userPair;
         this.importBatchPair = importBatchPair;

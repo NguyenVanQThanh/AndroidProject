@@ -159,7 +159,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="25dp"
-                android:text="Nguyễn Văn A"
                 android:textColor="#777777"
                 android:textSize="20dp"
                 android:textStyle="italic"

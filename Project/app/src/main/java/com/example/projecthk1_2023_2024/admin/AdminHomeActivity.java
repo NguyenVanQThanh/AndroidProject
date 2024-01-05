@@ -32,6 +32,7 @@ import com.example.projecthk1_2023_2024.R;
 import com.example.projecthk1_2023_2024.Util.ListExpBatch;
 import com.example.projecthk1_2023_2024.Util.ListExportBatch;
 import com.example.projecthk1_2023_2024.Util.ListImportBatch;
+import com.example.projecthk1_2023_2024.Util.ListNotification;
 import com.example.projecthk1_2023_2024.Util.ListProductBatch;
 import com.example.projecthk1_2023_2024.Util.ListShelfUtil;
 import com.example.projecthk1_2023_2024.Util.ListUser;
@@ -115,6 +116,8 @@ public class AdminHomeActivity extends Fragment implements ItemClick {
                             notificationList.add(notificationPair);
                         }
                     }
+                    ListNotification listNotification = ListNotification.getInstance();
+                    listNotification.setNotificationList(notificationList);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(new NotificationAdapter(getActivity(), notificationList));

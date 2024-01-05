@@ -84,7 +84,7 @@ public class AddUserActivity extends AppCompatActivity {
 
                 CreateUserEmailAccount(addressUser, emailUser,password, nameUser, birUser,sexUser,phoneUser,postCodeUser);
 
-                Toast.makeText(AddUserActivity.this, "Thêm NV thành công có passwork mặc định là 123456!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddUserActivity.this, "Thêm NV thành công có password mặc định là 123456!", Toast.LENGTH_SHORT).show();
 
             }
         });

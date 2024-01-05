@@ -18,8 +18,8 @@
 
         <TextView
             android:id="@+id/editText_masanpham"
-            android:layout_width="119dp"
-            android:layout_height="57dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/custome_edittext"
@@ -37,10 +37,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <EditText
-            android:id="@+id/editText_tensanpham"
-            android:layout_width="234dp"
-            android:layout_height="70dp"
+        <!--        <ImageView-->
+<!--            android:id="@+id/listSP"-->
+<!--            android:layout_width="36dp"-->
+<!--            android:layout_height="34dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:src="@drawable/list_sp"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/spinner"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/spinner"-->
+<!--            tools:ignore="MissingConstraints" />-->
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/custome_edittext"
@@ -50,27 +60,16 @@
             android:inputType="text"
             android:maxLines="1"
             android:paddingStart="10dp"
-            android:scrollbars="horizontal"
             android:textColor="@color/black"
             android:textColorHint="#9F9E9E"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.641"
             app:layout_constraintStart_toEndOf="@+id/editText_masanpham"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/listSP"
-            android:layout_width="36dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/list_sp"
-            app:layout_constraintEnd_toEndOf="@+id/editText_tensanpham"
-            app:layout_constraintTop_toTopOf="@+id/editText_tensanpham"
-            tools:ignore="MissingConstraints" />
-
         <EditText
-            android:id="@+id/editText_soluongsanpham"
+            android:id="@+id/edtGia"
             android:layout_width="150dp"
             android:layout_height="47dp"
             android:layout_marginStart="32dp"
@@ -78,7 +77,7 @@
             android:background="@drawable/custome_edittext"
             android:ems="10"
             android:fadeScrollbars="true"
-            android:hint="Số lượng tồn"
+            android:hint="Giá"
             android:inputType="number"
             android:maxLines="1"
             android:paddingStart="10dp"
@@ -93,8 +92,8 @@
             android:id="@+id/editText_soluongnhap"
             android:layout_width="150dp"
             android:layout_height="47dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/custome_edittext"
             android:ems="10"
             android:fadeScrollbars="true"
@@ -106,8 +105,17 @@
             android:textColor="@color/black"
             android:textColorHint="#9F9E9E"
             android:textStyle="italic"
-            app:layout_constraintStart_toEndOf="@+id/editText_soluongsanpham"
-            app:layout_constraintTop_toBottomOf="@+id/editText_tensanpham" />
+            app:layout_constraintStart_toEndOf="@+id/edtGia"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout7"
@@ -117,7 +125,7 @@
             android:paddingTop="10dp"
             tools:ignore="MissingConstraints,Orientation"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="180dp" />
+            tools:layout_editor_absoluteY="211dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
